@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/presentation/routes/routes.dart';
+import 'package:new_exercise/presentation/routes/routes.dart';
 
 import 'config/theme/themes.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     //     statusBarBrightness: Brightness.dark,
     //     statusBarIconBrightness: Brightness.dark));
     return MaterialApp(
-      title: 'Note App',
+      title: 'Flutter demo',
       debugShowCheckedModeBanner: false,
       theme: Themes.lightTheme,
       onGenerateRoute: (setting) => Routes.generateRoutes(setting),
