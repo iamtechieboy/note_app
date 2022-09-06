@@ -1,5 +1,5 @@
-name: new_exercise
-description: A new Flutter project.
+name: note_app
+description: A Flutter project for people to write notes
 
 publish_to: 'none'
 
