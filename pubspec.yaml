@@ -1,4 +1,4 @@
-name: new_exercise
+name: note_app
 description: A Flutter project.
 
 publish_to: 'none'
@@ -15,6 +15,8 @@ dependencies:
   flutter_svg: ^1.1.4
   # additional features for this project
   intl: ^0.17.0
+  # package for isolate that can allow to run some codes on another thread
+  flutter_isolate: ^2.0.2
 
   cupertino_icons: ^1.0.2
 
@@ -34,44 +36,35 @@ flutter:
     - fonts/
 
   fonts:
-    - family: Roboto
+    - family: Inter
       fonts:
-        - asset: fonts/Roboto-Black.ttf
+        - asset: fonts/Inter-Black.ttf
           weight: 900
           style: normal
-        - asset: fonts/Roboto-BlackItalic.ttf
-          weight: 900
-          style: italic
-        - asset: fonts/Roboto-Bold.ttf
+        - asset: fonts/Inter-ExtraBold.ttf
+          weight: 800
+          style: normal
+        - asset: fonts/Inter-Bold.ttf
           weight: 700
           style: normal
-        - asset: fonts/Roboto-BoldItalic.ttf
-          weight: 700
-          style: italic
-        - asset: fonts/Roboto-Medium.ttf
+        - asset: fonts/Inter-SemiBold.ttf
+          weight: 600
+          style: normal
+        - asset: fonts/Inter-Medium.ttf
           weight: 500
           style: normal
-        - asset: fonts/Roboto-MediumItalic.ttf
-          weight: 500
-          style: italic
-        - asset: fonts/Roboto-Regular.ttf
+        - asset: fonts/Inter-Regular.ttf
           weight: 400
           style: normal
-        - asset: fonts/Roboto-Italic.ttf
-          weight: 400
-          style: italic
-        - asset: fonts/Roboto-Light.ttf
+        - asset: fonts/Inter-Light.ttf
           weight: 300
           style: normal
-        - asset: fonts/Roboto-LightItalic.ttf
-          weight: 300
-          style: italic
-        - asset: fonts/Roboto-Thin.ttf
+        - asset: fonts/Inter-ExtraLight.ttf
+          weight: 200
+          style: normal
+        - asset: fonts/Inter-Thin.ttf
           weight: 100
           style: normal
-        - asset: fonts/Roboto-ThinItalic.ttf
-          weight: 100
-          style: italic
 
   #   - family: Trajan Pro
   #     fonts:
