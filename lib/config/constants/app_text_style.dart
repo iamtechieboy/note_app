@@ -64,7 +64,7 @@ abstract class AppTextStyle {
       fontFamily: fontFamily,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
-      fontSize: 10,
+      fontSize: 40,
       height: 11 / 10,
       color: AppColors.neutralColor.black);
 
@@ -126,7 +126,7 @@ abstract class AppTextStyle {
       fontFamily: fontFamily,
       fontWeight: FontWeight.w500,
       fontStyle: FontStyle.normal,
-      fontSize: 10,
+      fontSize: 40,
       height: 11 / 10,
       color: AppColors.neutralColor.black);
 
@@ -188,7 +188,7 @@ abstract class AppTextStyle {
       fontFamily: fontFamily,
       fontWeight: FontWeight.w700,
       fontStyle: FontStyle.normal,
-      fontSize: 10,
+      fontSize: 40,
       height: 11 / 10,
       color: AppColors.neutralColor.black);
 }
