@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../config/constants/assets.dart';
-import '../components/navigationButton.dart';
+import '../components/navigation_button.dart';
 
 class HomeBottomNavBar extends StatefulWidget {
   const HomeBottomNavBar({Key? key}) : super(key: key);

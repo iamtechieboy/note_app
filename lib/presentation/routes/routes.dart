@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/presentation/pages/home/home_page.dart';
+import 'package:note_app/presentation/pages/interesting_idea/add_interesting_idea_page.dart';
 import 'package:note_app/presentation/pages/new_idea/create_new_idea_page.dart';
 
 class Routes {
   static const mainPage = '/';
-  static const newIdeaPage = '/newIdea';
+  static const newIdeaPage = '/createNewIdeaPage';
+  static const interestingIdeaPage = '/interestingIdeaPage';
 
   static Route<dynamic> generateRoutes(RouteSettings settings) {
     try {
@@ -19,6 +21,10 @@ class Routes {
         case newIdeaPage:
           return MaterialPageRoute(
             builder: (_) => const CreateNewIdeasPage(),
+          );
+        case interestingIdeaPage:
+          return MaterialPageRoute(
+            builder: (_) => const AddInterestingIdeaPage(),
           );
         default:
           return MaterialPageRoute(

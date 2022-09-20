@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_app/config/constants/app_colors.dart';
 import 'package:note_app/config/constants/app_text_style.dart';
+import 'package:note_app/presentation/components/back_to_button.dart';
+import 'package:note_app/presentation/components/custom_app_bar.dart';
+import 'package:note_app/presentation/routes/routes.dart';
 import 'package:note_app/presentation/widgets/new_ideas_button.dart';
 
 import '../../../config/constants/assets.dart';
@@ -13,43 +16,7 @@ class CreateNewIdeasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 54,
-        backgroundColor: AppColors.neutralColor.white,
-        elevation: 1,
-        shadowColor: const Color(0xe5ffffff),
-        centerTitle: true,
-        title: Text(
-          "New Notes",
-          style: AppTextStyle.mediumBase
-              .copyWith(color: AppColors.neutralColor.black),
-        ),
-        automaticallyImplyLeading: false,
-        leadingWidth: 100,
-        leading: CupertinoButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 2, right: 4),
-                child: SvgPicture.asset(
-                  Assets.icons.backWithText,
-                  color: AppColors.primaryColor.base,
-                ),
-              ),
-              Text(
-                "Back",
-                style: AppTextStyle.mediumBase.copyWith(
-                  color: AppColors.primaryColor.base,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: const CustomAppBar(title: "New Ideas"),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
         child: ListView(
@@ -67,7 +34,9 @@ class CreateNewIdeasPage extends StatelessWidget {
                 icon: Assets.icons.interesting,
                 iconBackground: AppColors.primaryColor.dark,
                 cardBackground: AppColors.primaryColor.base,
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, Routes.interestingIdeaPage);
+                },
               ),
             ),
             NewIdeasButton(
