@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/presentation/pages/goals_idea/goals_page.dart';
 import 'package:note_app/presentation/routes/routes.dart';
 
 import 'config/theme/themes.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Themes.lightTheme,
       onGenerateRoute: (setting) => Routes.generateRoutes(setting),
+      // home: const GoalsPage(),
     );
   }
 }
