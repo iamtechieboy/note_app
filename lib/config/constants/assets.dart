@@ -43,6 +43,8 @@ class _Icons extends _AssetsHolder {
 
   String get arrowRight => '$basePath/arrow_right.svg';
 
+  String get arrowIn => '$basePath/arrow_in.svg';
+
   String get notification => '$basePath/bell.svg';
 
   String get bookMark => '$basePath/bookmark.svg';

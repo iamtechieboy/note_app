@@ -17,6 +17,17 @@ dependencies:
   intl: ^0.17.0
   # package for isolate that can allow to run some codes on another thread
   flutter_isolate: ^2.0.2
+  # Hive database to save all information locally
+  hive: ^2.2.3
+  provider: 6.0.3
+  path_provider: 2.0.11
+  # Bottom Modal sheet to show extra menus
+  modal_bottom_sheet: ^2.0.0
+  # State management
+  flutter_bloc: ^8.1.1
+  equatable: ^2.0.5
+  # To take photos from storage
+  image_picker: ^0.8.5+3
 
   cupertino_icons: ^1.0.2
 

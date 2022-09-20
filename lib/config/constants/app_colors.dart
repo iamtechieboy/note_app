@@ -129,3 +129,13 @@ class WaringColors extends ColorSwatch<String> {
 
   Color get light => this["light"]!;
 }
+
+final List<Color> colorPickerList = [
+  AppColors.neutralColor.white,
+  AppColors.errorColor.light,
+  AppColors.primaryColor.light,
+  AppColors.successColor.light,
+  AppColors.waringColors.light,
+  AppColors.secondaryColor.light,
+  AppColors.neutralColor.lightGrey,
+];

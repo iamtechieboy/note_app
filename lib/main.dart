@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/presentation/pages/goals_idea/goals_page.dart';
 import 'package:note_app/presentation/routes/routes.dart';
 
 import 'config/theme/themes.dart';
+import 'core/di/bloc_scope.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,12 +19,13 @@ class MyApp extends StatelessWidget {
     //     systemNavigationBarIconBrightness: Brightness.dark,
     //     statusBarBrightness: Brightness.dark,
     //     statusBarIconBrightness: Brightness.dark));
-    return MaterialApp(
-      title: 'Note App',
-      debugShowCheckedModeBanner: false,
-      theme: Themes.lightTheme,
-      onGenerateRoute: (setting) => Routes.generateRoutes(setting),
-      // home: const GoalsPage(),
+    return BlocScope(
+      child: MaterialApp(
+        title: 'Note App',
+        debugShowCheckedModeBanner: false,
+        theme: Themes.lightTheme,
+        onGenerateRoute: (setting) => Routes.generateRoutes(setting),
+      ),
     );
   }
 }
