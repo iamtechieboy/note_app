@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:note_app/config/constants/assets.dart';
-
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_text_style.dart';
 

@@ -53,7 +53,9 @@ class CreateNewIdeasPage extends StatelessWidget {
               icon: Assets.icons.goals,
               iconBackground: AppColors.waringColors.dark,
               cardBackground: AppColors.waringColors.base,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, Routes.goalsPage);
+              },
             ),
             NewIdeasButton(
               title: "Guidance",

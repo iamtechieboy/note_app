@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_app/config/constants/app_text_style.dart';
 import 'package:note_app/presentation/components/bottom_task_bar.dart';
 import 'package:note_app/presentation/components/custom_app_bar.dart';

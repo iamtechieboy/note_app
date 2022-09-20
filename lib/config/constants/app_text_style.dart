@@ -191,4 +191,30 @@ abstract class AppTextStyle {
       fontSize: 40,
       height: 11 / 10,
       color: AppColors.neutralColor.black);
+
+  // /*
+  //     + add main task dagi + ning style
+  // */
+
+  // static TextStyle addStyle = TextStyle(
+  //     fontFamily: fontFamily,
+  //     fontWeight: FontWeight.w500,
+  //     fontStyle: FontStyle.normal,
+  //     fontSize: 20,
+  //     height: 14 / 10,
+  //     color: AppColors.primaryColor.base);
+
+  // /* 
+  //     + add main task dagi Add main taskning style 
+  // */
+
+  // static TextStyle addStyleUnderline = TextStyle(
+  //   fontFamily: fontFamily,
+  //   fontWeight: FontWeight.w700,
+  //   fontStyle: FontStyle.normal,
+  //   fontSize: 16,
+  //   height: 14 / 10,
+  //   color: AppColors.primaryColor.base,
+  //   decoration: TextDecoration.underline,
+  // );
 }

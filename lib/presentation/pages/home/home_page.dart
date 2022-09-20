@@ -1,12 +1,8 @@
-import 'dart:async';
-import 'dart:isolate';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_app/config/constants/app_colors.dart';
 import 'package:note_app/config/constants/app_text_style.dart';
 import 'package:note_app/config/constants/assets.dart';
-import 'package:note_app/presentation/components/navigation_button.dart';
 import 'package:note_app/presentation/routes/routes.dart';
 import 'package:note_app/presentation/widgets/home_bottom_nav_bar.dart';
 
