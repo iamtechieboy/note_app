@@ -70,7 +70,7 @@ class _GoalsPageState extends State<GoalsPage> {
               ),
             ),
           ),
-          BottomTaskBar(context: context, onMoreButtonPressed: () {}),
+          BottomTaskBar(context: context),
         ],
       ),
     );

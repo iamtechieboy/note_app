@@ -78,20 +78,7 @@ class _AddInterestingIdeaPageState extends State<AddInterestingIdeaPage> {
               ),
             ),
           ),
-          BottomTaskBar(
-            context: context,
-            onMoreButtonPressed: () {
-              showMaterialModalBottomSheet(
-                context: context,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(25.0),
-                  ),
-                ),
-                builder: (context) => const ExtrasMenuBottomSheetBody(),
-              );
-            },
-          ),
+          BottomTaskBar(context: context),
         ],
       ),
     );

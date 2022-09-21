@@ -7,14 +7,18 @@ import 'package:note_app/presentation/widgets/custom_color_picker.dart';
 
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_text_style.dart';
+import '../widgets/extra_menu_bottom_sheet_body.dart';
 
 class BottomTaskBar extends StatefulWidget {
-  const BottomTaskBar(
-      {Key? key, required this.context, required this.onMoreButtonPressed})
-      : super(key: key);
+  const BottomTaskBar({
+    Key? key,
+    required this.context,
+    // required this.onMoreButtonPressed,
+  }) : super(key: key);
 
   final BuildContext context;
-  final Function() onMoreButtonPressed;
+
+  // final Function() onMoreButtonPressed;
 
   @override
   State<BottomTaskBar> createState() => _BottomTaskBarState();
@@ -67,7 +71,17 @@ class _BottomTaskBarState extends State<BottomTaskBar> {
                 minWidth: 48,
                 height: 48,
                 color: AppColors.primaryColor.base,
-                onPressed: widget.onMoreButtonPressed,
+                onPressed: () {
+                  showMaterialModalBottomSheet(
+                    context: context,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(25.0),
+                      ),
+                    ),
+                    builder: (context) => const ExtrasMenuBottomSheetBody(),
+                  );
+                },
                 child: SvgPicture.asset(
                   Assets.icons.more,
                 ),
