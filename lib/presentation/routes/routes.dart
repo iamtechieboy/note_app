@@ -11,11 +11,11 @@ class Routes {
   static const interestingIdeaPage = '/interestingIdeaPage';
   static const goalsPage = '/goalsPage';
   static const buyingSomething = '/buyingSomething';
-  
 
   static Route<dynamic> generateRoutes(RouteSettings settings) {
     try {
-      final Map<String, dynamic>? args = settings.arguments as Map<String, dynamic>?;
+      final Map<String, dynamic>? args =
+          settings.arguments as Map<String, dynamic>?;
       args ?? <String, dynamic>{};
       switch (settings.name) {
         case mainPage:

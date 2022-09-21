@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import '../../../config/constants/app_colors.dart';
 import '../../../config/constants/assets.dart';
+import '../../components/title_text_field.dart';
 
 class AddInterestingIdeaPage extends StatefulWidget {
   const AddInterestingIdeaPage({Key? key}) : super(key: key);
@@ -20,6 +21,14 @@ class AddInterestingIdeaPage extends StatefulWidget {
 }
 
 class _AddInterestingIdeaPageState extends State<AddInterestingIdeaPage> {
+  late final TextEditingController titleEditController;
+
+  @override
+  void initState() {
+    titleEditController = TextEditingController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -35,24 +44,9 @@ class _AddInterestingIdeaPageState extends State<AddInterestingIdeaPage> {
               child: ListView(
                 physics: const BouncingScrollPhysics(),
                 children: [
-                  SizedBox(
-                    width: size.width - 32,
-                    child: Flexible(
-                      child: TextFormField(
-                        style: AppTextStyle.bold2Xl,
-                        maxLines: null,
-                        minLines: null,
-                        keyboardType: TextInputType.multiline,
-                        autocorrect: false,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Title Here",
-                          hintStyle: AppTextStyle.bold2Xl.copyWith(
-                            color: AppColors.neutralColor.baseGrey,
-                          ),
-                        ),
-                      ),
-                    ),
+                  TitleTextField(
+                    titleHint: "Title Here",
+                    textEditingController: titleEditController,
                   ),
                   SizedBox(
                     width: size.width - 32,
