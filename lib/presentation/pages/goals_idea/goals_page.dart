@@ -17,6 +17,7 @@ class _GoalsPageState extends State<GoalsPage> {
   List<CheckBoxesWidget> noteList = [CheckBoxesWidget()];
 
   bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -90,7 +91,7 @@ class _GoalsPageState extends State<GoalsPage> {
               ),
             ),
           ),
-          const BottomTaskBar(),
+          BottomTaskBar(context: context, onMoreButtonPressed: () {}),
         ],
       ),
     );

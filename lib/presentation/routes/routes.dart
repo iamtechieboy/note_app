@@ -31,7 +31,6 @@ class Routes {
           return MaterialPageRoute(
             builder: (_) => const GoalsPage(),
           );
-        
         default:
           return MaterialPageRoute(
             settings: settings,

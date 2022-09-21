@@ -36,14 +36,15 @@ class _CheckBoxSubtaskWidgetState extends State<CheckBoxSubtaskWidget> {
               side: const BorderSide(
                 width: 1,
               ),
-              fillColor: MaterialStatePropertyAll(AppColors.neutralColor.baseGrey),
-            ),
+              checkColor: AppColors.neutralColor.white,
+              fillColor: MaterialStateProperty.resolveWith((states) => AppColors.primaryColor.base) ,
+              ),
           ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 3),
               child: TextField(
-                style: AppTextStyle.boldBase,
+                style: AppTextStyle.mediumBase,
                 maxLines: 2,
                 minLines: 1,
                 keyboardType: TextInputType.multiline,
@@ -51,7 +52,7 @@ class _CheckBoxSubtaskWidgetState extends State<CheckBoxSubtaskWidget> {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: "Write your notes here",
-                  hintStyle: AppTextStyle.boldBase.copyWith(
+                  hintStyle: AppTextStyle.mediumBase.copyWith(
                     color: AppColors.neutralColor.baseGrey,
                   ),
                 ),

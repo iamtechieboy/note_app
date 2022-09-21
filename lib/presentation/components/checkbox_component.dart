@@ -14,6 +14,7 @@ class CheckBoxesWidget extends StatefulWidget {
 class _CheckBoxesWidgetState extends State<CheckBoxesWidget> {
   bool isChecked = false;
   List<CheckBoxSubtaskWidget> checkNote = [];
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,12 +37,14 @@ class _CheckBoxesWidgetState extends State<CheckBoxesWidget> {
                 side: const BorderSide(
                   width: 1,
                 ),
-                fillColor: MaterialStatePropertyAll(AppColors.neutralColor.baseGrey),
+                checkColor: AppColors.neutralColor.white,
+                fillColor: MaterialStateProperty.resolveWith(
+                    (states) => AppColors.primaryColor.base),
               ),
             ),
             Expanded(
               child: TextField(
-                style: AppTextStyle.boldBase,
+                style: AppTextStyle.mediumBase,
                 maxLines: 2,
                 minLines: 1,
                 keyboardType: TextInputType.multiline,
@@ -49,7 +52,7 @@ class _CheckBoxesWidgetState extends State<CheckBoxesWidget> {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: "Write your notes here",
-                  hintStyle: AppTextStyle.boldBase.copyWith(
+                  hintStyle: AppTextStyle.mediumBase.copyWith(
                     color: AppColors.neutralColor.baseGrey,
                   ),
                 ),
@@ -67,6 +70,7 @@ class _CheckBoxesWidgetState extends State<CheckBoxesWidget> {
             height: 46,
             padding: const EdgeInsets.only(left: 44),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SvgPicture.asset(
                   "assets/icons/plus.svg",
@@ -79,8 +83,9 @@ class _CheckBoxesWidgetState extends State<CheckBoxesWidget> {
                 ),
                 Text(
                   "Add subtask",
-                  style: AppTextStyle.mediumBase
-                      .copyWith(decoration: TextDecoration.underline, color: AppColors.primaryColor.base),
+                  style: AppTextStyle.mediumBase.copyWith(
+                      decoration: TextDecoration.underline,
+                      color: AppColors.primaryColor.base),
                 ),
               ],
             ),
