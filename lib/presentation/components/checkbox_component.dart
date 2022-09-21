@@ -27,7 +27,7 @@ class _CheckBoxesWidgetState extends State<CheckBoxesWidget> {
             top: 5,
           ),
           child: AddTaskButton(
-            label: "Add  subtask",
+            label: "Add subtask",
             onTap: () {
               checkNote.add(
                 const CheckBoxWithTextField(
