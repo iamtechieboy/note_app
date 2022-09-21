@@ -25,61 +25,65 @@ class ExtrasMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: SizedBox(
-        height: 56,
-        width: double.infinity,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 12),
-                  child: SvgPicture.asset(
-                    icon,
-                    height: 24,
-                    width: 24,
-                    color: iconColor ?? AppColors.neutralColor.black,
+    return SizedBox(
+      height: 56,
+      width: double.infinity,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8, right: 12),
+                    child: SvgPicture.asset(
+                      icon,
+                      height: 24,
+                      width: 24,
+                      color: iconColor ?? AppColors.neutralColor.black,
+                    ),
                   ),
-                ),
-                Text(
-                  menuTitle,
-                  style: AppTextStyle.mediumBase.copyWith(color: menuTitleColor ?? AppColors.neutralColor.black),
-                )
-              ],
-            ),
-            Visibility(
-              visible: label != null,
-              child: Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 2),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Flexible(
-                        child: Text(
-                          softWrap: true,
-                          overflow: TextOverflow.ellipsis,
-                          label ?? "",
-                          style: AppTextStyle.regular2Xs
-                              .copyWith(color: AppColors.neutralColor.darkGrey),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: SvgPicture.asset(Assets.icons.arrowIn),
-                      )
-                    ],
-                  ),
-                ),
+                  Text(
+                    menuTitle,
+                    style: AppTextStyle.mediumBase.copyWith(
+                        color: menuTitleColor ?? AppColors.neutralColor.black),
+                  )
+                ],
               ),
-            )
-          ],
+              Visibility(
+                visible: label != null,
+                child: Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20, top: 2),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            softWrap: true,
+                            overflow: TextOverflow.ellipsis,
+                            label ?? "",
+                            style: AppTextStyle.regular2Xs.copyWith(
+                                color: AppColors.neutralColor.darkGrey),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: SvgPicture.asset(Assets.icons.arrowIn),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

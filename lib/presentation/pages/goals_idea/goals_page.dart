@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_app/config/constants/app_colors.dart';
 import 'package:note_app/config/constants/app_text_style.dart';
+import 'package:note_app/presentation/components/add_task_button.dart';
 import 'package:note_app/presentation/components/bottom_task_bar.dart';
 import 'package:note_app/presentation/components/checkbox_component.dart';
 import 'package:note_app/presentation/components/custom_app_bar.dart';
@@ -29,6 +30,7 @@ class _GoalsPageState extends State<GoalsPage> {
         children: [
           Expanded(
             child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -56,35 +58,12 @@ class _GoalsPageState extends State<GoalsPage> {
                       ),
                     ),
                     ...noteList,
-                    Container(
-                      height: 46,
-                      padding: const EdgeInsets.only(left: 7),
-                      child: InkWell(
-                        onTap: () {
-                          noteList.add(CheckBoxesWidget());
-                          setState(() {});
-                        },
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              "assets/icons/plus.svg",
-                              height: 20,
-                              width: 20,
-                              color: AppColors.primaryColor.base,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Add main task",
-                              style: AppTextStyle.mediumBase.copyWith(
-                                decoration: TextDecoration.underline,
-                                color: AppColors.primaryColor.base,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                    AddTaskButton(
+                      label: "Add main task",
+                      onTap: () {
+                        noteList.add(CheckBoxesWidget());
+                        setState(() {});
+                      },
                     ),
                   ],
                 ),

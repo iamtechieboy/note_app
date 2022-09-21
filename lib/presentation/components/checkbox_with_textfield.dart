@@ -2,22 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:note_app/config/constants/app_colors.dart';
 import 'package:note_app/config/constants/app_text_style.dart';
 
-class CheckBoxSubtaskWidget extends StatefulWidget {
-  const CheckBoxSubtaskWidget({super.key});
+class CheckBoxWithTextField extends StatefulWidget {
+  const CheckBoxWithTextField({
+    super.key,
+    required this.hintText,
+    this.padding,
+  });
 
   @override
-  State<CheckBoxSubtaskWidget> createState() => _CheckBoxSubtaskWidgetState();
+  State<CheckBoxWithTextField> createState() => _CheckBoxWithTextFieldState();
+
+  final String hintText;
+  final EdgeInsets? padding;
+
 }
 
-class _CheckBoxSubtaskWidgetState extends State<CheckBoxSubtaskWidget> {
+class _CheckBoxWithTextFieldState extends State<CheckBoxWithTextField> {
   bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 30,
-        top: 5,
-      ),
+      padding: widget.padding ?? EdgeInsets.zero,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -37,8 +43,9 @@ class _CheckBoxSubtaskWidgetState extends State<CheckBoxSubtaskWidget> {
                 width: 1,
               ),
               checkColor: AppColors.neutralColor.white,
-              fillColor: MaterialStateProperty.resolveWith((states) => AppColors.primaryColor.base) ,
-              ),
+              fillColor: MaterialStateProperty.resolveWith(
+                  (states) => AppColors.primaryColor.base),
+            ),
           ),
           Expanded(
             child: Padding(
@@ -51,7 +58,7 @@ class _CheckBoxSubtaskWidgetState extends State<CheckBoxSubtaskWidget> {
                 autocorrect: false,
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: "Write your notes here",
+                  hintText: widget.hintText,
                   hintStyle: AppTextStyle.mediumBase.copyWith(
                     color: AppColors.neutralColor.baseGrey,
                   ),
