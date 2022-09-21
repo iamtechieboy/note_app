@@ -45,7 +45,9 @@ class CreateNewIdeasPage extends StatelessWidget {
               icon: Assets.icons.shoppingCart,
               iconBackground: AppColors.successColor.dark,
               cardBackground: AppColors.successColor.base,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, Routes.buyingSomething);
+              },
             ),
             NewIdeasButton(
               title: "Goals",
