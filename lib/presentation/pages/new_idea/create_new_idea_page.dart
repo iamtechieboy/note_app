@@ -65,7 +65,9 @@ class CreateNewIdeasPage extends StatelessWidget {
               icon: Assets.icons.guidance,
               iconBackground: AppColors.errorColor.dark,
               cardBackground: AppColors.errorColor.base,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, Routes.guidancePage);
+              },
             ),
             NewIdeasButton(
               title: "Routine Tasks",

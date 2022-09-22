@@ -28,6 +28,10 @@ class MyApp extends StatelessWidget {
         theme: Themes.lightTheme,
         onGenerateRoute: (setting) => Routes.generateRoutes(setting),
       ),
-    );    
+    );
+    // return const MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   home: GuidancePage(),
+    // );
   }
 }
