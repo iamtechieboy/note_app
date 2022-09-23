@@ -95,7 +95,7 @@ abstract class AppTextStyle {
       fontWeight: FontWeight.w500,
       fontStyle: FontStyle.normal,
       fontSize: 16,
-      height: 14 / 10,
+      height: 1.14,
       color: AppColors.neutralColor.black);
 
   static TextStyle mediumLg = TextStyle(

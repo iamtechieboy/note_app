@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/presentation/pages/buying_something/buying_something.dart';
-import 'package:note_app/presentation/pages/guidance_idea/guidance_page.dart';
 import 'package:note_app/presentation/routes/routes.dart';
 
 import 'config/theme/themes.dart';

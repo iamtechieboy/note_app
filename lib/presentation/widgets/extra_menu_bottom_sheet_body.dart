@@ -11,6 +11,7 @@ import 'custom_color_picker.dart';
 
 class ExtrasMenuBottomSheetBody extends StatefulWidget {
   const ExtrasMenuBottomSheetBody({Key? key}) : super(key: key);
+
   @override
   State<ExtrasMenuBottomSheetBody> createState() =>
       _ExtrasMenuBottomSheetBodyState();
@@ -21,10 +22,11 @@ class _ExtrasMenuBottomSheetBodyState extends State<ExtrasMenuBottomSheetBody> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.vertical(
-            top: Radius.circular(25.0),
-          ),
-        color: colorPickerList[context.watch<AddInterestingIdeaCubit>().state.selectedColorIndex],
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(25.0),
+        ),
+        color: colorPickerList[
+            context.watch<AddInterestingIdeaCubit>().state.selectedColorIndex],
       ),
       height: 475,
       child: Padding(
