@@ -6,7 +6,7 @@ import 'package:note_app/config/constants/app_text_style.dart';
 import 'package:note_app/presentation/components/back_to_button.dart';
 import 'package:note_app/presentation/components/custom_app_bar.dart';
 import 'package:note_app/presentation/routes/routes.dart';
-import 'package:note_app/presentation/widgets/new_ideas_button.dart';
+import 'package:note_app/presentation/components/new_ideas_button.dart';
 
 import '../../../config/constants/assets.dart';
 

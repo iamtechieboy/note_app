@@ -6,9 +6,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:note_app/config/constants/app_colors.dart';
+import 'package:note_app/config/constants/app_decoration.dart';
 import 'package:note_app/config/constants/app_text_style.dart';
 import 'package:note_app/presentation/components/bottom_task_bar.dart';
+import 'package:note_app/presentation/components/circular_icon_place.dart';
 import 'package:note_app/presentation/components/custom_app_bar.dart';
+
+import '../../../config/constants/assets.dart';
 
 class GuidancePage extends StatefulWidget {
   const GuidancePage({super.key});
@@ -24,15 +28,14 @@ class _GuidancePageState extends State<GuidancePage> {
     try {
       final image = await ImagePicker().pickImage(source: imageSource);
       if (image == null) return;
-
       final imageTemporary = File(image.path);
       setState(() {
         images = imageTemporary;
       });
     } on PlatformException {
-      print("Platform exepsion");
+      debugPrint("Platform exepsion");
     } catch (e) {
-      print("Failed to pick image: $e");
+      debugPrint("Failed to pick image: $e");
     }
   }
 
@@ -77,14 +80,13 @@ class _GuidancePageState extends State<GuidancePage> {
                   ),
                   images != null
                       ? Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
+                          decoration: AppDecoration.defDecor.copyWith(
+                              borderRadius: BorderRadius.circular(15)),
                           child: Stack(
                             alignment: Alignment.bottomRight,
                             children: [
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(15),
                                 child: Image.file(
                                   images!,
                                   width: double.infinity,
@@ -101,7 +103,8 @@ class _GuidancePageState extends State<GuidancePage> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           ListTile(
-                                            leading: const Icon(Icons.camera_alt),
+                                            leading:
+                                                const Icon(Icons.camera_alt),
                                             title: const Text("Camera"),
                                             onTap: () {
                                               pickImage(ImageSource.camera);
@@ -115,7 +118,8 @@ class _GuidancePageState extends State<GuidancePage> {
                                             },
                                           ),
                                           ListTile(
-                                            leading: SvgPicture.asset("assets/icons/delete.svg"),
+                                            leading: SvgPicture.asset(
+                                                "assets/icons/delete.svg"),
                                             title: const Text("Delete"),
                                             onTap: () {
                                               setState(() {
@@ -137,19 +141,23 @@ class _GuidancePageState extends State<GuidancePage> {
                                     color: AppColors.neutralColor.white,
                                     borderRadius: BorderRadius.circular(30),
                                   ),
-                                  child: SvgPicture.asset("assets/icons/pencil.svg"),
+                                  child: SvgPicture.asset(
+                                      "assets/icons/pencil.svg"),
                                 ),
                               ),
                             ],
                           ),
                         )
                       : DottedBorder(
-                          dashPattern: const [10, 10],
+                          dashPattern: const [12, 12],
+                          strokeWidth: 1.3,
+                          color: AppColors.neutralColor.baseGrey,
                           borderType: BorderType.RRect,
-                          radius: const Radius.circular(10),
+                          radius: const Radius.circular(15),
                           padding: const EdgeInsets.all(8.0),
                           child: ClipRRect(
-                            borderRadius: const BorderRadius.all(Radius.circular(12)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(12)),
                             child: Container(
                               alignment: Alignment.center,
                               height: 300,
@@ -157,12 +165,11 @@ class _GuidancePageState extends State<GuidancePage> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  CircleAvatar(
-                                    backgroundColor: AppColors.primaryColor.light,
-                                    child: Icon(
-                                      Icons.photo,
-                                      color: AppColors.primaryColor.base,
-                                    ),
+                                  CircularIconPlace(
+                                    height: 58,
+                                    icon: Assets.icons.photo,
+                                    iconColor: AppColors.primaryColor.base,
+                                    background: AppColors.primaryColor.light,
                                   ),
                                   const SizedBox(
                                     height: 15,
@@ -172,8 +179,8 @@ class _GuidancePageState extends State<GuidancePage> {
                                     child: Text(
                                       "Upload an Image to your guidance can be choose for you",
                                       textAlign: TextAlign.center,
-                                      style: AppTextStyle.boldSm.copyWith(
-                                        color: AppColors.neutralColor.darkGrey,
+                                      style: AppTextStyle.mediumSm.copyWith(
+                                        color: AppColors.neutralColor.baseGrey,
                                       ),
                                     ),
                                   ),
@@ -194,8 +201,9 @@ class _GuidancePageState extends State<GuidancePage> {
                                       ),
                                       child: Text(
                                         "Choose a file",
-                                        style: AppTextStyle.mediumXl
-                                            .copyWith(color: AppColors.primaryColor.light, fontSize: 20),
+                                        style: AppTextStyle.mediumXl.copyWith(
+                                            color: AppColors.primaryColor.light,
+                                            fontSize: 20),
                                       ),
                                     ),
                                   ),
@@ -210,7 +218,8 @@ class _GuidancePageState extends State<GuidancePage> {
                   SizedBox(
                     child: Flexible(
                       child: TextFormField(
-                        style: AppTextStyle.boldBase,
+                        style: AppTextStyle.mediumBase
+                            .copyWith(color: AppColors.neutralColor.darkGrey),
                         maxLines: null,
                         minLines: null,
                         keyboardType: TextInputType.multiline,
@@ -218,7 +227,7 @@ class _GuidancePageState extends State<GuidancePage> {
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Title Here",
-                          hintStyle: AppTextStyle.boldBase.copyWith(
+                          hintStyle: AppTextStyle.mediumBase.copyWith(
                             color: AppColors.neutralColor.baseGrey,
                           ),
                         ),
