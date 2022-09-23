@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/presentation/pages/buying_something/buying_something.dart';
 import 'package:note_app/presentation/pages/goals_idea/goals_page.dart';
+import 'package:note_app/presentation/pages/guidance_idea/guidance_page.dart';
 import 'package:note_app/presentation/pages/home/home_page.dart';
 import 'package:note_app/presentation/pages/interesting_idea/interesting_idea_page.dart';
 import 'package:note_app/presentation/pages/new_idea/create_new_idea_page.dart';
@@ -13,6 +14,7 @@ class Routes {
   static const goalsPage = '/goalsPage';
   static const buyingSomethingPage = '/buyingSomethingPage';
   static const routineTaskPage = '/routineTaskPage';
+  static const guidancePage = '/guidancePage';
 
   static Route<dynamic> generateRoutes(RouteSettings settings) {
     try {
@@ -43,6 +45,10 @@ class Routes {
         case routineTaskPage:
           return MaterialPageRoute(
             builder: (_) => const RoutineTaskPage(),
+          );
+        case guidancePage:
+          return MaterialPageRoute(
+            builder: (_) => const GuidancePage(),
           );
         default:
           return MaterialPageRoute(

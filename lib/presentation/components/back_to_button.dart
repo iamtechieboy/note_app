@@ -24,7 +24,7 @@ class BackToButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 3, right: 4),
+            padding: const EdgeInsets.only(right: 4),
             child: SvgPicture.asset(
               Assets.icons.backWithText,
               color: AppColors.primaryColor.base,
