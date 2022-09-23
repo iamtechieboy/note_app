@@ -1,16 +1,11 @@
+//
 import 'package:flutter/material.dart';
-import 'package:note_app/config/constants/app_colors.dart';
+
+import 'app_colors.dart';
 
 abstract class AppDecoration {
-
   static BoxDecoration defDecor = BoxDecoration(
     borderRadius: BorderRadius.circular(10),
-    color: AppColors.neutralColor.black,
+    color: AppColors.neutralColor.white,
   );
-
-  static ButtonStyle buttonStyle = ButtonStyle(
-    backgroundColor: MaterialStateProperty.resolveWith(
-        (state) => AppColors.primaryColor.base),
-  );
-
 }
