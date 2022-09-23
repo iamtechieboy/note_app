@@ -90,4 +90,6 @@ class _Images extends _AssetsHolder {
   String get illustrationNoFinished => "$basePath/no_finished.svg";
 
   String get illustrationFinish => "$basePath/still_finish.svg";
+
+  String get userSettings => "$basePath/user.png";
 }
