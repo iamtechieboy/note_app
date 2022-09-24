@@ -9,8 +9,10 @@ class BackToButton extends StatelessWidget {
   const BackToButton({
     Key? key,
     required this.onPressed,
+    required this.title,
   }) : super(key: key);
 
+  final String title;
   final Function() onPressed;
 
   @override
@@ -18,17 +20,18 @@ class BackToButton extends StatelessWidget {
     return CupertinoButton(
       onPressed: onPressed,
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 2, right: 4),
+            padding: const EdgeInsets.only(right: 4),
             child: SvgPicture.asset(
               Assets.icons.backWithText,
               color: AppColors.primaryColor.base,
             ),
           ),
           Text(
-            "Back",
+            title,
             style: AppTextStyle.mediumBase.copyWith(
               color: AppColors.primaryColor.base,
             ),

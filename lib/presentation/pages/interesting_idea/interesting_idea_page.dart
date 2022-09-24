@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:note_app/config/constants/app_text_style.dart';
 import 'package:note_app/presentation/components/bottom_task_bar.dart';
 import 'package:note_app/presentation/components/custom_app_bar.dart';
-import 'package:note_app/presentation/pages/interesting_idea/bloc/add_interesting_idea_cubit.dart';
-import 'package:note_app/presentation/widgets/extra_menu_bottom_sheet_body.dart';
-import 'package:provider/provider.dart';
 
 import '../../../config/constants/app_colors.dart';
-import '../../../config/constants/assets.dart';
 import '../../components/title_text_field.dart';
 
-class AddInterestingIdeaPage extends StatefulWidget {
-  const AddInterestingIdeaPage({Key? key}) : super(key: key);
+class InterestingIdeaPage extends StatefulWidget {
+  const InterestingIdeaPage({Key? key}) : super(key: key);
 
   @override
-  State<AddInterestingIdeaPage> createState() => _AddInterestingIdeaPageState();
+  State<InterestingIdeaPage> createState() => _InterestingIdeaPageState();
 }
 
-class _AddInterestingIdeaPageState extends State<AddInterestingIdeaPage> {
+class _InterestingIdeaPageState extends State<InterestingIdeaPage> {
   late final TextEditingController titleEditController;
 
   @override

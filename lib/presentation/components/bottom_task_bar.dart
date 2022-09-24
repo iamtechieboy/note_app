@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:note_app/config/constants/assets.dart';
-import 'package:note_app/presentation/components/extras_menu_button.dart';
-import 'package:note_app/presentation/widgets/custom_color_picker.dart';
 
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_text_style.dart';
@@ -28,10 +26,10 @@ class _BottomTaskBarState extends State<BottomTaskBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: Color(0xFFEFEEF0),
+            color: AppColors.neutralColor.lightGrey,
           ),
         ),
       ),

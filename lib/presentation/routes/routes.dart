@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/presentation/pages/buying_something/buying_something.dart';
 import 'package:note_app/presentation/pages/goals_idea/goals_page.dart';
+import 'package:note_app/presentation/pages/guidance_idea/guidance_page.dart';
 import 'package:note_app/presentation/pages/home/home_page.dart';
-import 'package:note_app/presentation/pages/interesting_idea/add_interesting_idea_page.dart';
+import 'package:note_app/presentation/pages/interesting_idea/interesting_idea_page.dart';
 import 'package:note_app/presentation/pages/new_idea/create_new_idea_page.dart';
 import 'package:note_app/presentation/pages/settings/setting_page.dart';
+import 'package:note_app/presentation/pages/routine_task_idea/routine_task_page.dart';
+
 
 class Routes {
   static const mainPage = '/';
   static const newIdeaPage = '/createNewIdeaPage';
   static const interestingIdeaPage = '/interestingIdeaPage';
   static const goalsPage = '/goalsPage';
-  static const buyingSomething = '/buyingSomething';
   static const settingsPage = '/settingsPage';
+  static const buyingSomethingPage = '/buyingSomethingPage';
+  static const routineTaskPage = '/routineTaskPage';
+  static const guidancePage = '/guidancePage';
 
   static Route<dynamic> generateRoutes(RouteSettings settings) {
     try {
@@ -30,15 +35,23 @@ class Routes {
           );
         case interestingIdeaPage:
           return MaterialPageRoute(
-            builder: (_) => const AddInterestingIdeaPage(),
+            builder: (_) => const InterestingIdeaPage(),
+          );
+        case buyingSomethingPage:
+          return MaterialPageRoute(
+            builder: (_) => const BuyingSomethingPage(),
           );
         case goalsPage:
           return MaterialPageRoute(
             builder: (_) => const GoalsPage(),
           );
-        case buyingSomething:
+        case routineTaskPage:
           return MaterialPageRoute(
-            builder: (_) => const BuyingSomethingPage(),
+            builder: (_) => const RoutineTaskPage(),
+          );
+        case guidancePage:
+          return MaterialPageRoute(
+            builder: (_) => const GuidancePage(),
           );
         case settingsPage:
           return MaterialPageRoute(
