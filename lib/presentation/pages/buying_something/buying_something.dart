@@ -34,37 +34,36 @@ class _BuyingSomethingPageState extends State<BuyingSomethingPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
+            child: ListView(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: 24,
               ),
-              child: Column(
-                children: [
-                  TitleTextField(
-                    titleHint: "Title Here",
-                    textEditingController: titleEditController,
-                  ),
-                  // part of lists
-                  const CheckBoxWithTextField(
-                    hintText: "Write your notes here",
-                  ),
-                  ...checkNote,
-                  // adding new checkbox to the list
-                  AddTaskButton(
-                    label: "Add checkbox",
-                    onTap: () {
-                      checkNote.add(
-                        const CheckBoxWithTextField(
-                          hintText: "Write your task notes here",
-                        ),
-                      );
-                      setState(() {});
-                    },
-                  ),
-                ],
-              ),
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              children: [
+                TitleTextField(
+                  titleHint: "Title Here",
+                  textEditingController: titleEditController,
+                ),
+                // part of lists
+                const CheckBoxWithTextField(
+                  hintText: "Write your notes here",
+                ),
+                ...checkNote,
+                // adding new checkbox to the list
+                AddTaskButton(
+                  label: "Add checkbox",
+                  onTap: () {
+                    checkNote.add(
+                      const CheckBoxWithTextField(
+                        hintText: "Write your task notes here",
+                      ),
+                    );
+                    setState(() {});
+                  },
+                ),
+              ],
             ),
           ),
           BottomTaskBar(

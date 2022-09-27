@@ -9,6 +9,7 @@ showCustomBottomSheet({
 }) {
   showModalBottomSheet(
     context: context,
+    isScrollControlled: true,
     backgroundColor: Colors.transparent,
     // shape: shape ??
     //     const RoundedRectangleBorder(
@@ -16,6 +17,8 @@ showCustomBottomSheet({
     //         top: Radius.circular(25.0),
     //       ),
     //     ),
-    builder: (context) => body,
+    builder: (context) => Wrap(
+      children: <Widget>[body],
+    ),
   );
 }
