@@ -28,7 +28,7 @@ class CustomBottomSheet extends StatelessWidget {
             context.watch<AddInterestingIdeaCubit>().state.selectedColorIndex],
       ),
       padding: const EdgeInsets.all(16),
-      height: height,
+      // height: height,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

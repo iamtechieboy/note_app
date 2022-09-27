@@ -7,7 +7,7 @@ showCustomBottomSheet({
   required Widget body,
   ShapeBorder? shape,
 }) {
-  showMaterialModalBottomSheet(
+  showModalBottomSheet(
     context: context,
     backgroundColor: Colors.transparent,
     // shape: shape ??
