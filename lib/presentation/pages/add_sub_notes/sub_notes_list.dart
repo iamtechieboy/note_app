@@ -17,6 +17,7 @@ class SubNotesList extends StatefulWidget {
 
 class _SubNotesListState extends State<SubNotesList> {
   List<Widget> subCheckList = [];
+
   // List<SubTextFieldAdd> subTextFieldAdd = [];
   List items = [
     "item1",
@@ -30,6 +31,7 @@ class _SubNotesListState extends State<SubNotesList> {
     "item9",
     "item10",
   ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -38,188 +40,184 @@ class _SubNotesListState extends State<SubNotesList> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: size.width - 32,
-                    child: Flexible(
-                      child: TextFormField(
-                        style: AppTextStyle.bold2Xl,
-                        maxLines: null,
-                        minLines: null,
-                        keyboardType: TextInputType.multiline,
-                        autocorrect: false,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Title Here",
-                          hintStyle: AppTextStyle.bold2Xl.copyWith(
-                            color: AppColors.neutralColor.baseGrey,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Divider(
-                      height: 10,
-                      color: AppColors.neutralColor.baseGrey,
-                      thickness: 1,
-                      indent: 0,
-                      endIndent: 0,
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: subCheckList.length * 46,
-                    child: Expanded(
-                      child: ReorderableListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return buildUser(index);
-                        },
-                        itemCount: subCheckList.length,
-                        onReorder: (oldIndex, newIndex) {
-                          setState(() {
-                            final index = newIndex;
-
-                            final user = subCheckList.removeAt(oldIndex);
-
-                            items.insert(index, user);
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-
-                  // return Scaffold(
-                  //   body: ReorderableListView.builder(
-                  //     itemBuilder: (context, index) {
-                  //       final user = items[index];
-                  //       return buildUser(index, user);
-                  //     },
-                  //     itemCount: items.length,
-                  //     onReorder: (oldIndex, newIndex) {
-                  //       setState(() {
-                  //         final index = newIndex;
-
-                  //         final user = items.removeAt(oldIndex);
-
-                  //         items.insert(index, user);
-                  //       });
-                  //     },
-                  //   ),
-                  // );
-
-                  // ...subCheckList,
-
-                  SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: subCheckList.isNotEmpty
-                        ? Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
-                            child: Divider(
-                              height: 10,
-                              color: AppColors.neutralColor.baseGrey,
-                              thickness: 1,
-                              indent: 0,
-                              endIndent: 0,
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                  ),
-                  actionsAttachFunc("ACTIONS"),
-                  InkWell(
-                    onTap: () {
-                      subCheckList.add(SubTextFieldAdd(
-                        key: ValueKey(subCheckList.length),
-                      ));
-                      setState(() {});
-                    },
-                    child: addTextFieldAndCheck(
-                      "edit",
-                      "Add Free Text Area",
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      subCheckList.add(SubCheckListComponent(
-                        key: ValueKey(subCheckList.length),
-                      ));
-                      setState(() {});
-                    },
-                    child: addTextFieldAndCheck(
-                      "check",
-                      "Add Checklist",
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: Divider(
-                      height: 10,
-                      color: AppColors.neutralColor.baseGrey,
-                      thickness: 1,
-                      indent: 0,
-                      endIndent: 0,
-                    ),
-                  ),
-                  actionsAttachFunc("ATTACHMENTS"),
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      height: 46,
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "No file",
-                        style: AppTextStyle.mediumBase.copyWith(
+          Flexible(
+            child: ListView(
+              children: [
+                SizedBox(
+                  width: size.width - 32,
+                  child: Flexible(
+                    child: TextFormField(
+                      style: AppTextStyle.bold2Xl,
+                      maxLines: null,
+                      minLines: null,
+                      keyboardType: TextInputType.multiline,
+                      autocorrect: false,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Title Here",
+                        hintStyle: AppTextStyle.bold2Xl.copyWith(
                           color: AppColors.neutralColor.baseGrey,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Divider(
                     height: 10,
+                    color: AppColors.neutralColor.baseGrey,
+                    thickness: 1,
+                    indent: 0,
+                    endIndent: 0,
                   ),
-                  InkWell(
-                    onTap: () {},
-                    borderRadius: BorderRadius.circular(25),
-                    child: Container(
-                      height: 46,
-                      width: 220,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(
-                          width: 2,
-                          color: AppColors.primaryColor.base,
+                ),
+
+                ReorderableListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return buildUser(index);
+                  },
+                  itemCount: subCheckList.length,
+                  onReorder: (oldIndex, newIndex) {
+                    setState(() {
+                      final index = newIndex;
+                      final user = subCheckList.removeAt(oldIndex);
+                      items.insert(index, user);
+                    });
+                  },
+                ),
+
+                // return Scaffold(
+                //   body: ReorderableListView.builder(
+                //     itemBuilder: (context, index) {
+                //       final user = items[index];
+                //       return buildUser(index, user);
+                //     },
+                //     itemCount: items.length,
+                //     onReorder: (oldIndex, newIndex) {
+                //       setState(() {
+                //         final index = newIndex;
+
+                //         final user = items.removeAt(oldIndex);
+
+                //         items.insert(index, user);
+                //       });
+                //     },
+                //   ),
+                // );
+
+                // ...subCheckList,
+
+                subCheckList.isNotEmpty
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        child: Divider(
+                          height: 10,
+                          color: AppColors.neutralColor.baseGrey,
+                          thickness: 1,
+                          indent: 0,
+                          endIndent: 0,
                         ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            Assets.icons.upload,
-                            color: AppColors.primaryColor.base,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Upload Attachment",
-                            style: AppTextStyle.mediumBase.copyWith(
-                              color: AppColors.primaryColor.base,
-                            ),
-                          ),
-                        ],
+                      )
+                    : const SizedBox.shrink(),
+
+                actionsAttachFunc("ACTIONS"),
+
+                InkWell(
+                  onTap: () {
+                    subCheckList.add(SubTextFieldAdd(
+                      key: ValueKey(subCheckList.length),
+                    ));
+                    setState(() {});
+                  },
+                  child: addTextFieldAndCheck(
+                    "edit",
+                    "Add Free Text Area",
+                  ),
+                ),
+
+                InkWell(
+                  onTap: () {
+                    subCheckList.add(SubCheckListComponent(
+                      key: ValueKey(subCheckList.length),
+                    ));
+                    setState(() {});
+                  },
+                  child: addTextFieldAndCheck(
+                    "check",
+                    "Add Checklist",
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Divider(
+                    height: 10,
+                    color: AppColors.neutralColor.baseGrey,
+                    thickness: 1,
+                    indent: 0,
+                    endIndent: 0,
+                  ),
+                ),
+
+                actionsAttachFunc("ATTACHMENTS"),
+
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    height: 46,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "No file",
+                      style: AppTextStyle.mediumBase.copyWith(
+                        color: AppColors.neutralColor.baseGrey,
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
+
+                InkWell(
+                  onTap: () {},
+                  borderRadius: BorderRadius.circular(25),
+                  child: Container(
+                    height: 46,
+                    width: 220,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(
+                        width: 2,
+                        color: AppColors.primaryColor.base,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          Assets.icons.upload,
+                          color: AppColors.primaryColor.base,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Upload Attachment",
+                          style: AppTextStyle.mediumBase.copyWith(
+                            color: AppColors.primaryColor.base,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           BottomTaskBar(context: context),
