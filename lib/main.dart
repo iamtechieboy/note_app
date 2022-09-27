@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/presentation/pages/add_sub_notes/sub_notes_list.dart';
 import 'package:note_app/presentation/pages/buying_something/buying_something.dart';
 import 'package:note_app/presentation/pages/guidance_idea/guidance_page.dart';
 import 'package:note_app/presentation/routes/routes.dart';
@@ -21,17 +22,17 @@ class MyApp extends StatelessWidget {
     //     systemNavigationBarIconBrightness: Brightness.dark,
     //     statusBarBrightness: Brightness.dark,
     //     statusBarIconBrightness: Brightness.dark));
-    return BlocScope(
-      child: MaterialApp(
-        title: 'Note App',
-        debugShowCheckedModeBanner: false,
-        theme: Themes.lightTheme,
-        onGenerateRoute: (setting) => Routes.generateRoutes(setting),
-      ),
-    );
-    // return const MaterialApp(
-    //   debugShowCheckedModeBanner: false,
-    //   home: GuidancePage(),
+    // return BlocScope(
+    //   child: MaterialApp(
+    //     title: 'Note App',
+    //     debugShowCheckedModeBanner: false,
+    //     theme: Themes.lightTheme,
+    //     onGenerateRoute: (setting) => Routes.generateRoutes(setting),
+    //   ),
     // );
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SubNotesList(),
+    );
   }
 }

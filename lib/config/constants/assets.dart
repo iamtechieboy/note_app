@@ -77,7 +77,8 @@ class _Icons extends _AssetsHolder {
 
   String get tag => '$basePath/tag.svg';
 
-  String get textSize => '$basePath/text_size.svg';
+  String get textSize => '$basePath/text_size.svg';  
+  String get upload => '$basePath/upload.svg';  
 }
 
 class _Images extends _AssetsHolder {
