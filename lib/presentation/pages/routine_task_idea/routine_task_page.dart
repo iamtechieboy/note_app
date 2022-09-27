@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../config/constants/app_colors.dart';
 import '../../../config/constants/assets.dart';
 import '../../../core/domain/entities/enums.dart';
 import '../../components/bottom_task_bar.dart';
@@ -17,6 +18,7 @@ class _RoutineTaskPageState extends State<RoutineTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.neutralColor.white,
       appBar: CustomAppBar(
         iconicOvalButton: IconicOvalButton(
           text: "Add Sub Note",

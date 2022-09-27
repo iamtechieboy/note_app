@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_app/config/constants/app_colors.dart';
-import 'package:note_app/config/constants/app_text_style.dart';
 import 'package:note_app/presentation/components/add_task_button.dart';
 import 'package:note_app/presentation/components/bottom_task_bar.dart';
 import 'package:note_app/presentation/components/checkbox_component.dart';
@@ -19,17 +17,16 @@ class GoalsPage extends StatefulWidget {
 class _GoalsPageState extends State<GoalsPage> {
   List<CheckBoxesWidget> noteList = [CheckBoxesWidget()];
 
-  late final TextEditingController titleEditControl;
+  late final TextEditingController titleEditingController;
 
   @override
   void initState() {
-    titleEditControl = TextEditingController();
+    titleEditingController = TextEditingController();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.neutralColor.white,
       appBar: const CustomAppBar(),
@@ -48,7 +45,7 @@ class _GoalsPageState extends State<GoalsPage> {
                   children: [
                     TitleTextField(
                       titleHint: "Title Here",
-                      textEditingController: titleEditControl,
+                      textEditingController: titleEditingController,
                     ),
                     ...noteList,
                     AddTaskButton(

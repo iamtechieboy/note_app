@@ -18,6 +18,8 @@ class IconicOvalButton extends StatelessWidget {
     this.boxDecoration,
     this.textColor,
     this.iconColor,
+    this.textStyle,
+    this.padding,
   }) : super(key: key);
 
   final String text;
@@ -31,6 +33,8 @@ class IconicOvalButton extends StatelessWidget {
   final BoxDecoration? boxDecoration;
   final Color? textColor;
   final Color? iconColor;
+  final TextStyle? textStyle;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +52,7 @@ class IconicOvalButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(19),
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            padding: padding??const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             child: Directionality(
               textDirection: (iconPosition == IconPosition.left ||
                       iconPosition == IconPosition.centerLeft)
@@ -82,9 +86,10 @@ class IconicOvalButton extends StatelessWidget {
                     child: Center(
                       child: Text(
                         text,
-                        style: AppTextStyle.mediumBase.copyWith(
-                          color: textColor ?? AppColors.neutralColor.white,
-                        ),
+                        style: textStyle ??
+                            AppTextStyle.mediumBase.copyWith(
+                              color: textColor ?? AppColors.neutralColor.white,
+                            ),
                       ),
                     ),
                   ),

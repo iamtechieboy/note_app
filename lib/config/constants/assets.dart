@@ -80,6 +80,9 @@ class _Icons extends _AssetsHolder {
   String get textSize => '$basePath/text_size.svg';
 
   String get photo => '$basePath/photo.svg';
+
+  String get camera => '$basePath/camera.svg';
+
 }
 
 class _Images extends _AssetsHolder {

@@ -13,6 +13,7 @@ class CreateNewIdeasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.neutralColor.white,
       appBar: const CustomAppBar(title: "New Ideas"),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),

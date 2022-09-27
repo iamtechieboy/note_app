@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:note_app/config/constants/assets.dart';
+import 'package:note_app/core/utils/bottom_sheet.dart';
 
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_text_style.dart';
-import '../widgets/extra_menu_bottom_sheet_body.dart';
+import '../widgets/extra_bottom_sheet_menu.dart';
 
 class BottomTaskBar extends StatefulWidget {
   const BottomTaskBar({
@@ -70,14 +70,9 @@ class _BottomTaskBarState extends State<BottomTaskBar> {
                 height: 48,
                 color: AppColors.primaryColor.base,
                 onPressed: () {
-                  showMaterialModalBottomSheet(
+                  showCustomBottomSheet(
                     context: context,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(25.0),
-                      ),
-                    ),
-                    builder: (context) => const ExtrasMenuBottomSheetBody(),
+                    body: const ExtrasBottomSheetMenuBody(),
                   );
                 },
                 child: SvgPicture.asset(

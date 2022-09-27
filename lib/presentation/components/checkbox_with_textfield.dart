@@ -14,7 +14,6 @@ class CheckBoxWithTextField extends StatefulWidget {
 
   final String hintText;
   final EdgeInsets? padding;
-
 }
 
 class _CheckBoxWithTextFieldState extends State<CheckBoxWithTextField> {
@@ -53,6 +52,7 @@ class _CheckBoxWithTextFieldState extends State<CheckBoxWithTextField> {
               child: TextField(
                 style: AppTextStyle.mediumBase,
                 maxLines: 2,
+                cursorHeight: 20,
                 minLines: 1,
                 keyboardType: TextInputType.multiline,
                 autocorrect: false,
