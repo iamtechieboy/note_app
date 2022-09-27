@@ -3,6 +3,7 @@ import 'package:note_app/presentation/routes/routes.dart';
 
 import 'config/theme/themes.dart';
 import 'core/di/bloc_scope.dart';
+import 'presentation/pages/settings/setting_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

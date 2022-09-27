@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../config/constants/assets.dart';
 import '../components/navigation_button.dart';
+import '../routes/routes.dart';
 
 class HomeBottomNavBar extends StatefulWidget {
   const HomeBottomNavBar({Key? key}) : super(key: key);
@@ -48,6 +49,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                       setState(() {
                         _currentTab = 1;
                       });
+
                     }),
               ],
             ),
@@ -74,6 +76,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                       setState(() {
                         _currentTab = 3;
                       });
+                      Navigator.pushNamed(context, Routes.settingsPage);
                     }),
               ],
             )

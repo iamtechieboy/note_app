@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_text_style.dart';
 import '../../config/constants/assets.dart';
@@ -14,6 +13,7 @@ class ExtrasMenuButton extends StatelessWidget {
     this.iconColor,
     this.menuTitleColor,
     required this.onTap,
+    this.isArrowVisible = false,
   }) : super(key: key);
 
   final String icon;
@@ -22,6 +22,7 @@ class ExtrasMenuButton extends StatelessWidget {
   final Color? menuTitleColor;
   final String? label;
   final Function() onTap;
+  final bool? isArrowVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,7 @@ class ExtrasMenuButton extends StatelessWidget {
                 ],
               ),
               Visibility(
-                visible: label != null,
+                visible: label != null || isArrowVisible! ,
                 child: Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20, top: 2),
@@ -73,10 +74,12 @@ class ExtrasMenuButton extends StatelessWidget {
                                 color: AppColors.neutralColor.darkGrey),
                           ),
                         ),
+                        isArrowVisible! ? 
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: SvgPicture.asset(Assets.icons.arrowIn),
-                        )
+                          padding: EdgeInsets.symmetric(horizontal: label != null ? 8: 0),
+                          child: SvgPicture.asset(Assets.icons.arrowIn,),
+                        ):
+                        const SizedBox.shrink()
                       ],
                     ),
                   ),
