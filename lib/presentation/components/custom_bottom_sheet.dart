@@ -60,7 +60,10 @@ class CustomBottomSheet extends StatelessWidget {
             ),
           ),
           // Body comes by constructor
-          body,
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: body,
+          ),
         ],
       ),
     );

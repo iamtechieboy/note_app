@@ -49,7 +49,6 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                       setState(() {
                         _currentTab = 1;
                       });
-
                     }),
               ],
             ),

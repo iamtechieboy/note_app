@@ -8,4 +8,9 @@ abstract class AppDecoration {
     borderRadius: BorderRadius.circular(10),
     color: AppColors.neutralColor.white,
   );
+
+  static BoxDecoration outline = BoxDecoration(
+    border: Border.all(color: AppColors.primaryColor.base, width: 1),
+    borderRadius: BorderRadius.circular(19),
+  );
 }

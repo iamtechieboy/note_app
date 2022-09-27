@@ -6,6 +6,7 @@ import 'package:note_app/presentation/pages/home/home_page.dart';
 import 'package:note_app/presentation/pages/interesting_idea/interesting_idea_page.dart';
 import 'package:note_app/presentation/pages/new_idea/create_new_idea_page.dart';
 import 'package:note_app/presentation/pages/routine_task_idea/routine_task_page.dart';
+import 'package:note_app/presentation/pages/settings/setting_page.dart';
 
 class Routes {
   static const mainPage = '/';
@@ -15,6 +16,7 @@ class Routes {
   static const buyingSomethingPage = '/buyingSomethingPage';
   static const routineTaskPage = '/routineTaskPage';
   static const guidancePage = '/guidancePage';
+  static const settingsPage = '/SettingPage';
 
   static Route<dynamic> generateRoutes(RouteSettings settings) {
     try {
@@ -49,6 +51,10 @@ class Routes {
         case guidancePage:
           return MaterialPageRoute(
             builder: (_) => const GuidancePage(),
+          );
+        case settingsPage:
+          return MaterialPageRoute(
+            builder: (_) => const SettingsPage(),
           );
         default:
           return MaterialPageRoute(
