@@ -26,12 +26,14 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       backgroundColor: AppColors.neutralColor.white,
       appBar: const CustomAppBar(title: "Settings"),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: ListView(
-          physics: const BouncingScrollPhysics(),
-          children: [
-            Row(
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 24),
+        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
               children: [
                 CircleAvatar(
                   radius: 32,
@@ -73,88 +75,88 @@ class _SettingsPageState extends State<SettingsPage> {
                 ))
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 32),
-              child: IconicOvalButton(
-                height: 38,
-                text: 'Edit Profile',
-                textColor: AppColors.primaryColor.base,
-                icon: Assets.icons.edit,
-                iconColor: AppColors.primaryColor.base,
-                boxDecoration: AppDecoration.outline,
-                onTap: () {},
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24),
-              child: Divider(
-                color: AppColors.neutralColor.lightGrey,
-                height: 1,
-                thickness: 1,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Text(
-                "APP SETTINGS",
-                style: AppTextStyle.regularXs
-                    .copyWith(color: AppColors.neutralColor.darkGrey),
-              ),
-            ),
-            ExtrasMenuButton(
-              icon: Assets.icons.lockClosed,
-              menuTitle: 'Change Password',
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
+            child: IconicOvalButton(
+              height: 38,
+              text: 'Edit Profile',
+              textColor: AppColors.primaryColor.base,
+              icon: Assets.icons.edit,
+              iconColor: AppColors.primaryColor.base,
+              boxDecoration: AppDecoration.outline,
               onTap: () {},
-              isArrowVisible: true,
             ),
-            ExtrasMenuButton(
-              icon: Assets.icons.textSize,
-              menuTitle: 'Text Size',
-              onTap: () {},
-              label: "Medium",
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+            child: Divider(
+              color: AppColors.neutralColor.lightGrey,
+              height: 1,
+              thickness: 1,
             ),
-            ExtrasMenuButton(
-              icon: Assets.icons.notification,
-              menuTitle: 'Notifications',
-              onTap: () {
-                showCustomBottomSheet(
-                  context: context,
-                  body: const CustomBottomSheet(
-                      body: NotificationBottomSheetMenu(), height: 176),
-                );
-              },
-              label: "All active",
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8, left: 16),
+            child: Text(
+              "APP SETTINGS",
+              style: AppTextStyle.regularXs
+                  .copyWith(color: AppColors.neutralColor.darkGrey),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Divider(
-                color: AppColors.neutralColor.lightGrey,
-                height: 1,
-                thickness: 1,
-              ),
+          ),
+          ExtrasMenuButton(
+            icon: Assets.icons.lockClosed,
+            menuTitle: 'Change Password',
+            onTap: () {},
+            isArrowVisible: true,
+          ),
+          ExtrasMenuButton(
+            icon: Assets.icons.textSize,
+            menuTitle: 'Text Size',
+            onTap: () {},
+            label: "Medium",
+          ),
+          ExtrasMenuButton(
+            icon: Assets.icons.notification,
+            menuTitle: 'Notifications',
+            onTap: () {
+              showCustomBottomSheet(
+                context: context,
+                body: const CustomBottomSheet(
+                    body: NotificationBottomSheetMenu()),
+              );
+            },
+            label: "All active",
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            child: Divider(
+              color: AppColors.neutralColor.lightGrey,
+              height: 1,
+              thickness: 1,
             ),
-            ExtrasMenuButton(
-              icon: Assets.icons.logOut,
-              iconColor: AppColors.errorColor.base,
-              menuTitle: "Log Out",
-              menuTitleColor: AppColors.errorColor.base,
-              onTap: () {
-                showCustomDialog(
-                  context: context,
-                  title: 'Log Out',
-                  contentText:
-                      "Are you sure you want to log \n out from the application?",
-                  positive: "Yes",
-                  negative: "Cancel",
-                  onNegativeTap: () {
-                    Navigator.pop(context);
-                  },
-                  onPositiveTap: () {},
-                );
-              },
-            ),
-          ],
-        ),
+          ),
+          ExtrasMenuButton(
+            icon: Assets.icons.logOut,
+            iconColor: AppColors.errorColor.base,
+            menuTitle: "Log Out",
+            menuTitleColor: AppColors.errorColor.base,
+            onTap: () {
+              showCustomDialog(
+                context: context,
+                title: 'Log Out',
+                contentText:
+                    "Are you sure you want to log \n out from the application?",
+                positive: "Yes",
+                negative: "Cancel",
+                onNegativeTap: () {
+                  Navigator.pop(context);
+                },
+                onPositiveTap: () {},
+              );
+            },
+          ),
+        ],
       ),
     );
   }

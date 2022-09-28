@@ -8,26 +8,29 @@ class AddTaskButton extends StatelessWidget {
   const AddTaskButton({
     Key? key,
     required this.label,
-    required this.onTap,
+    required this.onTap, required this.padding,
   }) : super(key: key);
 
   final Function() onTap;
   final String label;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 46,
-      padding: const EdgeInsets.only(left: 7),
       child: InkWell(
         onTap: onTap,
         child: Row(
           children: [
-            SvgPicture.asset(
-              "assets/icons/plus.svg",
-              height: 20,
-              width: 20,
-              color: AppColors.primaryColor.base,
+            Padding(
+              padding: padding,
+              child: SvgPicture.asset(
+                "assets/icons/plus.svg",
+                height: 20,
+                width: 20,
+                color: AppColors.primaryColor.base,
+              ),
             ),
             const SizedBox(
               width: 10,

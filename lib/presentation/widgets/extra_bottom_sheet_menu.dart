@@ -19,11 +19,11 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
   @override
   Widget build(BuildContext context) {
     return CustomBottomSheet(
-      height: 475,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 8, bottom: 16),
+            padding: const EdgeInsets.only(top: 8, bottom: 16, left: 16),
             child: Text(
               "CHANGE BACKGROUND",
               style: AppTextStyle.regularXs
@@ -31,16 +31,19 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
             ),
           ),
           // Color picker for that project
-          CustomColorPicker(
-            onSelectColor: (color) {
-              // setState(() {
-              //   _selectedColor = color;
-              // });
-            },
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: CustomColorPicker(
+              onSelectColor: (color) {
+                // setState(() {
+                //   _selectedColor = color;
+                // });
+              },
+            ),
           ),
           // Divider
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.all(16),
             child: Divider(
               color: AppColors.neutralColor.lightGrey,
               thickness: 1,
@@ -49,7 +52,7 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
           ),
           // Extra menus label
           Padding(
-            padding: const EdgeInsets.only(bottom: 8),
+            padding: const EdgeInsets.only(bottom: 8, left: 16),
             child: Text(
               "EXTRAS",
               style: AppTextStyle.regularXs

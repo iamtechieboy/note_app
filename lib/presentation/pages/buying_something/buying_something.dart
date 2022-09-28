@@ -17,7 +17,12 @@ class BuyingSomethingPage extends StatefulWidget {
 class _BuyingSomethingPageState extends State<BuyingSomethingPage> {
   late final TextEditingController titleEditController;
 
-  List<CheckBoxWithTextField> checkNote = [];
+  List<CheckBoxWithTextField> checkNote = [
+    const CheckBoxWithTextField(
+      hintText: "Write your task notes here",
+      padding: EdgeInsets.symmetric(horizontal: 16),
+    )
+  ];
 
   @override
   void initState() {
@@ -36,28 +41,28 @@ class _BuyingSomethingPageState extends State<BuyingSomethingPage> {
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(
-                horizontal: 16,
                 vertical: 24,
               ),
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               children: [
-                TitleTextField(
-                  titleHint: "Title Here",
-                  textEditingController: titleEditController,
-                ),
-                // part of lists
-                const CheckBoxWithTextField(
-                  hintText: "Write your notes here",
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: TitleTextField(
+                    titleHint: "Title Here",
+                    textEditingController: titleEditController,
+                  ),
                 ),
                 ...checkNote,
                 // adding new checkbox to the list
                 AddTaskButton(
+                  padding: EdgeInsets.only(left: 23),
                   label: "Add checkbox",
                   onTap: () {
                     checkNote.add(
                       const CheckBoxWithTextField(
                         hintText: "Write your task notes here",
+                        padding: EdgeInsets.symmetric(horizontal: 16),
                       ),
                     );
                     setState(() {});

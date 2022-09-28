@@ -88,8 +88,7 @@ class _GuidancePageState extends State<GuidancePage> {
                                           EditPhotoBottomSheetMenu(
                                             bloc: context.read<
                                                 GuidanceCubit>(),
-                                          ),
-                                          height: 241));
+                                          )));
                                 },
                                 height: 58,
                                 icon: Assets.icons.pencil,

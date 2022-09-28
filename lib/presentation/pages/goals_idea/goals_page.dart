@@ -33,27 +33,32 @@ class _GoalsPageState extends State<GoalsPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ListView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 24,
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.symmetric(
+                vertical: 24,
+              ),
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: TitleTextField(
+                    titleHint: "Title Here",
+                    textEditingController: titleEditingController,
+                  ),
+                ),
+                ...noteList,
+                AddTaskButton(
+                  padding: const EdgeInsets.only(left: 23),
+                  label: "Add main task",
+                  onTap: () {
+                    noteList.add(CheckBoxesWidget());
+                    setState(() {});
+                  },
+                ),
+              ],
             ),
-            physics: const BouncingScrollPhysics(),
-            shrinkWrap: true,
-            children: [
-              TitleTextField(
-                titleHint: "Title Here",
-                textEditingController: titleEditingController,
-              ),
-              ...noteList,
-              AddTaskButton(
-                label: "Add main task",
-                onTap: () {
-                  noteList.add(CheckBoxesWidget());
-                  setState(() {});
-                },
-              ),
-            ],
           ),
           BottomTaskBar(context: context),
         ],
