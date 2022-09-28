@@ -18,20 +18,6 @@ class SubNotesList extends StatefulWidget {
 class _SubNotesListState extends State<SubNotesList> {
   List<Widget> subCheckList = [];
 
-  // List<SubTextFieldAdd> subTextFieldAdd = [];
-  List items = [
-    "item1",
-    "item2",
-    "item3",
-    "item4",
-    "item5",
-    "item6",
-    "item7",
-    "item8",
-    "item9",
-    "item10",
-  ];
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -40,10 +26,13 @@ class _SubNotesListState extends State<SubNotesList> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Flexible(
+          Expanded(
             child: ListView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.symmetric(vertical: 24),
               children: [
-                SizedBox(
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   width: size.width - 32,
                   child: Flexible(
                     child: TextFormField(
@@ -62,9 +51,8 @@ class _SubNotesListState extends State<SubNotesList> {
                     ),
                   ),
                 ),
-
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
                   child: Divider(
                     height: 10,
                     color: AppColors.neutralColor.baseGrey,
@@ -73,47 +61,27 @@ class _SubNotesListState extends State<SubNotesList> {
                     endIndent: 0,
                   ),
                 ),
-
                 ReorderableListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return buildUser(index);
+                    final user = subCheckList[index].hashCode;
+                    return buildUser(index, user);
                   },
                   itemCount: subCheckList.length,
                   onReorder: (oldIndex, newIndex) {
                     setState(() {
-                      final index = newIndex;
+                      if (oldIndex < newIndex) {
+                        newIndex -= 1;
+                      }
                       final user = subCheckList.removeAt(oldIndex);
-                      items.insert(index, user);
+                      subCheckList.insert(newIndex, user);
                     });
                   },
                 ),
-
-                // return Scaffold(
-                //   body: ReorderableListView.builder(
-                //     itemBuilder: (context, index) {
-                //       final user = items[index];
-                //       return buildUser(index, user);
-                //     },
-                //     itemCount: items.length,
-                //     onReorder: (oldIndex, newIndex) {
-                //       setState(() {
-                //         final index = newIndex;
-
-                //         final user = items.removeAt(oldIndex);
-
-                //         items.insert(index, user);
-                //       });
-                //     },
-                //   ),
-                // );
-
-                // ...subCheckList,
-
                 subCheckList.isNotEmpty
                     ? Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
                         child: Divider(
                           height: 10,
                           color: AppColors.neutralColor.baseGrey,
@@ -123,37 +91,43 @@ class _SubNotesListState extends State<SubNotesList> {
                         ),
                       )
                     : const SizedBox.shrink(),
-
                 actionsAttachFunc("ACTIONS"),
-
-                InkWell(
-                  onTap: () {
-                    subCheckList.add(SubTextFieldAdd(
-                      key: ValueKey(subCheckList.length),
-                    ));
-                    setState(() {});
-                  },
-                  child: addTextFieldAndCheck(
-                    "edit",
-                    "Add Free Text Area",
-                  ),
-                ),
-
-                InkWell(
-                  onTap: () {
-                    subCheckList.add(SubCheckListComponent(
-                      key: ValueKey(subCheckList.length),
-                    ));
-                    setState(() {});
-                  },
-                  child: addTextFieldAndCheck(
-                    "check",
-                    "Add Checklist",
-                  ),
-                ),
-
                 Padding(
-                  padding: const EdgeInsets.only(top: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: InkWell(
+                    onTap: () {
+                      subCheckList.add(SubTextFieldAdd(
+                        key: ValueKey("userKey ${subCheckList.length - 1}"),
+                      ));
+                      setState(() {});
+                    },
+                    child: addTextFieldAndCheck(
+                      "edit",
+                      "Add Free Text Area",
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: InkWell(
+                    onTap: () {
+                      subCheckList.add(SubCheckListComponent(
+                        key: ValueKey("userKey ${subCheckList.length - 1}"),
+                      ));
+                      setState(() {});
+                    },
+                    child: addTextFieldAndCheck(
+                      "check",
+                      "Add Checklist",
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 15,
+                    left: 16,
+                    right: 16,
+                  ),
                   child: Divider(
                     height: 10,
                     color: AppColors.neutralColor.baseGrey,
@@ -162,12 +136,11 @@ class _SubNotesListState extends State<SubNotesList> {
                     endIndent: 0,
                   ),
                 ),
-
                 actionsAttachFunc("ATTACHMENTS"),
-
                 InkWell(
                   onTap: () {},
                   child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     height: 46,
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -178,42 +151,45 @@ class _SubNotesListState extends State<SubNotesList> {
                     ),
                   ),
                 ),
-
                 const SizedBox(
                   height: 10,
                 ),
-
-                InkWell(
-                  onTap: () {},
-                  borderRadius: BorderRadius.circular(25),
-                  child: Container(
-                    height: 46,
-                    width: 220,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      border: Border.all(
-                        width: 2,
-                        color: AppColors.primaryColor.base,
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          Assets.icons.upload,
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                                            
+                    },
+                    borderRadius: BorderRadius.circular(25),
+                    child: Container(
+                      margin: EdgeInsets.only(left: 16, right: size.width * 0.4),
+                      height: 46,
+                      width: 200,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(
+                          width: 2,
                           color: AppColors.primaryColor.base,
                         ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "Upload Attachment",
-                          style: AppTextStyle.mediumBase.copyWith(
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            Assets.icons.upload,
                             color: AppColors.primaryColor.base,
                           ),
-                        ),
-                      ],
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "Upload Attachment",
+                            style: AppTextStyle.mediumBase.copyWith(
+                              color: AppColors.primaryColor.base,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -224,47 +200,27 @@ class _SubNotesListState extends State<SubNotesList> {
         ],
       ),
     );
-
-    // return Scaffold(
-    //   body: ReorderableListView.builder(
-    //     itemBuilder: (context, index) {
-    //       final user = items[index];
-    //       return buildUser(index, user);
-    //     },
-    //     itemCount: items.length,
-    //     onReorder: (oldIndex, newIndex) {
-    //       setState(() {
-    //         final index = newIndex;
-
-    //         final user = items.removeAt(oldIndex);
-
-    //         items.insert(index, user);
-    //       });
-    //     },
-    //   ),
-    // );
   }
 
-  // Widget buildUser(int index, String user) {
-  //   return ListTile(
-  //     key: ValueKey(user),
-  //     title: Text(user),
-  //     trailing: IconButton(
-  //       icon: const Icon(
-  //         Icons.delete,
-  //         color: Colors.black,
-  //       ),
-  //       onPressed: () => remove(index),
-  //     ),
-  //   );
-  // }
-
   void remove(int index) => setState(
-        () => items.removeAt(index),
+        () => subCheckList.removeAt(index),
       );
 
-  Widget buildUser(int index) {
-    return subCheckList[index];
+  Widget buildUser(int index, int user) {
+    return ListTile(
+      key: ValueKey(user),
+      title: subCheckList[index],
+      trailing: InkWell(
+        onTap: () => remove(index),
+        borderRadius: BorderRadius.circular(10),
+        child: SvgPicture.asset(
+          Assets.icons.close,
+          color: AppColors.neutralColor.baseGrey,
+          height: 20,
+          width: 20,
+        ),
+      ),
+    );
   }
 
   Widget addTextFieldAndCheck(String text, String text1) {
@@ -294,16 +250,14 @@ class _SubNotesListState extends State<SubNotesList> {
   }
 
   Widget actionsAttachFunc(String text) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        height: 46,
-        alignment: Alignment.centerLeft,
-        child: Text(
-          text,
-          style: AppTextStyle.bold2Xs.copyWith(
-            color: AppColors.neutralColor.baseGrey,
-          ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      height: 46,
+      alignment: Alignment.centerLeft,
+      child: Text(
+        text,
+        style: AppTextStyle.bold2Xs.copyWith(
+          color: AppColors.neutralColor.baseGrey,
         ),
       ),
     );

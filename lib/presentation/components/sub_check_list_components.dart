@@ -44,7 +44,7 @@ class _SubCheckListComponentState extends State<SubCheckListComponent> {
             padding: const EdgeInsets.only(bottom: 3),
             child: TextField(
               style: AppTextStyle.mediumBase,
-              maxLines: 2,
+              maxLines: 1,
               minLines: 1,
               keyboardType: TextInputType.multiline,
               autocorrect: false,
@@ -58,16 +58,16 @@ class _SubCheckListComponentState extends State<SubCheckListComponent> {
             ),
           ),
         ),
-        InkWell(
-          onTap: () {},
-          borderRadius: BorderRadius.circular(10),
-          child: SvgPicture.asset(
-            Assets.icons.close,
-            color: AppColors.neutralColor.baseGrey,
-            height: 20,
-            width: 20,
-          ),
-        ),
+        // InkWell(
+        //   onTap: () {},
+        //   borderRadius: BorderRadius.circular(10),
+        //   child: SvgPicture.asset(
+        //     Assets.icons.close,
+        //     color: AppColors.neutralColor.baseGrey,
+        //     height: 20,
+        //     width: 20,
+        //   ),
+        // ),
       ],
     );
   }

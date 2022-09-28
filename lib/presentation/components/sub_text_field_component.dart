@@ -48,21 +48,21 @@ class _SubTextFieldAddState extends State<SubTextFieldAdd> {
         const SizedBox(
           width: 14,
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: InkWell(
-            onTap: () {
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 15),
+        //   child: InkWell(
+        //     onTap: () {
 
-            },
-            borderRadius: BorderRadius.circular(10),
-            child: SvgPicture.asset(
-              Assets.icons.close,
-              color: AppColors.neutralColor.baseGrey,
-              height: 20,
-              width: 20,
-            ),
-          ),
-        ),
+        //     },
+        //     borderRadius: BorderRadius.circular(10),
+        //     child: SvgPicture.asset(
+        //       Assets.icons.close,
+        //       color: AppColors.neutralColor.baseGrey,
+        //       height: 20,
+        //       width: 20,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
