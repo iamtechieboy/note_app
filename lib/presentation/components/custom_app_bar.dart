@@ -11,10 +11,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.title,
     this.iconicOvalButtonOnTap,
     this.iconicOvalButton,
+    required this.onBackTap,
   }) : super(key: key);
 
   final String? title;
   final Function()? iconicOvalButtonOnTap;
+  final Function() onBackTap;
   final IconicOvalButton? iconicOvalButton;
 
   @override
@@ -37,7 +39,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               alignment: Alignment.centerLeft,
               child: BackToButton(
                 title: "Back",
-                onPressed: () => Navigator.pop(context),
+                onPressed: onBackTap,
               ),
             ),
             Align(

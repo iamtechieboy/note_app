@@ -25,7 +25,8 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.neutralColor.white,
-      appBar: const CustomAppBar(title: "Settings"),
+      appBar: CustomAppBar(
+          title: "Settings", onBackTap: () => Navigator.pop(context)),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24),
         shrinkWrap: true,

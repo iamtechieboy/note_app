@@ -22,7 +22,8 @@ class CircularIconPlace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap??(){},
+      borderRadius: BorderRadius.circular(height / 2),
+      onTap: onTap ?? () {},
       child: CircleAvatar(
         radius: height / 2,
         backgroundColor: background,

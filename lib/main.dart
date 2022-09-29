@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:note_app/data/models/interesting_idea_model.dart';
 import 'package:note_app/presentation/routes/routes.dart';
 
 import 'config/theme/themes.dart';
 import 'core/di/bloc_scope.dart';
-import 'presentation/pages/settings/setting_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter<InterestingIdeaModel>(InterestingIdeaModelAdapter());
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -28,9 +30,5 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (setting) => Routes.generateRoutes(setting),
       ),
     );
-    // return const MaterialApp(
-    //   debugShowCheckedModeBanner: false,
-    //   home: GuidancePage(),
-    // );
   }
 }

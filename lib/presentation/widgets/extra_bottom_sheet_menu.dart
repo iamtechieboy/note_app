@@ -31,15 +31,9 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
             ),
           ),
           // Color picker for that project
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: CustomColorPicker(
-              onSelectColor: (color) {
-                // setState(() {
-                //   _selectedColor = color;
-                // });
-              },
-            ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: CustomColorPicker(),
           ),
           // Divider
           Padding(
@@ -88,7 +82,7 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
           ),
           // Divider
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             child: Divider(
               color: AppColors.neutralColor.lightGrey,
               thickness: 1,

@@ -29,6 +29,7 @@ class _RoutineTaskPageState extends State<RoutineTaskPage> {
             debugPrint("Add sub note");
           },
         ),
+        onBackTap: () => Navigator.pop(context),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

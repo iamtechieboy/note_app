@@ -4,3 +4,11 @@ enum IconPosition {
   centerLeft,
   centerRight,
 }
+
+enum NoteType {
+  interesting,
+  buyingSomething,
+  goals,
+  guidance,
+  routineTask,
+}

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app/presentation/pages/interesting_idea/bloc/add_interesting_idea_cubit.dart';
 
 import '../../config/constants/assets.dart';
 import '../components/navigation_button.dart';
@@ -46,6 +48,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                     callBack: () {
+                      context.read<AddInterestingIdeaCubit>().getAllFromHive();
                       setState(() {
                         _currentTab = 1;
                       });

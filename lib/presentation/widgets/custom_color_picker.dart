@@ -9,10 +9,7 @@ import '../../config/constants/app_colors.dart';
 class CustomColorPicker extends StatefulWidget {
   const CustomColorPicker({
     Key? key,
-    required this.onSelectColor,
   }) : super(key: key);
-
-  final Function(Color selectedColor) onSelectColor;
 
   @override
   State<CustomColorPicker> createState() => _CustomColorPickerState();

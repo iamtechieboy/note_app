@@ -41,7 +41,7 @@ class _GuidancePageState extends State<GuidancePage> {
       create: (context) => GuidanceCubit(),
       child: Scaffold(
         backgroundColor: AppColors.neutralColor.white,
-        appBar: const CustomAppBar(),
+        appBar: CustomAppBar(onBackTap: () => Navigator.pop(context)),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

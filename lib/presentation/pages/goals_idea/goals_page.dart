@@ -29,7 +29,7 @@ class _GoalsPageState extends State<GoalsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.neutralColor.white,
-      appBar: const CustomAppBar(),
+      appBar: CustomAppBar(onBackTap: () => Navigator.pop(context)),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -14,7 +14,7 @@ class CreateNewIdeasPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.neutralColor.white,
-      appBar: const CustomAppBar(title: "New Ideas"),
+      appBar: CustomAppBar(title: "New Ideas", onBackTap: () => Navigator.pop(context)),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
         child: ListView(
