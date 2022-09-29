@@ -7,6 +7,9 @@ import 'package:note_app/presentation/components/bottom_task_bar.dart';
 import 'package:note_app/presentation/components/custom_app_bar.dart';
 import 'package:note_app/presentation/components/sub_check_list_components.dart';
 import 'package:note_app/presentation/components/sub_text_field_component.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/tap_bounce_container.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SubNotesList extends StatefulWidget {
   const SubNotesList({super.key});
@@ -21,6 +24,7 @@ class _SubNotesListState extends State<SubNotesList> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: const CustomAppBar(),
       body: Column(
@@ -30,7 +34,7 @@ class _SubNotesListState extends State<SubNotesList> {
             child: ListView(
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(vertical: 24),
-              children: [
+              children: <Widget>[
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   width: size.width - 32,
@@ -154,14 +158,12 @@ class _SubNotesListState extends State<SubNotesList> {
                 const SizedBox(
                   height: 10,
                 ),
-                Expanded(
+                Padding(
+                  padding: EdgeInsets.only(left: 16, right: size.width * 0.4),
                   child: InkWell(
-                    onTap: () {
-                                            
-                    },
+                    onTap: () {},
                     borderRadius: BorderRadius.circular(25),
                     child: Container(
-                      margin: EdgeInsets.only(left: 16, right: size.width * 0.4),
                       height: 46,
                       width: 200,
                       alignment: Alignment.center,
@@ -202,6 +204,8 @@ class _SubNotesListState extends State<SubNotesList> {
     );
   }
 
+  void showCustomFlushbar(BuildContext context) {}
+ 
   void remove(int index) => setState(
         () => subCheckList.removeAt(index),
       );
@@ -211,7 +215,42 @@ class _SubNotesListState extends State<SubNotesList> {
       key: ValueKey(user),
       title: subCheckList[index],
       trailing: InkWell(
-        onTap: () => remove(index),
+        onTap: () {
+          remove(index);
+          showTopSnackBar(
+            context,
+            CustomSnackBar.info(
+              iconPositionLeft: 10,
+              icon: Container(
+                height: 32,
+                width: 32,
+                margin: const EdgeInsets.symmetric(
+                  vertical: 31,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.successColor.base,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: SvgPicture.asset(
+                  Assets.icons.check,
+                  color: AppColors.successColor.dark,
+                  height: 5,
+                  width: 5,
+                ),
+              ),
+              iconRotationAngle: 0,
+              messagePadding: const EdgeInsets.only(
+                left: 68,
+                right: 16,
+              ),
+              message: "Your notes section has been deleted",
+              textStyle: AppTextStyle.mediumSm.copyWith(
+                color: AppColors.successColor.dark,
+              ),
+              backgroundColor: AppColors.successColor.light,
+            ),
+          );
+        },
         borderRadius: BorderRadius.circular(10),
         child: SvgPicture.asset(
           Assets.icons.close,
