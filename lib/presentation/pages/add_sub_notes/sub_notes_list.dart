@@ -25,7 +25,10 @@ class _SubNotesListState extends State<SubNotesList> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: CustomAppBar(
+        title: "Sub Notes List",
+        onBackTap: () {},
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -55,7 +58,8 @@ class _SubNotesListState extends State<SubNotesList> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
                   child: Divider(
                     height: 10,
                     color: AppColors.neutralColor.baseGrey,
@@ -84,7 +88,8 @@ class _SubNotesListState extends State<SubNotesList> {
                 ),
                 subCheckList.isNotEmpty
                     ? Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 16),
                         child: Divider(
                           height: 10,
                           color: AppColors.neutralColor.baseGrey,
