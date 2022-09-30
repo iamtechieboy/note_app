@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/presentation/pages/add_sub_notes/sub_notes_list.dart';
 import 'package:note_app/presentation/pages/buying_something/buying_something.dart';
 import 'package:note_app/presentation/pages/goals_idea/goals_page.dart';
 import 'package:note_app/presentation/pages/guidance_idea/guidance_page.dart';
@@ -17,6 +18,7 @@ class Routes {
   static const routineTaskPage = '/routineTaskPage';
   static const guidancePage = '/guidancePage';
   static const settingsPage = '/SettingPage';
+  static const subNotesPage = '/subNotesPage';
 
   static Route<dynamic> generateRoutes(RouteSettings settings) {
     try {
@@ -56,6 +58,12 @@ class Routes {
           return MaterialPageRoute(
             builder: (_) => const SettingsPage(),
           );
+        case subNotesPage:
+          return MaterialPageRoute(
+            builder: (_) => const SubNotesList(),
+          );
+
+
         default:
           return MaterialPageRoute(
             settings: settings,
