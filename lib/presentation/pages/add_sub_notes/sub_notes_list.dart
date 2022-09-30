@@ -8,7 +8,6 @@ import 'package:note_app/presentation/components/custom_app_bar.dart';
 import 'package:note_app/presentation/components/sub_check_list_components.dart';
 import 'package:note_app/presentation/components/sub_text_field_component.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/tap_bounce_container.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SubNotesList extends StatefulWidget {
@@ -205,7 +204,7 @@ class _SubNotesListState extends State<SubNotesList> {
   }
 
   void showCustomFlushbar(BuildContext context) {}
- 
+
   void remove(int index) => setState(
         () => subCheckList.removeAt(index),
       );
@@ -217,39 +216,7 @@ class _SubNotesListState extends State<SubNotesList> {
       trailing: InkWell(
         onTap: () {
           remove(index);
-          showTopSnackBar(
-            context,
-            CustomSnackBar.info(
-              iconPositionLeft: 10,
-              icon: Container(
-                height: 32,
-                width: 32,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 31,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.successColor.base,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: SvgPicture.asset(
-                  Assets.icons.check,
-                  color: AppColors.successColor.dark,
-                  height: 5,
-                  width: 5,
-                ),
-              ),
-              iconRotationAngle: 0,
-              messagePadding: const EdgeInsets.only(
-                left: 68,
-                right: 16,
-              ),
-              message: "Your notes section has been deleted",
-              textStyle: AppTextStyle.mediumSm.copyWith(
-                color: AppColors.successColor.dark,
-              ),
-              backgroundColor: AppColors.successColor.light,
-            ),
-          );
+          snackBarTop("Your notes section has been deleted");
         },
         borderRadius: BorderRadius.circular(10),
         child: SvgPicture.asset(
@@ -284,6 +251,45 @@ class _SubNotesListState extends State<SubNotesList> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  snackBarTop(String messages) {
+    showTopSnackBar(
+      context,
+      CustomSnackBar.info(
+        iconPositionLeft: 10,
+        icon: Container(
+          height: 32,
+          width: 32,
+          margin: const EdgeInsets.symmetric(
+            vertical: 31,
+          ),
+          decoration: BoxDecoration(
+            color: AppColors.successColor.base,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Transform.scale(
+            scale: 0.5,
+            child: SvgPicture.asset(
+              Assets.icons.check,
+              color: AppColors.successColor.dark,
+              height: 5,
+              width: 5,
+            ),
+          ),
+        ),
+        iconRotationAngle: 0,
+        messagePadding: const EdgeInsets.only(
+          left: 68,
+          right: 16,
+        ),
+        message: messages,
+        textStyle: AppTextStyle.mediumSm.copyWith(
+          color: AppColors.successColor.dark,
+        ),
+        backgroundColor: AppColors.successColor.light,
       ),
     );
   }
