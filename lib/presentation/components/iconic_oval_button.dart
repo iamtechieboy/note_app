@@ -43,24 +43,22 @@ class IconicOvalButton extends StatelessWidget {
       margin: margin,
       width: isWidthMax! ? double.infinity : null,
       decoration: boxDecoration ??
-          BoxDecoration(
-              borderRadius: BorderRadius.circular(cornerRadius ?? 20),
-              color: AppColors.primaryColor.base),
+          BoxDecoration(borderRadius: BorderRadius.circular(cornerRadius ?? 20), color: AppColors.primaryColor.base),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(19),
+          borderRadius: BorderRadius.circular(
+            height != null ? height! / 2 : 20,
+          ),
           onTap: onTap,
           child: Padding(
-            padding: padding??const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            padding: padding ?? const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             child: Directionality(
-              textDirection: (iconPosition == IconPosition.left ||
-                      iconPosition == IconPosition.centerLeft)
+              textDirection: (iconPosition == IconPosition.left || iconPosition == IconPosition.centerLeft)
                   ? TextDirection.ltr
                   : TextDirection.rtl,
               child: Row(
-                mainAxisSize: ((iconPosition == IconPosition.centerLeft ||
-                            iconPosition == IconPosition.centerRight) &&
+                mainAxisSize: ((iconPosition == IconPosition.centerLeft || iconPosition == IconPosition.centerRight) &&
                         isWidthMax!)
                     ? MainAxisSize.max
                     : MainAxisSize.min,
@@ -79,8 +77,7 @@ class IconicOvalButton extends StatelessWidget {
                   ),
                   Expanded(
                     flex: (isWidthMax! &&
-                            !(iconPosition == IconPosition.centerLeft ||
-                                iconPosition == IconPosition.centerRight))
+                            !(iconPosition == IconPosition.centerLeft || iconPosition == IconPosition.centerRight))
                         ? 1
                         : 0,
                     child: Center(
@@ -93,9 +90,7 @@ class IconicOvalButton extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Visibility(
-                      visible: icon != null,
-                      child: SizedBox(width: isWidthMax! ? 24 : 5))
+                  Visibility(visible: icon != null, child: SizedBox(width: isWidthMax! ? 24 : 5))
                 ],
               ),
             ),
