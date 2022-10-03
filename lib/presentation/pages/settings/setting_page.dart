@@ -9,6 +9,7 @@ import 'package:note_app/presentation/components/custom_app_bar.dart';
 import 'package:note_app/presentation/components/custom_bottom_sheet.dart';
 import 'package:note_app/presentation/components/extras_menu_button.dart';
 import 'package:note_app/presentation/components/iconic_oval_button.dart';
+import 'package:note_app/presentation/pages/edit_profile/edit_profile_page.dart';
 import 'package:note_app/presentation/widgets/notificaton_bottom_sheet_menu.dart';
 
 import '../../../config/constants/app_colors.dart';
@@ -25,8 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.neutralColor.white,
-      appBar: CustomAppBar(
-          title: "Settings", onBackTap: () => Navigator.pop(context)),
+      appBar: CustomAppBar(title: "Settings", onBackTap: () => Navigator.pop(context)),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24),
         shrinkWrap: true,
@@ -42,8 +42,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 Expanded(
                     child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 6.5),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6.5),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -65,8 +64,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             padding: const EdgeInsets.only(left: 8),
                             child: Text(
                               "anto_michael@gmail.com",
-                              style: AppTextStyle.regular2Xs.copyWith(
-                                  color: AppColors.neutralColor.darkGrey),
+                              style: AppTextStyle.regular2Xs.copyWith(color: AppColors.neutralColor.darkGrey),
                             ),
                           )
                         ],
@@ -86,7 +84,14 @@ class _SettingsPageState extends State<SettingsPage> {
               icon: Assets.icons.edit,
               iconColor: AppColors.primaryColor.base,
               boxDecoration: AppDecoration.outline,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const EditProfilePage(),
+                  ),
+                );
+              },
             ),
           ),
           Padding(
@@ -101,8 +106,7 @@ class _SettingsPageState extends State<SettingsPage> {
             padding: const EdgeInsets.only(bottom: 8, left: 16),
             child: Text(
               "APP SETTINGS",
-              style: AppTextStyle.regularXs
-                  .copyWith(color: AppColors.neutralColor.darkGrey),
+              style: AppTextStyle.regularXs.copyWith(color: AppColors.neutralColor.darkGrey),
             ),
           ),
           ExtrasMenuButton(
@@ -123,8 +127,7 @@ class _SettingsPageState extends State<SettingsPage> {
             onTap: () {
               showCustomBottomSheet(
                 context: context,
-                body: const CustomBottomSheet(
-                    body: NotificationBottomSheetMenu()),
+                body: const CustomBottomSheet(body: NotificationBottomSheetMenu()),
               );
             },
             label: "All active",
@@ -146,8 +149,7 @@ class _SettingsPageState extends State<SettingsPage> {
               showCustomDialog(
                 context: context,
                 title: 'Log Out',
-                contentText:
-                    "Are you sure you want to log \n out from the application?",
+                contentText: "Are you sure you want to log \n out from the application?",
                 positive: "Yes",
                 negative: "Cancel",
                 onNegativeTap: () {

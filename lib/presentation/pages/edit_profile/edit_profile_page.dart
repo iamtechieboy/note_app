@@ -8,8 +8,8 @@ import 'package:note_app/core/utils/bottom_sheet.dart';
 import 'package:note_app/presentation/components/custom_app_bar.dart';
 import 'package:note_app/presentation/components/custom_bottom_sheet.dart';
 import 'package:note_app/presentation/components/iconic_oval_button.dart';
-import 'package:note_app/presentation/pages/edit_profile/cubit/edit_profile_cubit.dart';
-import 'package:note_app/presentation/widgets/edit_file_change_image_bottom_sheet_menu.dart';
+import 'package:note_app/presentation/pages/guidance_idea/bloc/guidance_cubit.dart';
+import 'package:note_app/presentation/widgets/edit_photo_bottom_sheet_menu.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -21,6 +21,7 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   late TextEditingController controllerEditProfileFullName;
   late TextEditingController controllerEditProfileEmail;
+
   @override
   void initState() {
     super.initState();
@@ -37,10 +38,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return BlocProvider(
-      create: (context) => EditProfileCubit(),
+      create: (context) => GuidanceCubit(),
       child: Scaffold(
         appBar: CustomAppBar(
+          title: "Edit Profile",
           onBackTap: () => Navigator.pop(context),
         ),
         body: Padding(
@@ -50,104 +53,137 @@ class _EditProfilePageState extends State<EditProfilePage> {
             top: 22,
             bottom: 34,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 174,
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 120,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                Assets.images.userSettings,
-                                fit: BoxFit.cover,
-                              ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                BlocBuilder<GuidanceCubit, GuidanceState>(
+                  builder: (context, state) {
+                   return state.images != null
+                        ? SizedBox(
+                            height: 174,
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 120,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(120 / 2),
+                                    child: Image.file(
+                                      state.images!,
+                                      fit: BoxFit.cover,
+                                      width: 120,
+                                      height: 120,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                IconicOvalButton(
+                                  text: "Change Image",
+                                  onTap: () {
+                                    showCustomBottomSheet(
+                                      context: context,
+                                      body: CustomBottomSheet(
+                                        body: EditPhotoBottomSheetMenu(
+                                          bloc: context.read<GuidanceCubit>(),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  icon: Assets.icons.edit,
+                                  boxDecoration: AppDecoration.outline,
+                                  iconColor: AppColors.primaryColor.base,
+                                  textColor: AppColors.primaryColor.base,
+                                  height: 38,
+                                ),
+                              ],
                             ),
-                            const SizedBox(
-                              height: 16,
+                          )
+                        : SizedBox(
+                            height: 174,
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 120,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    Assets.images.userSettings,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                IconicOvalButton(
+                                  text: "Change Image",
+                                  onTap: () {
+                                    context.read<GuidanceCubit>().openGallery();
+                                  },
+                                  icon: Assets.icons.edit,
+                                  boxDecoration: AppDecoration.outline,
+                                  iconColor: AppColors.primaryColor.base,
+                                  textColor: AppColors.primaryColor.base,
+                                  height: 38,
+                                ),
+                              ],
                             ),
-                            IconicOvalButton(
-                              text: "Change Image",
-                              onTap: () {
-                                //  Change Imageda Cubit bor. Lekin showbutomni qoshalmadim
-                                // Cubit berish kere ekan ashinga boshqa componenta yozip utrippan
-                                //  agar tog'ri bosa qoloradi
-                                // o'zgartizsez o'zgartiroring
-
-                                showCustomBottomSheet(
-                                    context: context,
-                                    body: CustomBottomSheet(
-                                        body: EditFileBottomSheetMenu(
-                                      bloc: context.read<EditProfileCubit>(),
-                                    )));
-                              },
-                              icon: Assets.icons.edit,
-                              boxDecoration: AppDecoration.outline,
-                              iconColor: AppColors.primaryColor.base,
-                              textColor: AppColors.primaryColor.base,
-                              height: 38,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 24),
-                        child: Divider(
-                          color: AppColors.neutralColor.lightGrey,
-                          height: 1,
-                          thickness: 3,
-                          indent: 0,
-                          endIndent: 0,
-                        ),
-                      ),
-                      editProfile(
-                        fullName: "Full Name",
-                        hintText: "Example: Michael Antonio",
-                        keyboardInputType: TextInputType.name,
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 12,
-                        ),
-                        child: editProfile(
-                          fullName: "Email Address",
-                          hintText: "Example: johndoe@gmail.com",
-                          keyboardInputType: TextInputType.emailAddress,
-                        ),
-                      ),
-                      Text(
-                        "Changing email address information means you need to re-login to the apps.",
-                        style: AppTextStyle.regular2Xs.copyWith(
-                          color: AppColors.neutralColor.baseGrey,
-                        ),
-                      ),
-                    ],
+                          );
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: Divider(
+                    color: AppColors.neutralColor.lightGrey,
+                    height: 1,
+                    thickness: 3,
+                    indent: 0,
+                    endIndent: 0,
                   ),
                 ),
-              ),
-              IconicOvalButton(
-                text: "Save Changes",
-                onTap: () {},
-                icon: Assets.icons.check,
-                isWidthMax: true,
-                height: 54,
-                cornerRadius: 27,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-              ),
-            ],
+                editProfile(
+                  fullName: "Full Name",
+                  hintText: "Example: Michael Antonio",
+                  keyboardInputType: TextInputType.name,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                  ),
+                  child: editProfile(
+                    fullName: "Email Address",
+                    hintText: "Example: johndoe@gmail.com",
+                    keyboardInputType: TextInputType.emailAddress,
+                  ),
+                ),
+                Text(
+                  "Changing email address information means you need to re-login to the apps.",
+                  style: AppTextStyle.regular2Xs.copyWith(
+                    color: AppColors.neutralColor.baseGrey,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: size.height * 0.185),
+                  child: IconicOvalButton(
+                    text: "Save Changes",
+                    onTap: () {},
+                    icon: Assets.icons.check,
+                    isWidthMax: true,
+                    height: 54,
+                    cornerRadius: 27,
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -170,7 +206,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
           padding: const EdgeInsets.symmetric(vertical: 12),
           child: TextField(
             // bu yerga controller joylanadi
-
+            minLines: 1,
+            maxLines: 1,
             style: AppTextStyle.regularBase,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(horizontal: 16),
