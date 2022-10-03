@@ -10,7 +10,7 @@ part 'edit_profile_state.dart';
 class EditProfileCubit extends Cubit<EditProfileState> {
   EditProfileCubit() : super(const EditProfileState(null));
 
-  Future<void> openCamera() async {
+  Future<void> openingCamera() async {
     pickImage(ImageSource.camera);
   }
 
@@ -18,7 +18,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     pickImage(ImageSource.gallery);
   }
 
-  Future<void> deleteImage() async {
+  Future<void> deleteingImage() async {
     emit(const EditProfileState(null));
   }
 

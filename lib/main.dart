@@ -10,7 +10,7 @@ import 'package:note_app/presentation/routes/routes.dart';
 import 'config/theme/themes.dart';
 import 'core/di/bloc_scope.dart';
 
-// Cubitni qo'ship qoying 
+// Cubitni qo'ship qoying
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,17 +28,17 @@ class MyApp extends StatelessWidget {
     //     systemNavigationBarIconBrightness: Brightness.dark,
     //     statusBarBrightness: Brightness.dark,
     //     statusBarIconBrightness: Brightness.dark));
-    // return BlocScope(
-    //   child: MaterialApp(
-    //     title: 'Note App',
-    //     debugShowCheckedModeBanner: false,
-    //     theme: Themes.lightTheme,
-    //     onGenerateRoute: (setting) => Routes.generateRoutes(setting),
-    //   ),
-    // );
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: EditProfilePage(),
+    return BlocScope(
+      child: MaterialApp(
+        title: 'Note App',
+        debugShowCheckedModeBanner: false,
+        theme: Themes.lightTheme,
+        onGenerateRoute: (setting) => Routes.generateRoutes(setting),
+      ),
     );
+    // return const MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   home: EditProfilePage(),
+    // );
   }
 }
