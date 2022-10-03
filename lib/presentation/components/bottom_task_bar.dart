@@ -11,12 +11,19 @@ class BottomTaskBar extends StatefulWidget {
   const BottomTaskBar({
     Key? key,
     required this.context,
-    // required this.onMoreButtonPressed,
+    required this.onSelectedColorIndex,
+    required this.onSelectedLabels,
+    required this.onRemindedTimeSelected,
+    required this.onMarkAsFinished,
+    required this.onDelete,
   }) : super(key: key);
 
   final BuildContext context;
-
-  // final Function() onMoreButtonPressed;
+  final Function(int selectedColorIndex) onSelectedColorIndex;
+  final Function(List<String> labels) onSelectedLabels;
+  final Function(DateTime remindedTime) onRemindedTimeSelected;
+  final Function() onMarkAsFinished;
+  final Function() onDelete;
 
   @override
   State<BottomTaskBar> createState() => _BottomTaskBarState();
@@ -72,7 +79,13 @@ class _BottomTaskBarState extends State<BottomTaskBar> {
                 onPressed: () {
                   showCustomBottomSheet(
                     context: context,
-                    body: const ExtrasBottomSheetMenuBody(),
+                    body: ExtrasBottomSheetMenuBody(
+                      onSelectedColorIndex: widget.onSelectedColorIndex,
+                      onRemindedTimeSelected: widget.onRemindedTimeSelected,
+                      onSelectedLabels: widget.onSelectedLabels,
+                      onMarkAsFinished: widget.onMarkAsFinished,
+                      onDelete: widget.onDelete,
+                    ),
                   );
                 },
                 child: SvgPicture.asset(

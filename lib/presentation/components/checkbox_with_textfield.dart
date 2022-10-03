@@ -47,21 +47,18 @@ class _CheckBoxWithTextFieldState extends State<CheckBoxWithTextField> {
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 3),
-              child: TextField(
-                style: AppTextStyle.mediumBase,
-                maxLines: 2,
-                cursorHeight: 20,
-                minLines: 1,
-                keyboardType: TextInputType.multiline,
-                autocorrect: false,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: widget.hintText,
-                  hintStyle: AppTextStyle.mediumBase.copyWith(
-                    color: AppColors.neutralColor.baseGrey,
-                  ),
+            child: TextField(
+              style: AppTextStyle.mediumBase,
+              maxLines: 2,
+              cursorHeight: 20,
+              minLines: 1,
+              keyboardType: TextInputType.multiline,
+              autocorrect: false,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: widget.hintText,
+                hintStyle: AppTextStyle.mediumBase.copyWith(
+                  color: AppColors.neutralColor.baseGrey,
                 ),
               ),
             ),

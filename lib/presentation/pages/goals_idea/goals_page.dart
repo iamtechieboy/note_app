@@ -60,7 +60,14 @@ class _GoalsPageState extends State<GoalsPage> {
               ],
             ),
           ),
-          BottomTaskBar(context: context),
+          BottomTaskBar(
+            context: context,
+            onMarkAsFinished: () {},
+            onSelectedLabels: (List<String> labels) {},
+            onRemindedTimeSelected: (DateTime remindedTime) {},
+            onDelete: () {},
+            onSelectedColorIndex: (int selectedColorIndex) {},
+          ),
         ],
       ),
     );

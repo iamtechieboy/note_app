@@ -8,7 +8,20 @@ import '../components/extras_menu_button.dart';
 import 'custom_color_picker.dart';
 
 class ExtrasBottomSheetMenuBody extends StatefulWidget {
-  const ExtrasBottomSheetMenuBody({Key? key}) : super(key: key);
+  const ExtrasBottomSheetMenuBody({
+    Key? key,
+    required this.onSelectedColorIndex,
+    required this.onRemindedTimeSelected,
+    required this.onSelectedLabels,
+    required this.onMarkAsFinished,
+    required this.onDelete,
+  }) : super(key: key);
+
+  final Function(int selectedColorIndex) onSelectedColorIndex;
+  final Function(List<String> labels) onSelectedLabels;
+  final Function(DateTime remindedTime) onRemindedTimeSelected;
+  final Function() onMarkAsFinished;
+  final Function() onDelete;
 
   @override
   State<ExtrasBottomSheetMenuBody> createState() =>
@@ -31,9 +44,11 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
             ),
           ),
           // Color picker for that project
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: CustomColorPicker(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: CustomColorPicker(
+              onSelectedColor: widget.onSelectedColorIndex,
+            ),
           ),
           // Divider
           Padding(
@@ -61,13 +76,14 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
             isArrowVisible: true,
             onTap: () {},
           ),
-          ExtrasMenuButton(
-            icon: Assets.icons.edit,
-            menuTitle: "Change Note Type",
-            label: "Buying something",
-            isArrowVisible: true,
-            onTap: () {},
-          ),
+          // TODO: Thinking about adding it
+          // ExtrasMenuButton(
+          //   icon: Assets.icons.edit,
+          //   menuTitle: "Change Note Type",
+          //   label: "Buying something",
+          //   isArrowVisible: true,
+          //   onTap: () {},
+          // ),
           ExtrasMenuButton(
             icon: Assets.icons.tag,
             menuTitle: "Give Label",
@@ -78,7 +94,7 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
           ExtrasMenuButton(
             icon: Assets.icons.check,
             menuTitle: "Mark as Finished",
-            onTap: () {},
+            onTap: widget.onMarkAsFinished,
           ),
           // Divider
           Padding(
@@ -94,7 +110,7 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
             iconColor: AppColors.errorColor.base,
             menuTitle: "Delete Note",
             menuTitleColor: AppColors.errorColor.base,
-            onTap: () {},
+            onTap: widget.onDelete,
           ),
         ],
       ),

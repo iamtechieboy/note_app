@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/presentation/components/iconic_oval_button.dart';
 
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_text_style.dart';
@@ -17,7 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final Function()? iconicOvalButtonOnTap;
   final Function() onBackTap;
-  final IconicOvalButton? iconicOvalButton;
+  final Widget? iconicOvalButton;
 
   @override
   Widget build(BuildContext context) {

@@ -15,6 +15,7 @@ class AddInterestingIdeaCubit extends Cubit<AddInterestingIdeaState>
   }
 
   Future addNewItemToTheList(InterestingIdeaModel ideaModel) async {
+    addBox<InterestingIdeaModel>(interestingBox, ideaModel);
     state.interestingIdeaList.add(ideaModel);
     emit(state.copyWith(interestingIdeaList: state.interestingIdeaList));
   }

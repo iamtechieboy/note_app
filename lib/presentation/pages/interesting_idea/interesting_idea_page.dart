@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:note_app/config/constants/hive_boxes.dart';
 import 'package:note_app/core/domain/entities/enums.dart';
 import 'package:note_app/core/utils/hive_util.dart';
 import 'package:note_app/data/models/interesting_idea_model.dart';
@@ -22,9 +21,12 @@ class InterestingIdeaPage extends StatefulWidget {
 
 class _InterestingIdeaPageState extends State<InterestingIdeaPage>
     with HiveUtil {
+  final NoteType _noteType = NoteType.interesting;
   late final TextEditingController titleEditingController;
   late final TextEditingController noteEditingController;
   DateFormat dateFormat = DateFormat("dd/MM/yyyy HH:mm");
+  late int colorIndex;
+  late InterestingIdeaModel itemModel;
 
   @override
   void initState() {
@@ -39,32 +41,25 @@ class _InterestingIdeaPageState extends State<InterestingIdeaPage>
       backgroundColor: AppColors.neutralColor.white,
       appBar: CustomAppBar(
         onBackTap: () async {
-          addBox<InterestingIdeaModel>(
-            interestingBox,
-            InterestingIdeaModel(
-              noteType: NoteType.interesting.toString(),
+          if (titleEditingController.text.isNotEmpty &&
+              noteEditingController.text.isNotEmpty) {
+            itemModel = InterestingIdeaModel(
+              noteType: _noteType.name,
               title: titleEditingController.text.toString(),
               noteBody: noteEditingController.text.toString(),
               isFinished: false,
-              itemColor: 1,
+              itemColor: colorIndex,
               labels: ["important", "should be done this week"],
               lastEditedTime: dateFormat.format(DateTime.now()),
               remindedTime: dateFormat.format(DateTime.now()),
-            ),
-          );
-          context.read<AddInterestingIdeaCubit>().addNewItemToTheList(
-                InterestingIdeaModel(
-                  noteType: NoteType.interesting.toString(),
-                  title: titleEditingController.text.toString(),
-                  noteBody: noteEditingController.text.toString(),
-                  isFinished: false,
-                  itemColor: 1,
-                  labels: ["important", "should be done this week"],
-                  lastEditedTime: dateFormat.format(DateTime.now()),
-                  remindedTime: dateFormat.format(DateTime.now()),
-                ),
-              );
-          Navigator.pop(context);
+            );
+            context
+                .read<AddInterestingIdeaCubit>()
+                .addNewItemToTheList(itemModel);
+            Navigator.pop(context);
+          } else {
+
+          }
         },
       ),
       body: Column(
@@ -85,7 +80,16 @@ class _InterestingIdeaPageState extends State<InterestingIdeaPage>
               ),
             ),
           ),
-          BottomTaskBar(context: context),
+          BottomTaskBar(
+            context: context,
+            onMarkAsFinished: () {},
+            onSelectedLabels: (List<String> labels) {},
+            onRemindedTimeSelected: (DateTime remindedTime) {},
+            onDelete: () {},
+            onSelectedColorIndex: (int selectedColorIndex) {
+              colorIndex = selectedColorIndex;
+            },
+          ),
         ],
       ),
     );

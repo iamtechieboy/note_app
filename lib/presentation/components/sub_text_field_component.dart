@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_app/config/constants/app_colors.dart';
@@ -13,56 +12,35 @@ class SubTextFieldAdd extends StatefulWidget {
   State<SubTextFieldAdd> createState() => _SubTextFieldAddState();
 }
 
-class _SubTextFieldAddState extends State<SubTextFieldAdd> {  
+class _SubTextFieldAddState extends State<SubTextFieldAdd> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: SvgPicture.asset(Assets.icons.dragHandler),
-        ),
+        SvgPicture.asset(Assets.icons.dragHandler),
         const SizedBox(
           width: 14,
         ),
         Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 3),
-            child: TextField(
-              style: AppTextStyle.mediumBase,
-              maxLines: null,
-              minLines: null,
-              keyboardType: TextInputType.multiline,
-              autocorrect: false,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: "write a title here",
-                hintStyle: AppTextStyle.mediumBase.copyWith(
-                  color: AppColors.neutralColor.baseGrey,
-                ),
-              ),
+          child: TextField(
+            style: AppTextStyle.regularBase
+                .copyWith(color: AppColors.neutralColor.darkGrey),
+            maxLines: null,
+            minLines: null,
+            keyboardType: TextInputType.multiline,
+            autocorrect: false,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: "Write notes here",
+              hintStyle: AppTextStyle.regularBase
+                  .copyWith(color: AppColors.neutralColor.baseGrey),
             ),
           ),
         ),
         const SizedBox(
           width: 14,
         ),
-        // Padding(
-        //   padding: const EdgeInsets.only(top: 15),
-        //   child: InkWell(
-        //     onTap: () {
-
-        //     },
-        //     borderRadius: BorderRadius.circular(10),
-        //     child: SvgPicture.asset(
-        //       Assets.icons.close,
-        //       color: AppColors.neutralColor.baseGrey,
-        //       height: 20,
-        //       width: 20,
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }

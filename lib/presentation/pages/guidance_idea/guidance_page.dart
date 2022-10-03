@@ -63,114 +63,116 @@ class _GuidancePageState extends State<GuidancePage> {
                     builder: (context, state) {
                       return state.images != null
                           ? Container(
-                        decoration: AppDecoration.defDecor.copyWith(
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Stack(
-                          alignment: Alignment.bottomRight,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: Image.file(
-                                state.images!,
-                                width: double.infinity,
-                                height: 280,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(15),
-                              child: CircularIconPlace(
-                                onTap: () {
-                                  showCustomBottomSheet(
-                                      context: context,
-                                      body: CustomBottomSheet(
-                                          body:
-                                          EditPhotoBottomSheetMenu(
-                                            bloc: context.read<
-                                                GuidanceCubit>(),
-                                          )));
-                                },
-                                height: 58,
-                                icon: Assets.icons.pencil,
-                                iconColor:
-                                AppColors.primaryColor.base,
-                                background:
-                                AppColors.neutralColor.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                          : DottedBorder(
-                        dashPattern: const [12, 12],
-                        strokeWidth: 1.3,
-                        color: AppColors.neutralColor.baseGrey,
-                        borderType: BorderType.RRect,
-                        radius: const Radius.circular(15),
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.all(
-                              Radius.circular(12)),
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 280,
-                            width: double.infinity,
-                            child: Column(
-                              mainAxisAlignment:
-                              MainAxisAlignment.center,
-                              children: [
-                                CircularIconPlace(
-                                  height: 58,
-                                  icon: Assets.icons.photo,
-                                  iconColor:
-                                  AppColors.primaryColor.base,
-                                  background:
-                                  AppColors.primaryColor.light,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 15, bottom: 20),
-                                  child: SizedBox(
-                                    width: 240,
-                                    child: Text(
-                                      "Upload an Image to your guidance can be choose for you",
-                                      textAlign: TextAlign.center,
-                                      style: AppTextStyle.mediumSm
-                                          .copyWith(
-                                        color: AppColors
-                                            .neutralColor.baseGrey,
-                                      ),
+                              decoration: AppDecoration.defDecor.copyWith(
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Stack(
+                                alignment: Alignment.bottomRight,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: Image.file(
+                                      state.images!,
+                                      width: double.infinity,
+                                      height: 280,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: CircularIconPlace(
+                                      onTap: () {
+                                        showCustomBottomSheet(
+                                            context: context,
+                                            body: CustomBottomSheet(
+                                                body: EditPhotoBottomSheetMenu(
+                                              bloc:
+                                                  context.read<GuidanceCubit>(),
+                                            )));
+                                      },
+                                      height: 58,
+                                      icon: Assets.icons.pencil,
+                                      iconColor: AppColors.primaryColor.base,
+                                      background: AppColors.neutralColor.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : DottedBorder(
+                              dashPattern: const [12, 12],
+                              strokeWidth: 1.3,
+                              color: AppColors.neutralColor.baseGrey,
+                              borderType: BorderType.RRect,
+                              radius: const Radius.circular(15),
+                              padding: const EdgeInsets.all(8.0),
+                              child: ClipRRect(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(12)),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: 280,
+                                  width: double.infinity,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CircularIconPlace(
+                                        height: 58,
+                                        icon: Assets.icons.photo,
+                                        iconColor: AppColors.primaryColor.base,
+                                        background:
+                                            AppColors.primaryColor.light,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 15, bottom: 20),
+                                        child: SizedBox(
+                                          width: 240,
+                                          child: Text(
+                                            "Upload an Image to your guidance can be choose for you",
+                                            textAlign: TextAlign.center,
+                                            style:
+                                                AppTextStyle.mediumSm.copyWith(
+                                              color: AppColors
+                                                  .neutralColor.baseGrey,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      IconicOvalButton(
+                                        height: 42,
+                                        text: 'Choose a file',
+                                        onTap: () {
+                                          context
+                                              .read<GuidanceCubit>()
+                                              .openGallery();
+                                        },
+                                        cornerRadius: 21,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 21),
+                                        textStyle: AppTextStyle.mediumBase
+                                            .copyWith(
+                                                color: AppColors
+                                                    .neutralColor.white),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                IconicOvalButton(
-                                  height: 42,
-                                  text: 'Choose a file',
-                                  onTap: () {
-                                    context
-                                        .read<GuidanceCubit>()
-                                        .openGallery();
-                                  },
-                                  cornerRadius: 21,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 21),
-                                  textStyle: AppTextStyle.mediumBase
-                                      .copyWith(
-                                      color: AppColors
-                                          .neutralColor.white),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
+                              ),
+                            );
                     },
                   ),
                 ),
                 NoteTextField(textEditingController: noteEditingController)
               ],
             ),
-            BottomTaskBar(context: context),
+            BottomTaskBar(
+              context: context,
+              onMarkAsFinished: () {},
+              onSelectedLabels: (List<String> labels) {},
+              onRemindedTimeSelected: (DateTime remindedTime) {},
+              onDelete: () {},
+              onSelectedColorIndex: (int selectedColorIndex) {},
+            ),
           ],
         ),
       ),

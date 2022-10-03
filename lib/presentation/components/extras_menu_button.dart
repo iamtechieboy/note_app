@@ -13,7 +13,7 @@ class ExtrasMenuButton extends StatelessWidget {
     this.iconColor,
     this.menuTitleColor,
     required this.onTap,
-    this.isArrowVisible = false,
+    this.isArrowVisible = false, this.padding, this.height,
   }) : super(key: key);
 
   final String icon;
@@ -23,18 +23,20 @@ class ExtrasMenuButton extends StatelessWidget {
   final String? label;
   final Function() onTap;
   final bool? isArrowVisible;
+  final EdgeInsets? padding;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 56,
+      height: height??56,
       width: double.infinity,
       child: Material(
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: padding??const EdgeInsets.symmetric(horizontal: 24),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
