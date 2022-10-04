@@ -8,7 +8,9 @@ import 'package:note_app/core/utils/bottom_sheet.dart';
 import 'package:note_app/presentation/components/custom_app_bar.dart';
 import 'package:note_app/presentation/components/custom_bottom_sheet.dart';
 import 'package:note_app/presentation/components/iconic_oval_button.dart';
+import 'package:note_app/presentation/pages/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:note_app/presentation/pages/guidance_idea/bloc/guidance_cubit.dart';
+import 'package:note_app/presentation/widgets/edit_file_change_image_bottom_sheet_menu.dart';
 import 'package:note_app/presentation/widgets/edit_photo_bottom_sheet_menu.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -40,26 +42,26 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BlocProvider(
-      create: (context) => GuidanceCubit(),
+      create: (context) => EditProfileCubit(),
       child: Scaffold(
         appBar: CustomAppBar(
           title: "Edit Profile",
           onBackTap: () => Navigator.pop(context),
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 12,
-            top: 22,
-            bottom: 34,
-          ),
-          child: SingleChildScrollView(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 12,
+              top: 22,
+              bottom: 34,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                BlocBuilder<GuidanceCubit, GuidanceState>(
+                BlocBuilder<EditProfileCubit, EditProfileState>(
                   builder: (context, state) {
-                   return state.images != null
+                    return state.images != null
                         ? SizedBox(
                             height: 174,
                             child: Column(
@@ -88,8 +90,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     showCustomBottomSheet(
                                       context: context,
                                       body: CustomBottomSheet(
-                                        body: EditPhotoBottomSheetMenu(
-                                          bloc: context.read<GuidanceCubit>(),
+                                        body: EditFileBottomSheetMenu(
+                                          bloc: context.read<EditProfileCubit>(),
                                         ),
                                       ),
                                     );
@@ -123,7 +125,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 IconicOvalButton(
                                   text: "Change Image",
                                   onTap: () {
-                                    context.read<GuidanceCubit>().openGallery();
+                                    context.read<EditProfileCubit>().openGallery();
                                   },
                                   icon: Assets.icons.edit,
                                   boxDecoration: AppDecoration.outline,

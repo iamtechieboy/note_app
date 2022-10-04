@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_app/data/models/interesting_idea_model.dart';
-import 'package:note_app/presentation/pages/add_sub_notes/sub_notes_list.dart';
-import 'package:note_app/presentation/pages/edit_profile/cubit/edit_profile_cubit.dart';
-import 'package:note_app/presentation/pages/edit_profile/edit_profile_page.dart';
 import 'package:note_app/presentation/routes/routes.dart';
 
 import 'config/theme/themes.dart';
@@ -36,10 +32,6 @@ class MyApp extends StatelessWidget {
         theme: Themes.lightTheme,
         onGenerateRoute: (setting) => Routes.generateRoutes(setting),
       ),
-    );
-    // return const MaterialApp(
-    //   debugShowCheckedModeBanner: false,
-    //   home: EditProfilePage(),
-    // );
+    );  
   }
 }
