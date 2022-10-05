@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_app/data/models/interesting_idea_model.dart';
+import 'package:note_app/presentation/components/enter_password.dart';
+import 'package:note_app/presentation/pages/edit_profile/edit_profile_page.dart';
 import 'package:note_app/presentation/routes/routes.dart';
 
 import 'config/theme/themes.dart';
@@ -32,6 +34,10 @@ class MyApp extends StatelessWidget {
         theme: Themes.lightTheme,
         onGenerateRoute: (setting) => Routes.generateRoutes(setting),
       ),
-    );  
+    );
+    // return const MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   home: EditProfilePage(),
+    // );
   }
 }

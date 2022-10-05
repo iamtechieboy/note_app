@@ -84,6 +84,11 @@ class _Icons extends _AssetsHolder {
   String get photo => '$basePath/photo.svg';
 
   String get camera => '$basePath/camera.svg';
+
+  String get eye => '$basePath/eye.svg';
+
+  String get eyeOff => '$basePath/eye_off.svg';
+
 }
 
 class _Images extends _AssetsHolder {
