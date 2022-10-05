@@ -8,15 +8,17 @@ class ExtrasMenuButton extends StatelessWidget {
   const ExtrasMenuButton({
     Key? key,
     required this.menuTitle,
-    required this.icon,
+    this.icon,
     this.label,
     this.iconColor,
     this.menuTitleColor,
     required this.onTap,
-    this.isArrowVisible = false, this.padding, this.height,
+    this.isArrowVisible = false,
+    this.padding,
+    this.height,
   }) : super(key: key);
 
-  final String icon;
+  final String? icon;
   final Color? iconColor;
   final String menuTitle;
   final Color? menuTitleColor;
@@ -29,14 +31,14 @@ class ExtrasMenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height??56,
+      height: height ?? 56,
       width: double.infinity,
       child: Material(
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
           child: Padding(
-            padding: padding??const EdgeInsets.symmetric(horizontal: 24),
+            padding: padding ?? const EdgeInsets.symmetric(horizontal: 24),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,13 +46,16 @@ class ExtrasMenuButton extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: SvgPicture.asset(
-                        icon,
-                        height: 24,
-                        width: 24,
-                        color: iconColor ?? AppColors.neutralColor.black,
+                    Visibility(
+                      visible: icon != null,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: SvgPicture.asset(
+                          icon ?? Assets.icons.photo,
+                          height: 24,
+                          width: 24,
+                          color: iconColor ?? AppColors.neutralColor.black,
+                        ),
                       ),
                     ),
                     Text(

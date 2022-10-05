@@ -25,7 +25,7 @@ class _InterestingIdeaPageState extends State<InterestingIdeaPage>
   late final TextEditingController titleEditingController;
   late final TextEditingController noteEditingController;
   DateFormat dateFormat = DateFormat("dd/MM/yyyy HH:mm");
-  late int colorIndex;
+  late int colorIndex = 0;
   late InterestingIdeaModel itemModel;
 
   @override
@@ -41,24 +41,29 @@ class _InterestingIdeaPageState extends State<InterestingIdeaPage>
       backgroundColor: AppColors.neutralColor.white,
       appBar: CustomAppBar(
         onBackTap: () async {
-          if (titleEditingController.text.isNotEmpty &&
-              noteEditingController.text.isNotEmpty) {
-            itemModel = InterestingIdeaModel(
-              noteType: _noteType.name,
-              title: titleEditingController.text.toString(),
-              noteBody: noteEditingController.text.toString(),
-              isFinished: false,
-              itemColor: colorIndex,
-              labels: ["important", "should be done this week"],
-              lastEditedTime: dateFormat.format(DateTime.now()),
-              remindedTime: dateFormat.format(DateTime.now()),
-            );
-            context
-                .read<AddInterestingIdeaCubit>()
-                .addNewItemToTheList(itemModel);
-            Navigator.pop(context);
-          } else {
-
+          try {
+            if (titleEditingController.text.isNotEmpty &&
+                noteEditingController.text.isNotEmpty) {
+              itemModel = InterestingIdeaModel(
+                noteType: _noteType.name,
+                title: titleEditingController.text.toString(),
+                noteBody: noteEditingController.text.toString(),
+                isFinished: false,
+                itemColor: colorIndex,
+                labels: ["important", "should be done this week"],
+                lastEditedTime: dateFormat.format(DateTime.now()),
+                remindedTime: dateFormat.format(DateTime.now()),
+              );
+              context
+                  .read<AddInterestingIdeaCubit>()
+                  .addNewItemToTheList(itemModel);
+              context.read<AddInterestingIdeaCubit>().changeBackgroundColor(0);
+            } else if (titleEditingController.text.isEmpty &&
+                noteEditingController.text.isEmpty) {
+              Navigator.pop(context);
+            }
+          } catch (e) {
+            debugPrint(e.toString());
           }
         },
       ),

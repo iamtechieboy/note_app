@@ -31,6 +31,8 @@ dependencies:
   image_picker: ^0.8.5+3
   # ring draw a rectangle using lines
   dotted_border: ^2.0.0+2
+  # cupertino
+  flutter_cupertino_date_picker_fork: ^1.0.6
 
   cupertino_icons: ^1.0.2
 

@@ -37,22 +37,22 @@ class _CustomColorPickerState extends State<CustomColorPicker> {
               final itemColor = colorPickerList[index];
               return GestureDetector(
                 // Passing color index through function into main
-                onTap: () => widget.onSelectedColor(index),
-                // {
-                //   context
-                //       .read<AddInterestingIdeaCubit>()
-                //       .changeBackgroundColor(index);
-                // },
+                onTap: () {
+                  widget.onSelectedColor(index);
+                  context
+                      .read<AddInterestingIdeaCubit>()
+                      .changeBackgroundColor(index);
+                },
                 child: Container(
                   height: 32,
                   width: 32,
                   padding: state.selectedColorIndex == index
-                      ? const EdgeInsets.all(2)
+                      ? const EdgeInsets.all(3)
                       : null,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      width: state.selectedColorIndex == index ? 2 : 0.5,
+                      width: state.selectedColorIndex == index ? 2 : 1,
                       color: state.selectedColorIndex == index
                           ? AppColors.neutralColor.baseGrey
                           : AppColors.neutralColor.lightGrey,

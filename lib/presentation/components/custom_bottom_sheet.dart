@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:note_app/presentation/components/back_to_button.dart';
 
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/assets.dart';
@@ -11,9 +12,13 @@ class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({
     Key? key,
     required this.body,
+    this.onBackTap,
+    this.title,
   }) : super(key: key);
 
   final Widget body;
+  final String? title;
+  final Function()? onBackTap;
 
   @override
   Widget build(BuildContext context) {
@@ -26,39 +31,53 @@ class CustomBottomSheet extends StatelessWidget {
             context.watch<AddInterestingIdeaCubit>().state.selectedColorIndex],
       ),
       padding: const EdgeInsets.symmetric(vertical: 16),
-      // height: height,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Close button for Bottom sheet
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                height: 24,
-                width: 24,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.neutralColor.lightGrey),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(12),
-                    onTap: () {
-                      // Close that bottom sheet
-                      Navigator.pop(context);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(4),
-                      child: SvgPicture.asset(
-                        Assets.icons.close,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Visibility(
+                visible: title != null && title!.isNotEmpty,
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: BackToButton(
+                    title: title ?? "Back",
+                    onPressed: onBackTap ?? () {},
+                  ),
+                ),
+              ),
+              // Close button for Bottom sheet
+              Padding(
+                padding: const EdgeInsets.only(right: 16),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    height: 24,
+                    width: 24,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.neutralColor.lightGrey),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(12),
+                        onTap: () {
+                          // Close that bottom sheet
+                          Navigator.pop(context);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: SvgPicture.asset(
+                            Assets.icons.close,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
           // Body comes by constructor
           Padding(
