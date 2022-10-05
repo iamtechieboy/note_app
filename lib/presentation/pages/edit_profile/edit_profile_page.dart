@@ -5,13 +5,13 @@ import 'package:note_app/config/constants/app_decoration.dart';
 import 'package:note_app/config/constants/app_text_style.dart';
 import 'package:note_app/config/constants/assets.dart';
 import 'package:note_app/core/utils/bottom_sheet.dart';
+import 'package:note_app/presentation/components/circular_icon_place.dart';
 import 'package:note_app/presentation/components/custom_app_bar.dart';
 import 'package:note_app/presentation/components/custom_bottom_sheet.dart';
 import 'package:note_app/presentation/components/iconic_oval_button.dart';
 import 'package:note_app/presentation/pages/edit_profile/cubit/edit_profile_cubit.dart';
-import 'package:note_app/presentation/pages/guidance_idea/bloc/guidance_cubit.dart';
 import 'package:note_app/presentation/widgets/edit_file_change_image_bottom_sheet_menu.dart';
-import 'package:note_app/presentation/widgets/edit_photo_bottom_sheet_menu.dart';
+import 'package:r_dotted_line_border/r_dotted_line_border.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -109,14 +109,31 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             height: 174,
                             child: Column(
                               children: [
+                                // Container(
+                                //   height: 120,
+                                //   decoration: const BoxDecoration(
+                                //     shape: BoxShape.circle,
+                                //   ),
+                                //   child: Image.asset(
+                                //     Assets.images.userSettings,
+                                //     fit: BoxFit.cover,
+                                //   ),
+                                // ),
                                 Container(
-                                  height: 120,
-                                  decoration: const BoxDecoration(
+                                  padding: const EdgeInsets.all(2),
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
+                                    border: RDottedLineBorder.all(
+                                      width: 2,
+                                      color: AppColors.neutralColor.baseGrey,
+                                    ),
                                   ),
-                                  child: Image.asset(
-                                    Assets.images.userSettings,
-                                    fit: BoxFit.cover,
+                                  child: CircularIconPlace(
+                                    height: 110,
+                                    icon: Assets.icons.photo,
+                                    iconColor: AppColors.primaryColor.base,
+                                    background: AppColors.primaryColor.light,
+                                    iconHeight: 60,
                                   ),
                                 ),
                                 const SizedBox(

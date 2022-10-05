@@ -36,6 +36,7 @@ dependencies:
 
   # Package for Pop Up Snackbar
   top_snackbar_flutter: ^2.1.1
+  r_dotted_line_border: ^0.1.1
 
   
   
