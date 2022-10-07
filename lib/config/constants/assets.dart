@@ -87,7 +87,9 @@ class _Icons extends _AssetsHolder {
 
   String get eye => '$basePath/eye.svg';
 
-  String get eyeOff => '$basePath/eye_off.svg';
+  String get eyeOff => '$basePath/eye_off.svg'; 
+  String get googleIcon => '$basePath/google_icons.svg'; 
+
 
 }
 
@@ -103,4 +105,13 @@ class _Images extends _AssetsHolder {
   String get illustrationFinish => "$basePath/still_finish.svg";
 
   String get userSettings => "$basePath/user.png";
+
+  String get logoImage => "$basePath/logo_image.png";
+
+  String get illustrationImageOne => "$basePath/Illustration.png";
+
+  String get illustrationImageTwo => "$basePath/Illustration_2.png";
+
+  String get illustrationImageThree => "$basePath/Illustration_3.png";
+
 }

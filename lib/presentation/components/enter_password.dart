@@ -5,7 +5,9 @@ import 'package:note_app/config/constants/app_text_style.dart';
 import 'package:note_app/config/constants/assets.dart';
 
 class PasswordTextField extends StatefulWidget {
-  const PasswordTextField({super.key});
+  PasswordTextField({super.key, required this.widthPasswordContainer});
+
+  double widthPasswordContainer;
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
@@ -15,22 +17,19 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   bool _showEye = false;
   bool _passwordIsEncryped = true;
 
-  String _password = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "Password",
           style: AppTextStyle.mediumBase,
         ),
-        Container(
-          width: 250,
+        Padding(
           padding: const EdgeInsets.symmetric(vertical: 12),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-          ),
           child: TextField(
             decoration: InputDecoration(
               labelText: "********",
@@ -84,7 +83,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
             ),
             obscureText: _showEye ? _passwordIsEncryped : true,
             onChanged: (value) {
-              _password = value;
+              password = value;
               if (value.isEmpty) {
                 setState(() {
                   _showEye = false;
@@ -97,7 +96,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
                 }
               }
             },
-            style: AppTextStyle.regular2Xs,
+            style: AppTextStyle.regularBase,
           ),
         ),
       ],

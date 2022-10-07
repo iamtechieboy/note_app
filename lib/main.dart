@@ -3,6 +3,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_app/data/models/interesting_idea_model.dart';
 import 'package:note_app/presentation/components/enter_password.dart';
 import 'package:note_app/presentation/pages/edit_profile/edit_profile_page.dart';
+import 'package:note_app/presentation/pages/login/login_page.dart';
+import 'package:note_app/presentation/pages/onboarding/onboarding_page_1.dart';
 import 'package:note_app/presentation/routes/routes.dart';
 
 import 'config/theme/themes.dart';
@@ -26,17 +28,17 @@ class MyApp extends StatelessWidget {
     //     systemNavigationBarIconBrightness: Brightness.dark,
     //     statusBarBrightness: Brightness.dark,
     //     statusBarIconBrightness: Brightness.dark));
-    return BlocScope(
-      child: MaterialApp(
-        title: 'Note App',
-        debugShowCheckedModeBanner: false,
-        theme: Themes.lightTheme,
-        onGenerateRoute: (setting) => Routes.generateRoutes(setting),
-      ),
-    );
-    // return const MaterialApp(
-    //   debugShowCheckedModeBanner: false,
-    //   home: EditProfilePage(),
+    // return BlocScope(
+    //   child: MaterialApp(
+    //     title: 'Note App',
+    //     debugShowCheckedModeBanner: false,
+    //     theme: Themes.lightTheme,
+    //     onGenerateRoute: (setting) => Routes.generateRoutes(setting),
+    //   ),
     // );
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: OnboardingPage(),
+    );
   }
 }

@@ -5,6 +5,7 @@ import 'package:note_app/presentation/pages/goals_idea/goals_page.dart';
 import 'package:note_app/presentation/pages/guidance_idea/guidance_page.dart';
 import 'package:note_app/presentation/pages/home/home_page.dart';
 import 'package:note_app/presentation/pages/interesting_idea/interesting_idea_page.dart';
+import 'package:note_app/presentation/pages/login/login_page.dart';
 import 'package:note_app/presentation/pages/new_idea/create_new_idea_page.dart';
 import 'package:note_app/presentation/pages/routine_task_idea/routine_task_page.dart';
 import 'package:note_app/presentation/pages/settings/setting_page.dart';
@@ -19,11 +20,11 @@ class Routes {
   static const guidancePage = '/guidancePage';
   static const settingsPage = '/SettingPage';
   static const subNotesPage = '/subNotesPage';
+  static const loginPage = '/loginPage';
 
   static Route<dynamic> generateRoutes(RouteSettings settings) {
     try {
-      final Map<String, dynamic>? args =
-          settings.arguments as Map<String, dynamic>?;
+      final Map<String, dynamic>? args = settings.arguments as Map<String, dynamic>?;
       args ?? <String, dynamic>{};
       switch (settings.name) {
         case mainPage:
@@ -61,8 +62,8 @@ class Routes {
         case subNotesPage:
           return MaterialPageRoute(
             builder: (_) => const SubNotesList(),
-          );
-
+          );        
+        
 
         default:
           return MaterialPageRoute(
