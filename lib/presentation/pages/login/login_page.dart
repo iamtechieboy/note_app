@@ -108,18 +108,18 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      height: 54,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2,
-                          color: AppColors.neutralColor.baseGrey,
-                        ),
-                        borderRadius: BorderRadius.circular(27),
-                        color: AppColors.neutralColor.white,
+                  Container(
+                    height: 54,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: AppColors.neutralColor.baseGrey,
                       ),
+                      borderRadius: BorderRadius.circular(27),                      
+                    ),
+                    child: InkWell(
+                      onTap: () {},
+                      borderRadius: BorderRadius.circular(27),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -174,21 +174,26 @@ class _LoginPageState extends State<LoginPage> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12),
-          child: TextField(
-            // bu yerga controller joylanadi
-            minLines: 1,
-            maxLines: 1,
-            style: AppTextStyle.regularBase,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
+          child: SizedBox(
+            height: 54,
+            child: Expanded(
+              child: TextField(
+                // bu yerga controller joylanadi
+                minLines: 1,
+                maxLines: 1,
+                style: AppTextStyle.regularBase,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  hintText: hintText,
+                  hintStyle: AppTextStyle.regularBase.copyWith(color: AppColors.neutralColor.baseGrey),
+                  fillColor: AppColors.neutralColor.baseGrey,
+                ),
+                keyboardType: keyboardInputType,
               ),
-              hintText: hintText,
-              hintStyle: AppTextStyle.regularBase.copyWith(color: AppColors.neutralColor.baseGrey),
-              fillColor: AppColors.neutralColor.baseGrey,
             ),
-            keyboardType: keyboardInputType,
           ),
         ),
       ],
