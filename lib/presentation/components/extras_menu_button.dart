@@ -16,6 +16,7 @@ class ExtrasMenuButton extends StatelessWidget {
     this.isArrowVisible = false,
     this.padding,
     this.height,
+    this.enable = true,
   }) : super(key: key);
 
   final String? icon;
@@ -27,6 +28,7 @@ class ExtrasMenuButton extends StatelessWidget {
   final bool? isArrowVisible;
   final EdgeInsets? padding;
   final double? height;
+  final bool enable;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class ExtrasMenuButton extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: onTap,
+          onTap: enable ? onTap : null,
           child: Padding(
             padding: padding ?? const EdgeInsets.symmetric(horizontal: 24),
             child: Row(
@@ -62,7 +64,7 @@ class ExtrasMenuButton extends StatelessWidget {
                       menuTitle,
                       style: AppTextStyle.mediumBase.copyWith(
                           color:
-                              menuTitleColor ?? AppColors.neutralColor.black),
+                              enable ? menuTitleColor ?? AppColors.neutralColor.black : AppColors.neutralColor.baseGrey),
                     )
                   ],
                 ),
@@ -81,7 +83,7 @@ class ExtrasMenuButton extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               label ?? "",
                               style: AppTextStyle.regular2Xs.copyWith(
-                                  color: AppColors.neutralColor.darkGrey),
+                                  color: enable ? AppColors.neutralColor.darkGrey : AppColors.neutralColor.baseGrey),
                             ),
                           ),
                           isArrowVisible!
@@ -90,6 +92,7 @@ class ExtrasMenuButton extends StatelessWidget {
                                       horizontal: label != null ? 8 : 0),
                                   child: SvgPicture.asset(
                                     Assets.icons.arrowIn,
+                                    color: enable ? AppColors.neutralColor.darkGrey : AppColors.neutralColor.baseGrey ,
                                   ),
                                 )
                               : const SizedBox.shrink()

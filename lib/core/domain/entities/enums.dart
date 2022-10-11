@@ -12,3 +12,11 @@ enum NoteType {
   guidance,
   routineTask,
 }
+
+enum RepeatDay {
+  once,
+  daily,
+  monToFri,
+  satSun,
+  custom
+}

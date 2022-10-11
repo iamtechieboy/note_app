@@ -18,17 +18,18 @@ class BackToButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
+      padding: const EdgeInsets.only(left: 16),
       onPressed: onPressed,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 2, right: 4),
-            child: SvgPicture.asset(
-              Assets.icons.backWithText,
-              color: AppColors.primaryColor.base,
-            ),
+          SvgPicture.asset(
+            Assets.icons.backWithText,
+            color: AppColors.primaryColor.base,
+          ),
+          const SizedBox(
+            width: 5,
           ),
           Text(
             title,

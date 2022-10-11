@@ -11,11 +11,13 @@ class CheckWithText extends StatelessWidget {
     required this.isSelected,
     required this.label,
     required this.onSelected,
+    this.additionalText,
   }) : super(key: key);
 
   final bool isSelected;
   final String label;
   final Function() onSelected;
+  final String? additionalText;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,11 @@ class CheckWithText extends StatelessWidget {
                   ),
                 ],
               ),
-
+              Text(
+                additionalText ?? "",
+                style: AppTextStyle.regular2Xs
+                    .copyWith(color: AppColors.neutralColor.baseGrey),
+              )
             ],
           ),
         ),

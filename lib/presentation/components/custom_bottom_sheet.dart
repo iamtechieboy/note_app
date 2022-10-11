@@ -41,9 +41,12 @@ class CustomBottomSheet extends StatelessWidget {
                 visible: title != null && title!.isNotEmpty,
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: BackToButton(
-                    title: title ?? "Back",
-                    onPressed: onBackTap ?? () {},
+                  child: SizedBox(
+                    height: 24,
+                    child: BackToButton(
+                      title: title ?? "Back",
+                      onPressed: onBackTap ?? () {},
+                    ),
                   ),
                 ),
               ),
@@ -80,10 +83,7 @@ class CustomBottomSheet extends StatelessWidget {
             ],
           ),
           // Body comes by constructor
-          Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: body,
-          ),
+          body,
         ],
       ),
     );

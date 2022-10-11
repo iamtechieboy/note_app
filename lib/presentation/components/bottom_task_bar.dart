@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_app/config/constants/assets.dart';
 import 'package:note_app/core/utils/bottom_sheet.dart';
+import 'package:note_app/presentation/widgets/bloc/bottom_sheet_cubit.dart';
 
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_text_style.dart';
@@ -86,7 +88,7 @@ class _BottomTaskBarState extends State<BottomTaskBar> {
                       onMarkAsFinished: widget.onMarkAsFinished,
                       onDelete: widget.onDelete,
                     ),
-                  );
+                  ).then((value) => context.read<BottomSheetCubit>().navigateTo(0));
                 },
                 child: SvgPicture.asset(
                   Assets.icons.more,

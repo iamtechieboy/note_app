@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app/presentation/widgets/bloc/bottom_sheet_cubit.dart';
 
 // to avoid writing bunch of codes in different classes it was created
-showCustomBottomSheet({
+Future<T> showCustomBottomSheet<T>({
   required BuildContext context,
   required Widget body,
   ShapeBorder? shape,
-}) {
-  showModalBottomSheet(
+  bool isDismissible = true,
+}) async {
+  return await showModalBottomSheet(
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
+    isDismissible: isDismissible,
     // shape: shape ??
     //     const RoundedRectangleBorder(
     //       borderRadius: BorderRadius.vertical(

@@ -54,6 +54,7 @@ class _CheckBoxWithTextFieldState extends State<CheckBoxWithTextField> {
               minLines: 1,
               keyboardType: TextInputType.multiline,
               autocorrect: false,
+              enabled: false,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: widget.hintText,
