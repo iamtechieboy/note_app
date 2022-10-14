@@ -7,9 +7,12 @@ import '../../config/constants/app_colors.dart';
 import '../../config/constants/assets.dart';
 
 class EditFileBottomSheetMenu extends StatelessWidget {
-  const EditFileBottomSheetMenu({required this.bloc, Key? key})
+  const EditFileBottomSheetMenu(
+      {required this.bloc, this.isDeleteVisible = true, Key? key})
       : super(key: key);
+
   final EditProfileCubit bloc;
+  final bool isDeleteVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +33,28 @@ class EditFileBottomSheetMenu extends StatelessWidget {
             bloc.openGallery().then((value) => Navigator.pop(context));
           },
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Divider(
-            color: AppColors.neutralColor.lightGrey,
-            thickness: 1,
-            height: 1,
+        Visibility(
+          visible: isDeleteVisible,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            child: Divider(
+              color: AppColors.neutralColor.lightGrey,
+              thickness: 1,
+              height: 1,
+            ),
           ),
         ),
-        ExtrasMenuButton(
-          icon: Assets.icons.delete,
-          iconColor: AppColors.errorColor.base,
-          menuTitle: "Delete",
-          menuTitleColor: AppColors.errorColor.base,
-          onTap: () {
-            bloc.deleteingImage().then((value) => Navigator.pop(context));
-          },
+        Visibility(
+          visible: isDeleteVisible,
+          child: ExtrasMenuButton(
+            icon: Assets.icons.delete,
+            iconColor: AppColors.errorColor.base,
+            menuTitle: "Delete",
+            menuTitleColor: AppColors.errorColor.base,
+            onTap: () {
+              bloc.deleteingImage().then((value) => Navigator.pop(context));
+            },
+          ),
         ),
       ],
     );

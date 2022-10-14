@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/presentation/pages/edit_profile/edit_profile_page.dart';
 import 'package:note_app/presentation/pages/routine_task_idea/sub_notes_add_page.dart';
 import 'package:note_app/presentation/pages/buying_something/buying_something.dart';
 import 'package:note_app/presentation/pages/goals_idea/goals_page.dart';
@@ -19,6 +20,7 @@ class Routes {
   static const guidancePage = '/guidancePage';
   static const settingsPage = '/settingPage';
   static const subNotesPage = '/subNotesPage';
+  static const editProfilePage = '/editProfilePage';
 
   static Route<dynamic> generateRoutes(RouteSettings settings) {
     try {
@@ -62,6 +64,10 @@ class Routes {
           return MaterialPageRoute(
             builder: (_) => const SubNotesAddPage(),
           );
+        case editProfilePage:
+          return MaterialPageRoute(
+            builder: (_) => const EditProfilePage(),
+          );
         default:
           return MaterialPageRoute(
             settings: settings,
@@ -75,5 +81,4 @@ class Routes {
       );
     }
   }
-
 }

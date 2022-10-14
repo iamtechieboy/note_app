@@ -38,78 +38,73 @@ class IconicOvalButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: isWidthMax! ? MainAxisSize.max : MainAxisSize.min,
-      children: [
-        Container(
-          height: height ?? double.infinity,
-          margin: margin,
-          width: isWidthMax! ? double.infinity : null,
-          decoration: boxDecoration ??
-              BoxDecoration(
-                  borderRadius: BorderRadius.circular(cornerRadius ?? 20),
-                  color: AppColors.primaryColor.base),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(19),
-              onTap: onTap,
-              child: Padding(
-                padding: padding ??
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                child: Directionality(
-                  textDirection: (iconPosition == IconPosition.left ||
-                          iconPosition == IconPosition.centerLeft)
-                      ? TextDirection.ltr
-                      : TextDirection.rtl,
-                  child: Row(
-                    mainAxisSize: ((iconPosition == IconPosition.centerLeft ||
-                                iconPosition == IconPosition.centerRight) &&
-                            isWidthMax!)
-                        ? MainAxisSize.max
-                        : MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        child: icon != null
-                            ? Padding(
-                                padding: const EdgeInsets.only(right: 6),
-                                child: SvgPicture.asset(
-                                  icon!,
-                                  color:
-                                      iconColor ?? AppColors.neutralColor.white,
-                                ),
-                              )
-                            : const SizedBox.shrink(),
-                      ),
-                      Expanded(
-                        flex: (isWidthMax! &&
-                                !(iconPosition == IconPosition.centerLeft ||
-                                    iconPosition == IconPosition.centerRight))
-                            ? 1
-                            : 0,
-                        child: Center(
-                          child: Text(
-                            text,
-                            style: textStyle ??
-                                AppTextStyle.mediumBase.copyWith(
-                                  color:
-                                      textColor ?? AppColors.neutralColor.white,
-                                ),
-                          ),
-                        ),
-                      ),
-                      Visibility(
-                          visible: icon != null,
-                          child: SizedBox(width: isWidthMax! ? 24 : 5))
-                    ],
+    return Container(
+      height: height ?? double.infinity,
+      margin: margin,
+      width: isWidthMax! ? double.infinity : null,
+      decoration: boxDecoration ??
+          BoxDecoration(
+              borderRadius: BorderRadius.circular(cornerRadius ?? 20),
+              color: AppColors.primaryColor.base),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(19),
+          onTap: onTap,
+          child: Padding(
+            padding: padding ??
+                const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            child: Directionality(
+              textDirection: (iconPosition == IconPosition.left ||
+                      iconPosition == IconPosition.centerLeft)
+                  ? TextDirection.ltr
+                  : TextDirection.rtl,
+              child: Row(
+                mainAxisSize: ((iconPosition == IconPosition.centerLeft ||
+                            iconPosition == IconPosition.centerRight) &&
+                        isWidthMax!)
+                    ? MainAxisSize.max
+                    : MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    child: icon != null
+                        ? Padding(
+                            padding: const EdgeInsets.only(right: 6),
+                            child: SvgPicture.asset(
+                              icon!,
+                              color:
+                                  iconColor ?? AppColors.neutralColor.white,
+                            ),
+                          )
+                        : const SizedBox.shrink(),
                   ),
-                ),
+                  Expanded(
+                    flex: (isWidthMax! &&
+                            !(iconPosition == IconPosition.centerLeft ||
+                                iconPosition == IconPosition.centerRight))
+                        ? 1
+                        : 0,
+                    child: Center(
+                      child: Text(
+                        text,
+                        style: textStyle ??
+                            AppTextStyle.mediumBase.copyWith(
+                              color:
+                                  textColor ?? AppColors.neutralColor.white,
+                            ),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                      visible: icon != null,
+                      child: SizedBox(width: isWidthMax! ? 24 : 5))
+                ],
               ),
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }

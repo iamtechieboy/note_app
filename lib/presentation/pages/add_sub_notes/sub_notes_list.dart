@@ -204,7 +204,14 @@ class _SubNotesListState extends State<SubNotesList> {
               ],
             ),
           ),
-          BottomTaskBar(context: context),
+          BottomTaskBar(
+            context: context,
+            onSelectedColorIndex: (int selectedColorIndex) {},
+            onSelectedLabels: (List<String> labels) {},
+            onRemindedTimeSelected: (DateTime remindedTime) {},
+            onMarkAsFinished: () {},
+            onDelete: () {},
+          ),
         ],
       ),
     );
