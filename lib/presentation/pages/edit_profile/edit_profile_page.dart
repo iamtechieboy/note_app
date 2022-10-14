@@ -72,7 +72,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     shape: BoxShape.circle,
                                   ),
                                   child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(120 / 2),
+                                    borderRadius:
+                                        BorderRadius.circular(120 / 2),
                                     child: Image.file(
                                       state.images!,
                                       fit: BoxFit.cover,
@@ -91,7 +92,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       context: context,
                                       body: CustomBottomSheet(
                                         body: EditFileBottomSheetMenu(
-                                          bloc: context.read<EditProfileCubit>(),
+                                          bloc:
+                                              context.read<EditProfileCubit>(),
                                         ),
                                       ),
                                     );
@@ -133,7 +135,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     icon: Assets.icons.photo,
                                     iconColor: AppColors.primaryColor.base,
                                     background: AppColors.primaryColor.light,
-                                    iconHeight: 60,
+                                    iconHeight: 32,
                                   ),
                                 ),
                                 const SizedBox(
@@ -142,7 +144,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 IconicOvalButton(
                                   text: "Change Image",
                                   onTap: () {
-                                    context.read<EditProfileCubit>().openGallery();
+                                    context
+                                        .read<EditProfileCubit>()
+                                        .openGallery();
                                   },
                                   icon: Assets.icons.edit,
                                   boxDecoration: AppDecoration.outline,
@@ -160,7 +164,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   child: Divider(
                     color: AppColors.neutralColor.lightGrey,
                     height: 1,
-                    thickness: 3,
+                    thickness: 1,
                     indent: 0,
                     endIndent: 0,
                   ),
@@ -234,7 +238,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 borderRadius: BorderRadius.circular(8),
               ),
               hintText: hintText,
-              hintStyle: AppTextStyle.regularBase.copyWith(color: AppColors.neutralColor.baseGrey),
+              hintStyle: AppTextStyle.regularBase
+                  .copyWith(color: AppColors.neutralColor.baseGrey),
               fillColor: AppColors.neutralColor.baseGrey,
             ),
             keyboardType: keyboardInputType,

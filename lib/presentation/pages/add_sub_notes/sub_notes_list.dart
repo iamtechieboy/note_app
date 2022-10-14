@@ -8,6 +8,8 @@ import 'package:note_app/presentation/components/custom_app_bar.dart';
 import 'package:note_app/presentation/components/sub_check_list_components.dart';
 import 'package:note_app/presentation/components/sub_text_field_component.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/safe_area_values.dart';
+import 'package:top_snackbar_flutter/tap_bounce_container.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SubNotesList extends StatefulWidget {
@@ -290,7 +292,9 @@ class _SubNotesListState extends State<SubNotesList> {
           left: 68,
           right: 16,
         ),
-        message: messages,
+        message: RichText(
+          text: TextSpan(text: messages),
+        ),
         textStyle: AppTextStyle.mediumSm.copyWith(
           color: AppColors.successColor.dark,
         ),
