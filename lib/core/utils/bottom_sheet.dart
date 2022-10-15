@@ -20,8 +20,12 @@ Future<T> showCustomBottomSheet<T>({
     //         top: Radius.circular(25.0),
     //       ),
     //     ),
-    builder: (context) => Wrap(
-      children: <Widget>[body],
+    builder: (context) => Padding(
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: Wrap(
+        children: <Widget>[body],
+      ),
     ),
   );
 }

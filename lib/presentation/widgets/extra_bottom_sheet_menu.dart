@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/presentation/components/custom_bottom_sheet.dart';
 import 'package:note_app/presentation/widgets/bloc/bottom_sheet_cubit.dart';
+import 'package:note_app/presentation/widgets/extras_give_label_session.dart';
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_text_style.dart';
 import '../../config/constants/assets.dart';
@@ -36,6 +37,8 @@ class ExtrasBottomSheetMenuBody extends StatefulWidget {
 class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
   List<Widget> pages = [];
 
+  TextEditingController controllerLabel = TextEditingController();
+
   @override
   void initState() {
     pages = [
@@ -44,7 +47,8 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
       extrasSetRemindDaySession(),
       extrasSetRemindTimeSession(),
       extrasSetRepeatDaysSession(),
-      extrasSetCustomRepeatDays()
+      extrasSetCustomRepeatDays(),
+      extrasGiveLabelSession(controllerLabel)
     ];
     super.initState();
   }
@@ -143,7 +147,9 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
                 menuTitle: "Give Label",
                 isArrowVisible: true,
                 label: "Not set",
-                onTap: () {},
+                onTap: () {
+                  context.read<BottomSheetCubit>().navigateTo(6);
+                },
               ),
               ExtrasMenuButton(
                 icon: Assets.icons.check,

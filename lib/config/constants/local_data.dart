@@ -20,6 +20,7 @@ List<Map<String, double>> heightsBottomSheet = [
   {"Set Reminder": 177},
   {"Set Reminder": 273},
   {"Repeat": 369},
+  {"Repeat": 150},
 ];
 
 /// for modal sheet with space
