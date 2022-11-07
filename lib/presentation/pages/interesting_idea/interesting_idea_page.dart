@@ -11,6 +11,7 @@ import 'package:note_app/presentation/pages/interesting_idea/bloc/add_interestin
 
 import '../../../config/constants/app_colors.dart';
 import '../../components/title_text_field.dart';
+import '../../widgets/reminder_info_widget.dart';
 
 class InterestingIdeaPage extends StatefulWidget {
   const InterestingIdeaPage({Key? key}) : super(key: key);
@@ -81,6 +82,9 @@ class _InterestingIdeaPageState extends State<InterestingIdeaPage>
                     textEditingController: titleEditingController,
                   ),
                   NoteTextField(textEditingController: noteEditingController),
+                  Visibility(
+                    child: ReminderInfo(),
+                  ),
                 ],
               ),
             ),

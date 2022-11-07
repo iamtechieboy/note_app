@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app/core/utils/show_given_labels_shorter.dart';
 import 'package:note_app/presentation/components/custom_bottom_sheet.dart';
 import 'package:note_app/presentation/widgets/bloc/bottom_sheet_cubit.dart';
 import 'package:note_app/presentation/widgets/extras_give_label_session.dart';
@@ -51,6 +52,7 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
       extrasGiveLabelSession(controllerLabel)
     ];
     super.initState();
+    controllerLabel.addListener(() {});
   }
 
   @override
@@ -68,7 +70,9 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
           body: AnimatedContainer(
             duration: const Duration(milliseconds: 400),
             curve: curve,
-            height: heightsBottomSheet[state.currentView!].values.first,
+            height: state.currentView! == 6
+                ? state.changeHeight
+                : heightsBottomSheet[state.currentView!].values.first,
             child: pages[state.currentView!],
           ),
           onBackTap: () {
@@ -146,7 +150,9 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
                 icon: Assets.icons.tag,
                 menuTitle: "Give Label",
                 isArrowVisible: true,
-                label: "Not set",
+                label: state.givenLabel.isNotEmpty
+                    ? showGivenLabelsShorter(state.givenLabel)
+                    : "Not set",
                 onTap: () {
                   context.read<BottomSheetCubit>().navigateTo(6);
                 },

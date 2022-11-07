@@ -3,7 +3,9 @@ part of 'bottom_sheet_cubit.dart';
 class BottomSheetInitialState {
   BottomSheetInitialState({
     this.selectedRepeatDays = const [],
+    this.givenLabel = const [],
     this.lastHeight = 0,
+    this.changeHeight = 150,
     this.repeatDay,
     this.remindDay,
     this.remindTime,
@@ -14,7 +16,9 @@ class BottomSheetInitialState {
   });
 
   List<String> selectedRepeatDays = [];
+  List<String> givenLabel = [];
   double lastHeight;
+  double changeHeight;
   String? repeatDay;
   DateTime? remindDay;
   DateTime? remindTime;
@@ -25,7 +29,9 @@ class BottomSheetInitialState {
 
   BottomSheetInitialState copyWith({
     List<String>? selectedRepeatDays,
+    List<String>? givenLabel,
     double? lastHeight,
+    double? changeHeight,
     String? repeatDay,
     DateTime? remindDay,
     DateTime? remindTime,
@@ -36,7 +42,9 @@ class BottomSheetInitialState {
   }) {
     return BottomSheetInitialState(
       selectedRepeatDays: selectedRepeatDays ?? this.selectedRepeatDays,
+      givenLabel: givenLabel ?? this.givenLabel,
       lastHeight: lastHeight ?? this.lastHeight,
+      changeHeight: changeHeight ?? this.changeHeight,
       repeatDay: repeatDay ?? this.repeatDay,
       remindDay: remindDay ?? this.remindDay,
       remindTime: remindTime ?? this.remindTime,

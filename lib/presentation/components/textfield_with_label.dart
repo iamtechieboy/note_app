@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app/presentation/widgets/bloc/bottom_sheet_cubit.dart';
 
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_text_style.dart';
@@ -28,11 +30,19 @@ class TextFieldWithLabel extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12),
-          child: TextField(
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.always,
+            validator: (value) {
+              if (value!.contains('\n')) {
+                context.read<BottomSheetCubit>().addLabel("#${controller.text.toString()}");
+                controller.text = "";
+                debugPrint("you typed enter");
+              }
+            },
             controller: controller,
             // bu yerga controller joylanadi
             minLines: 1,
-            maxLines: 1,
+            maxLines: null,
             style: AppTextStyle.regularBase,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(horizontal: 16),

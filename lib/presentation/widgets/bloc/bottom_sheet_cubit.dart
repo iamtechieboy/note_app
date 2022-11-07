@@ -11,13 +11,38 @@ class BottomSheetCubit extends Cubit<BottomSheetInitialState> {
     emit(state.copyWith(lastHeight: height));
   }
 
+  Future addLabel(String labelName) async {
+    var labels = [...state.givenLabel];
+    labels.add(labelName.replaceAll("\n", ""));
+    emit(state.copyWith(givenLabel: labels));
+  }
+
+  Future removeLabel(String labelName) async {
+    var labels = [...state.givenLabel];
+    labels.remove(labelName);
+    if (labels.isEmpty) changeSize(0);
+    emit(state.copyWith(givenLabel: labels));
+  }
+
+  Future changeSize(double newHeight) async {
+    double height = newHeight == 0 ? 150 : 166;
+    emit(state.copyWith(changeHeight: height + newHeight));
+  }
+
+  Future clearLabelList() async {
+    changeSize(0);
+    emit(state.copyWith(givenLabel: []));
+  }
+
   Future changeCurrentView(int currentView) async {
     int newView = currentView;
-    currentView == 5
-        ? newView = 4
-        : currentView == 1
-            ? newView--
-            : newView = 1;
+    currentView == 6
+        ? newView = 0
+        : currentView == 5
+            ? newView = 4
+            : currentView == 1
+                ? newView--
+                : newView = 1;
     if (newView == 0) {
       emit(state.copyWith(currentView: newView, isDismissible: true));
     } else {

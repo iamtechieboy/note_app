@@ -35,9 +35,5 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (setting) => Routes.generateRoutes(setting),
       ),
     );
-    // return const MaterialApp(
-    //   debugShowCheckedModeBanner: false,
-    //   home: EditProfilePage(),
-    // );
   }
 }

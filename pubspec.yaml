@@ -33,6 +33,7 @@ dependencies:
   dotted_border: ^2.0.0+2
   # cupertino
   flutter_cupertino_date_picker_fork: ^1.0.6
+  measure_size: ^4.0.0
 
   cupertino_icons: ^1.0.2
 
