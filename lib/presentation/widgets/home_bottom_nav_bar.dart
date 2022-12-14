@@ -18,6 +18,8 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
+    // getting all saved notes from hive data
+    context.read<AddInterestingIdeaCubit>().getAllFromHive();
     return BottomAppBar(
       shape: const CircularNotchedRectangle(),
       notchMargin: 8,
@@ -33,8 +35,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                     defIcon: Assets.icons.homeMenu,
                     filledIcon: Assets.icons.homeMenuFilled,
                     label: "Home",
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                     callBack: () {
                       setState(() {
                         _currentTab = 0;
@@ -45,10 +46,8 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                     defIcon: Assets.icons.finishedMenu,
                     filledIcon: Assets.icons.finishedMenuFilled,
                     label: "Finished",
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                     callBack: () {
-                      context.read<AddInterestingIdeaCubit>().getAllFromHive();
                       setState(() {
                         _currentTab = 1;
                       });
@@ -61,8 +60,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                     isTabSelected: _currentTab == 2,
                     defIcon: Assets.icons.searchMenu,
                     label: "Search",
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                     callBack: () {
                       setState(() {
                         _currentTab = 2;
@@ -72,8 +70,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                     isTabSelected: _currentTab == 3,
                     defIcon: Assets.icons.settingMenu,
                     label: "Setting",
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                     callBack: () {
                       setState(() {
                         _currentTab = 3;

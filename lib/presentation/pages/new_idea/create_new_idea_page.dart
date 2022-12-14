@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/config/constants/app_colors.dart';
 import 'package:note_app/config/constants/app_text_style.dart';
+import 'package:note_app/data/models/interesting_idea_model.dart';
 import 'package:note_app/presentation/components/custom_app_bar.dart';
 import 'package:note_app/presentation/routes/routes.dart';
 import 'package:note_app/presentation/components/new_ideas_button.dart';
@@ -33,7 +34,8 @@ class CreateNewIdeasPage extends StatelessWidget {
                 iconBackground: AppColors.primaryColor.dark,
                 cardBackground: AppColors.primaryColor.base,
                 onTap: () {
-                  Navigator.pushNamed(context, Routes.interestingIdeaPage);
+                  Navigator.pushNamed(context, Routes.interestingIdeaPage,
+                      arguments: {'model': InterestingIdeaModel(), 'index': -1});
                 },
               ),
             ),

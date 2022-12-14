@@ -38,7 +38,10 @@ class Routes {
           );
         case interestingIdeaPage:
           return MaterialPageRoute(
-            builder: (_) => const InterestingIdeaPage(),
+            builder: (_) => InterestingIdeaPage(
+              model: args?['model'],
+              updateIndex: args?['index'],
+            ),
           );
         case buyingSomethingPage:
           return MaterialPageRoute(

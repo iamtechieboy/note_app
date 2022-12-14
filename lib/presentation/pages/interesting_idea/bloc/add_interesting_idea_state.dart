@@ -1,18 +1,33 @@
 part of 'add_interesting_idea_cubit.dart';
 
 class AddInterestingIdeaState {
-  AddInterestingIdeaState(
-      {this.selectedColorIndex = 0, this.interestingIdeaList = const [], });
+  AddInterestingIdeaState({
+    this.interestingIdeaList = const [],
+    this.isReminderDateVis = false,
+    this.isLabelVis = false,
+    this.isDeleted = false,
+    this.isPinned = false,
+  });
 
   List<InterestingIdeaModel> interestingIdeaList;
-  int selectedColorIndex = 0;
+  bool isReminderDateVis = false;
+  bool isLabelVis = false;
+  bool isDeleted = false;
+  bool isPinned ;
 
-  AddInterestingIdeaState copyWith(
-      {int? selectedColorIndex,
-      List<InterestingIdeaModel>? interestingIdeaList}) {
+  AddInterestingIdeaState copyWith({
+    List<InterestingIdeaModel>? interestingIdeaList,
+    bool? isReminderDateVis,
+    bool? isLabelVis,
+    bool? isDeleted,
+    bool? isPinned
+  }) {
     return AddInterestingIdeaState(
-      selectedColorIndex: selectedColorIndex ?? this.selectedColorIndex,
       interestingIdeaList: interestingIdeaList ?? this.interestingIdeaList,
+      isReminderDateVis: isReminderDateVis ?? this.isReminderDateVis,
+      isLabelVis: isLabelVis ?? this.isLabelVis,
+      isDeleted: isDeleted ?? this.isDeleted,
+      isPinned: isPinned ?? this.isPinned
     );
   }
 }

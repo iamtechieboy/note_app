@@ -125,11 +125,11 @@ mixin HiveUtil {
   }
 
   Future<void> deleteBox<T>(String boxKey, {List<int>? encrypKey}) async {
-    Box box;
+    Box<T> box;
     if (Hive.isBoxOpen(boxKey)) {
-      box = Hive.box(boxKey);
+      box = Hive.box<T>(boxKey);
     } else {
-      box = await Hive.openBox(boxKey,
+      box = await Hive.openBox<T>(boxKey,
           encryptionCipher:
           encrypKey != null ? HiveAesCipher(encrypKey) : null);
     }
@@ -137,11 +137,11 @@ mixin HiveUtil {
   }
 
   Future<void> deleteLazyBox<T>(String boxKey, {List<int>? encrypKey}) async {
-    LazyBox box;
+    LazyBox<T> box;
     if (Hive.isBoxOpen(boxKey)) {
-      box = Hive.lazyBox(boxKey);
+      box = Hive.lazyBox<T>(boxKey);
     } else {
-      box = await Hive.openLazyBox(boxKey,
+      box = await Hive.openLazyBox<T>(boxKey,
           encryptionCipher:
           encrypKey != null ? HiveAesCipher(encrypKey) : null);
     }
@@ -151,7 +151,7 @@ mixin HiveUtil {
   Future<void> deleteBoxKey<T>(boxKey, key, {List<int>? encrypKey}) async {
     late Box<T> box;
     if (Hive.isBoxOpen(boxKey)) {
-      box = Hive.box(boxKey);
+      box = Hive.box<T>(boxKey);
     } else {
       box = await Hive.openBox<T>(boxKey,
           encryptionCipher:
@@ -163,7 +163,7 @@ mixin HiveUtil {
   Future<void> deleteLazyBoxKey<T>(boxKey, key, {List<int>? encrypKey}) async {
     late LazyBox<T> box;
     if (Hive.isBoxOpen(boxKey)) {
-      box = Hive.lazyBox(boxKey);
+      box = Hive.lazyBox<T>(boxKey);
     } else {
       box = await Hive.openLazyBox<T>(boxKey,
           encryptionCipher:
@@ -176,7 +176,7 @@ mixin HiveUtil {
     try {
       late Box<T> box;
       if (Hive.isBoxOpen(boxKey)) {
-        box = Hive.box(boxKey);
+        box = Hive.box<T>(boxKey);
       } else {
         box = await Hive.openBox<T>(boxKey,
             encryptionCipher:
@@ -192,7 +192,7 @@ mixin HiveUtil {
     try {
       late LazyBox<T> box;
       if (Hive.isBoxOpen(boxKey)) {
-        box = Hive.lazyBox(boxKey);
+        box = Hive.lazyBox<T>(boxKey);
       } else {
         box = await Hive.openLazyBox<T>(boxKey,
             encryptionCipher:

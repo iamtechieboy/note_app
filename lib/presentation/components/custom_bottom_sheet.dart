@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:note_app/presentation/components/back_to_button.dart';
+import 'package:note_app/presentation/widgets/bloc/bottom_sheet_cubit.dart';
 
 import '../../config/constants/app_colors.dart';
 import '../../config/constants/assets.dart';
@@ -27,12 +28,11 @@ class CustomBottomSheet extends StatelessWidget {
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(25),
         ),
-        color: colorPickerList[
-            context.watch<AddInterestingIdeaCubit>().state.selectedColorIndex],
+        color: AppColors.primaryColor.background,
       ),
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,9 +58,7 @@ class CustomBottomSheet extends StatelessWidget {
                   child: Container(
                     height: 24,
                     width: 24,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.neutralColor.lightGrey),
+                    decoration: BoxDecoration(shape: BoxShape.circle, color: AppColors.neutralColor.lightGrey),
                     child: Material(
                       color: Colors.transparent,
                       child: InkWell(

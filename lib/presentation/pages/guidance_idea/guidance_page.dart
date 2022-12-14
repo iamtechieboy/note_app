@@ -165,14 +165,7 @@ class _GuidancePageState extends State<GuidancePage> {
                 NoteTextField(textEditingController: noteEditingController)
               ],
             ),
-            BottomTaskBar(
-              context: context,
-              onMarkAsFinished: () {},
-              onSelectedLabels: (List<String> labels) {},
-              onRemindedTimeSelected: (DateTime remindedTime) {},
-              onDelete: () {},
-              onSelectedColorIndex: (int selectedColorIndex) {},
-            ),
+            BottomTaskBar(onTapDelete: () {  }, onTapPinNote: () {}, isPinned: false,),
           ],
         ),
       ),

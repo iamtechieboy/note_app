@@ -71,14 +71,7 @@ class _BuyingSomethingPageState extends State<BuyingSomethingPage> {
               ],
             ),
           ),
-          BottomTaskBar(
-            context: context,
-            onMarkAsFinished: () {},
-            onSelectedLabels: (List<String> labels) {},
-            onRemindedTimeSelected: (DateTime remindedTime) {},
-            onDelete: () {},
-            onSelectedColorIndex: (int selectedColorIndex) {},
-          ),
+          BottomTaskBar(onTapDelete: () {  }, onTapPinNote: () {}, isPinned: false,),
         ],
       ),
     );

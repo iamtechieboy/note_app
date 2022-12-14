@@ -4,6 +4,7 @@ import 'package:note_app/data/models/interesting_idea_model.dart';
 import 'package:note_app/presentation/components/enter_password.dart';
 import 'package:note_app/presentation/pages/edit_profile/edit_profile_page.dart';
 import 'package:note_app/presentation/routes/routes.dart';
+import 'package:note_app/services/notifications.dart';
 
 import 'config/theme/themes.dart';
 import 'core/di/bloc_scope.dart';
@@ -12,6 +13,7 @@ import 'core/di/bloc_scope.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  notificationService = NotificationService();
   await Hive.initFlutter();
   Hive.registerAdapter<InterestingIdeaModel>(InterestingIdeaModelAdapter());
   runApp(const MyApp());

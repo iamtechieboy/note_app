@@ -33,6 +33,17 @@ dependencies:
   dotted_border: ^2.0.0+2
   # cupertino
   flutter_cupertino_date_picker_fork: ^1.0.6
+  # flutter switch
+  flutter_switch: ^0.3.2
+  # flutter notification for reminders
+  flutter_local_notifications: ^12.0.2
+  # time zone
+  flutter_native_timezone: ^2.0.0
+  # permission_handler:
+  permission_handler: ^10.2.0
+  #time form
+  datetime_picker_formfield_new: ^2.0.0
+
   measure_size: ^4.0.0
 
   cupertino_icons: ^1.0.2
@@ -41,8 +52,8 @@ dependencies:
   top_snackbar_flutter: ^2.1.1
   r_dotted_line_border: ^0.1.1
 
-  
-  
+
+
 
 dev_dependencies:
   flutter_test:

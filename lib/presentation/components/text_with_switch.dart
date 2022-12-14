@@ -11,8 +11,7 @@ class TextWithSwitch extends StatelessWidget {
     required this.onChanged,
   }) : super(key: key);
 
-  final MaterialStateProperty<Color?> trackColor =
-      MaterialStateProperty.resolveWith<Color?>(
+  final MaterialStateProperty<Color?> trackColor = MaterialStateProperty.resolveWith<Color?>(
     (Set<MaterialState> states) {
       if (states.contains(MaterialState.selected)) {
         return AppColors.primaryColor.light;
@@ -21,8 +20,7 @@ class TextWithSwitch extends StatelessWidget {
     },
   );
 
-  final MaterialStateProperty<Color?> overlayColor =
-      MaterialStateProperty.resolveWith<Color?>(
+  final MaterialStateProperty<Color?> overlayColor = MaterialStateProperty.resolveWith<Color?>(
     (Set<MaterialState> states) {
       if (states.contains(MaterialState.selected)) {
         return AppColors.primaryColor.base;
@@ -40,34 +38,41 @@ class TextWithSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 56,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: Text(
-              label,
-              style: AppTextStyle.mediumBase
-                  .copyWith(color: AppColors.neutralColor.black),
+    return Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => onChanged(!value),
+          child: SizedBox(
+            height: 56,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Text(
+                      label,
+                      style: AppTextStyle.mediumBase.copyWith(color: AppColors.neutralColor.black),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Switch(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      mouseCursor: MouseCursor.uncontrolled,
+                      splashRadius: 8,
+                      trackColor: trackColor,
+                      thumbColor: overlayColor,
+                      // MaterialStateProperty.all<Color>(AppColors.primaryColor.base),
+                      value: value,
+                      onChanged: onChanged,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Switch(
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              mouseCursor: MouseCursor.uncontrolled,
-              splashRadius: 8,
-              trackColor: trackColor,
-              thumbColor: overlayColor,
-              // MaterialStateProperty.all<Color>(AppColors.primaryColor.base),
-              value: value,
-              onChanged: onChanged,
-            ),
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }

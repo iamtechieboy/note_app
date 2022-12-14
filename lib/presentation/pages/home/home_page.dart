@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:note_app/config/constants/app_colors.dart';
-import 'package:note_app/config/constants/app_decoration.dart';
 import 'package:note_app/config/constants/app_text_style.dart';
 import 'package:note_app/config/constants/assets.dart';
 import 'package:note_app/presentation/pages/interesting_idea/bloc/add_interesting_idea_cubit.dart';
 import 'package:note_app/presentation/routes/routes.dart';
 import 'package:note_app/presentation/widgets/home_bottom_nav_bar.dart';
+import 'package:note_app/presentation/widgets/interesting_idea_note_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,113 +23,146 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: BlocBuilder<AddInterestingIdeaCubit, AddInterestingIdeaState>(
           builder: (context, state) {
-            return state.interestingIdeaList.isEmpty
-                ? Stack(
-                    children: [
-                      Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SvgPicture.asset(Assets.images.illustrationStart),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 24),
-                              child: Text(
-                                "Start Your Journey",
-                                style: AppTextStyle.boldXl,
-                              ),
+            return Stack(
+              children: [
+                Stack(
+                  children: [
+                    Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SvgPicture.asset(Assets.images.illustrationStart),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 24),
+                            child: Text(
+                              "Start Your Journey",
+                              style: AppTextStyle.boldXl,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16),
-                              child: Text(
-                                "Every big step start with small step. \nNotes your first idea and start \n your journey!",
-                                textAlign: TextAlign.center,
-                                style: AppTextStyle.regularSm.copyWith(
-                                    color: AppColors.neutralColor.darkGrey),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 10, bottom: 30),
-                          child: SvgPicture.asset(
-                            Assets.images.arrowIndicator,
-                            height: 100,
                           ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Text(
+                              "Every big step start with small step. \nNotes your first idea and start \n your journey!",
+                              textAlign: TextAlign.center,
+                              style: AppTextStyle.regularSm.copyWith(color: AppColors.neutralColor.darkGrey),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10, bottom: 30),
+                        child: SvgPicture.asset(
+                          Assets.images.arrowIndicator,
+                          height: 100,
                         ),
                       ),
-                    ],
-                  )
-                : Flexible(
-                  child: ListView(
-                    physics: const BouncingScrollPhysics(),
+                    ),
+                  ],
+                ),
+                Visibility(
+                  visible: state.interestingIdeaList.isNotEmpty,
+                  child: Container(
+                    color: AppColors.primaryColor.background,
+                    height: double.maxFinite,
+                    child: ListView(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 12),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            mainAxisSize: MainAxisSize.max,
+                        Visibility(
+                          visible: state.interestingIdeaList.where((element) => (element.isPinned ?? false)).isNotEmpty,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "Interesting Idea",
-                                style: AppTextStyle.boldSm,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      "Pinned Notes",
+                                      style: AppTextStyle.boldSm,
+                                    ),
+                                    Text("View all",
+                                        style: AppTextStyle.medium2Xs.copyWith(
+                                            decoration: TextDecoration.underline, color: AppColors.primaryColor.base)),
+                                  ],
+                                ),
                               ),
-                              Text("View all",
-                                  style: AppTextStyle.medium2Xs.copyWith(
-                                      decoration: TextDecoration.underline,
-                                      color: AppColors.primaryColor.base)),
+                              SizedBox(
+                                height: 225,
+                                child: ListView.custom(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  // itemCount: state.interestingIdeaList.length,
+                                  physics: const BouncingScrollPhysics(),
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  childrenDelegate: SliverChildBuilderDelegate((context, index) {
+                                    return InterestingIdeaNoteItem(
+                                        item: state.interestingIdeaList[index],
+                                        onTap: () {
+                                          Navigator.pushNamed(context, Routes.interestingIdeaPage,
+                                              arguments: {'model': state.interestingIdeaList[index], 'index': index});
+                                        });
+                                  }, childCount: state.interestingIdeaList.where((e) => e.isPinned ?? false).length),
+                                ),
+                              )
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 225,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: state.interestingIdeaList.length,
-                            physics: const BouncingScrollPhysics(),
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            itemBuilder: ((context, index) {
-                              var item = state.interestingIdeaList[index];
-                              return Container(
-                                margin: const EdgeInsets.only(right: 20),
-                                padding: const EdgeInsets.all(12),
-                                decoration: AppDecoration.defDecor.copyWith(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color:
-                                        colorPickerList[item.itemColor!.toInt()]),
-                                height: 224,
-                                width: 180,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                        Visibility(
+                          visible: state.interestingIdeaList
+                              .where((element) => !(element.isPinned ?? false || element.isFinished!))
+                              .isNotEmpty,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      item.title!,
-                                      style: AppTextStyle.mediumBase,
-                                      overflow: TextOverflow.clip,
+                                      "Interesting Idea",
+                                      style: AppTextStyle.boldSm,
                                     ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Text(
-                                      item.noteBody!,
-                                      style: AppTextStyle.regularXs.copyWith(
-                                          color: AppColors.neutralColor.black
-                                              .withOpacity(0.6)),
-                                      overflow: TextOverflow.clip,
-                                    ),
+                                    Text("View all",
+                                        style: AppTextStyle.medium2Xs.copyWith(
+                                            decoration: TextDecoration.underline, color: AppColors.primaryColor.base)),
                                   ],
                                 ),
-                              );
-                            }),
+                              ),
+                              SizedBox(
+                                height: 225,
+                                child: ListView.custom(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  // itemCount: state.interestingIdeaList.length,
+                                  physics: const BouncingScrollPhysics(),
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  childrenDelegate: SliverChildBuilderDelegate((context, index) {
+                                    return InterestingIdeaNoteItem(
+                                        item: state.interestingIdeaList[index],
+                                        onTap: () {
+                                          Navigator.pushNamed(context, Routes.interestingIdeaPage,
+                                              arguments: {'model': state.interestingIdeaList[index], 'index': index});
+                                        });
+                                  }, childCount: state.interestingIdeaList.where((e) => !(e.isPinned ?? false)).length),
+                                ),
+                              )
+                            ],
                           ),
-                        )
+                        ),
                       ],
                     ),
-                );
+                  ),
+                ),
+              ],
+            );
           },
         ),
       ),

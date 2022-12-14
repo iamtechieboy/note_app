@@ -26,18 +26,12 @@ Widget extrasSetReminderSession() {
               ),
             ),
             // Extra menus label
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: TextWithSwitch(
-                  value:
-                  context.watch<BottomSheetCubit>().state.isReminderOn!,
-                  label: "Reminder",
-                  onChanged: (value) {
-                    context
-                        .read<BottomSheetCubit>()
-                        .changeReminderSwitchValue(value);
-                  }),
-            ),
+            TextWithSwitch(
+                value: context.watch<BottomSheetCubit>().state.isReminderOn!,
+                label: "Reminder",
+                onChanged: (value) {
+                  context.read<BottomSheetCubit>().changeReminderSwitchValue(value);
+                }),
             // Set Reminder
             ExtrasMenuButton(
               enable: state.isReminderOn!,
@@ -65,9 +59,7 @@ Widget extrasSetReminderSession() {
               enable: state.isReminderOn!,
               menuTitle: "Repeat",
               label: sortWeekDays(
-                  list: state.selectedRepeatDays
-                      .map((e) => (e).substring(0, 3))
-                      .toList(),
+                  list: state.selectedRepeatDays.map((e) => (e).substring(0, 3)).toList(),
                   anotherOption: state.selectedRepeatDay,
                   isReminderOn: state.isReminderOn!),
               isArrowVisible: true,

@@ -16,6 +16,7 @@ class TitleTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
+      fit: FlexFit.loose,
       child: TextFormField(
         controller: textEditingController,
         style: AppTextStyle.bold2Xl,

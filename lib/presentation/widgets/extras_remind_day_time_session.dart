@@ -26,10 +26,9 @@ Widget extrasSetRemindDaySession() {
             // Extra menus label
             DatePickerWidget(
               dateFormat: "dd-MMM-yyyy",
-              initialDateTime: DateTime.now(),
+              initialDateTime: context.read<BottomSheetCubit>().state.remindDay ?? DateTime.now(),
               pickerTheme: DateTimePickerTheme(
-                itemTextStyle: AppTextStyle.mediumXl
-                    .copyWith(color: AppColors.primaryColor.base),
+                itemTextStyle: AppTextStyle.mediumXl.copyWith(color: AppColors.primaryColor.base),
                 pickerHeight: 160,
                 itemHeight: 60,
               ),
@@ -45,8 +44,7 @@ Widget extrasSetRemindDaySession() {
 }
 
 Widget extrasSetRemindTimeSession() {
-  return BlocBuilder<BottomSheetCubit, BottomSheetInitialState>(
-      builder: (context, state) {
+  return BlocBuilder<BottomSheetCubit, BottomSheetInitialState>(builder: (context, state) {
     return SingleChildScrollView(
       physics: const NeverScrollableScrollPhysics(),
       child: Column(
@@ -64,10 +62,9 @@ Widget extrasSetRemindTimeSession() {
           // Extra menus label
           TimePickerWidget(
             dateFormat: "HH:mm",
-            initDateTime: DateTime.now(),
+            initDateTime: context.read<BottomSheetCubit>().state.remindTime ?? DateTime.now(),
             pickerTheme: DateTimePickerTheme(
-              itemTextStyle: AppTextStyle.mediumXl
-                  .copyWith(color: AppColors.primaryColor.base),
+              itemTextStyle: AppTextStyle.mediumXl.copyWith(color: AppColors.primaryColor.base),
               pickerHeight: 160,
               itemHeight: 60,
             ),

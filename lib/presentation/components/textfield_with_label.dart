@@ -34,13 +34,16 @@ class TextFieldWithLabel extends StatelessWidget {
             autovalidateMode: AutovalidateMode.always,
             validator: (value) {
               if (value!.contains('\n')) {
-                context.read<BottomSheetCubit>().addLabel("#${controller.text.toString()}");
+                if (value.replaceAll('\n', '').isNotEmpty) {
+                  context
+                      .read<BottomSheetCubit>()
+                      .addLabel("#${value.toString()}");
+                }
                 controller.text = "";
-                debugPrint("you typed enter");
               }
+              return null;
             },
             controller: controller,
-            // bu yerga controller joylanadi
             minLines: 1,
             maxLines: null,
             style: AppTextStyle.regularBase,

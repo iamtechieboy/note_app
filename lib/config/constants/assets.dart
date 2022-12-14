@@ -89,6 +89,10 @@ class _Icons extends _AssetsHolder {
 
   String get eyeOff => '$basePath/eye_off.svg';
 
+  String get sadEmoji => '$basePath/sad_emoji.svg';
+
+  String get bookMarkFilled => '$basePath/bookmark_filled.svg';
+
 }
 
 class _Images extends _AssetsHolder {
@@ -103,4 +107,6 @@ class _Images extends _AssetsHolder {
   String get illustrationFinish => "$basePath/still_finish.svg";
 
   String get userSettings => "$basePath/user.png";
+
+  String get illustrationPinned => "$basePath/illus_pinned.svg";
 }

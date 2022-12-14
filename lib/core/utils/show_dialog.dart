@@ -10,22 +10,24 @@ import '../../config/constants/assets.dart';
 showCustomDialog({
   required BuildContext context,
   required String title,
-  required String contentText,
+  required Widget contentText,
   String? icon,
   Color? iconColor,
   Color? iconBackgroundColor,
   String? positive,
   String? negative,
   double? buttonHeight,
+  bool dismissible = true,
   Function()? onPositiveTap,
   Function()? onNegativeTap,
 }) {
   showDialog(
     context: context,
+    barrierDismissible: dismissible,
     builder: (BuildContext context) => AlertDialog(
       titlePadding: const EdgeInsets.only(top: 32, bottom: 8),
-      contentPadding: const EdgeInsets.only(bottom: 32, left: 24, right: 24),
-      actionsPadding: const EdgeInsets.only(left: 12, right: 12, bottom: 16),
+      contentPadding: const EdgeInsets.only(bottom: 48, left: 24, right: 24),
+      actionsPadding: const EdgeInsets.only(bottom: 32, left: 24, right: 24),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(16.0),
@@ -53,12 +55,7 @@ showCustomDialog({
           )
         ],
       ),
-      content: Text(
-        contentText,
-        style: AppTextStyle.regularBase
-            .copyWith(color: AppColors.neutralColor.darkGrey),
-        textAlign: TextAlign.center,
-      ),
+      content: contentText,
       actions: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,7 +87,8 @@ showCustomDialog({
                   isWidthMax: true,
                   onTap: onPositiveTap ?? () {},
                   text: positive ?? "Yes",
-                  height: 38,
+                  height: buttonHeight ?? 38,
+                  cornerRadius: buttonHeight != null ? buttonHeight / 2 : 38 / 2,
                 ),
               ),
             ),

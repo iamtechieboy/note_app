@@ -8,8 +8,6 @@ import 'package:note_app/presentation/components/custom_app_bar.dart';
 import 'package:note_app/presentation/components/sub_check_list_components.dart';
 import 'package:note_app/presentation/components/sub_text_field_component.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/safe_area_values.dart';
-import 'package:top_snackbar_flutter/tap_bounce_container.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SubNotesList extends StatefulWidget {
@@ -60,8 +58,7 @@ class _SubNotesListState extends State<SubNotesList> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
                   child: Divider(
                     height: 10,
                     color: AppColors.neutralColor.baseGrey,
@@ -90,8 +87,7 @@ class _SubNotesListState extends State<SubNotesList> {
                 ),
                 subCheckList.isNotEmpty
                     ? Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 16),
+                        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
                         child: Divider(
                           height: 10,
                           color: AppColors.neutralColor.baseGrey,
@@ -204,14 +200,7 @@ class _SubNotesListState extends State<SubNotesList> {
               ],
             ),
           ),
-          BottomTaskBar(
-            context: context,
-            onSelectedColorIndex: (int selectedColorIndex) {},
-            onSelectedLabels: (List<String> labels) {},
-            onRemindedTimeSelected: (DateTime remindedTime) {},
-            onMarkAsFinished: () {},
-            onDelete: () {},
-          ),
+          BottomTaskBar(onTapDelete: () {}, onTapPinNote: () {}, isPinned: false),
         ],
       ),
     );

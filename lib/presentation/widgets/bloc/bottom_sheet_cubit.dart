@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/core/domain/entities/enums.dart';
-import 'package:note_app/core/utils/sort_week_days.dart';
+import 'package:note_app/data/models/interesting_idea_model.dart';
+
+import '../../pages/interesting_idea/bloc/add_interesting_idea_cubit.dart';
 
 part 'bottom_sheet_state.dart';
 
@@ -9,6 +12,57 @@ class BottomSheetCubit extends Cubit<BottomSheetInitialState> {
 
   Future setLastHeight(double height) async {
     emit(state.copyWith(lastHeight: height));
+  }
+
+  Future cleanBottomSheet() async {
+    state.remindDay = null;
+    state.remindTime = null;
+    emit(state.copyWith(
+      remindTime: null,
+      remindDay: null,
+      selectedRepeatDays: const [],
+      givenLabel: const [],
+      lastHeight: 0,
+      lastEditTime: '',
+      changeHeight: 150,
+      repeatDay: '',
+      currentView: 0,
+      isReminderOn: false,
+      selectedRepeatDay: RepeatDay.once,
+      isDismissible: true,
+      colorIndex: 0,
+    ));
+  }
+
+  Future fillBottomSheetToEdit(InterestingIdeaModel model, BuildContext context) async {
+    state.remindDay = model.remindedDay!.isNotEmpty ? DateTime.parse(model.remindedDay!) : null;
+    state.remindTime = model.remindedTime!.isNotEmpty ? DateTime.parse(model.remindedTime!) : null;
+    context.read<AddInterestingIdeaCubit>().pinNote(model.isPinned ?? false);
+    emit(state.copyWith(
+      colorIndex: model.itemColor,
+      givenLabel: model.labels,
+      isReminderOn: model.remindedTime!.isNotEmpty ? true : false,
+      lastEditTime: model.lastEditedTime,
+    ));
+    changeVisibility(context);
+  }
+
+  Future changeBgColor(int colorIndex) async {
+    emit(state.copyWith(colorIndex: colorIndex));
+  }
+
+  Future changeVisibility(BuildContext context) async {
+    var stateAdd = context.read<AddInterestingIdeaCubit>();
+    if (state.remindDay != null) {
+      stateAdd.reminderDateVis(true);
+    } else {
+      stateAdd.reminderDateVis(false);
+    }
+    if (state.givenLabel.isNotEmpty) {
+      stateAdd.givenLabelVis(true);
+    } else {
+      stateAdd.givenLabelVis(false);
+    }
   }
 
   Future addLabel(String labelName) async {
@@ -43,6 +97,12 @@ class BottomSheetCubit extends Cubit<BottomSheetInitialState> {
             : currentView == 1
                 ? newView--
                 : newView = 1;
+    if (currentView == 2 && state.remindDay == null) {
+      emit(state.copyWith(remindDay: DateTime.now()));
+    }
+    if (currentView == 3 && state.remindTime == null) {
+      emit(state.copyWith(remindTime: DateTime.now()));
+    }
     if (newView == 0) {
       emit(state.copyWith(currentView: newView, isDismissible: true));
     } else {
@@ -75,8 +135,7 @@ class BottomSheetCubit extends Cubit<BottomSheetInitialState> {
 
   Future setRepeatDayIndex(RepeatDay repeatDay) async {
     if (repeatDay != RepeatDay.custom) {
-      emit(
-          state.copyWith(selectedRepeatDay: repeatDay, selectedRepeatDays: []));
+      emit(state.copyWith(selectedRepeatDay: repeatDay, selectedRepeatDays: []));
     } else {
       emit(state.copyWith(selectedRepeatDay: repeatDay));
     }

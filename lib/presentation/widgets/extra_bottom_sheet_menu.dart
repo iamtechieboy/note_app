@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/core/utils/show_given_labels_shorter.dart';
+import 'package:note_app/core/utils/show_snack_bar_top.dart';
 import 'package:note_app/presentation/components/custom_bottom_sheet.dart';
 import 'package:note_app/presentation/widgets/bloc/bottom_sheet_cubit.dart';
 import 'package:note_app/presentation/widgets/extras_give_label_session.dart';
@@ -8,6 +9,7 @@ import '../../config/constants/app_colors.dart';
 import '../../config/constants/app_text_style.dart';
 import '../../config/constants/assets.dart';
 import '../../config/constants/local_data.dart';
+import '../../core/utils/show_dialog.dart';
 import '../components/extras_menu_button.dart';
 import 'custom_color_picker.dart';
 import 'extras_remind_day_time_session.dart';
@@ -15,24 +17,13 @@ import 'extras_remind_repeat_day_session.dart';
 import 'extras_reminder_session.dart';
 
 class ExtrasBottomSheetMenuBody extends StatefulWidget {
-  const ExtrasBottomSheetMenuBody({
-    Key? key,
-    required this.onSelectedColorIndex,
-    required this.onRemindedTimeSelected,
-    required this.onSelectedLabels,
-    required this.onMarkAsFinished,
-    required this.onDelete,
-  }) : super(key: key);
+  ExtrasBottomSheetMenuBody({Key? key, required this.onTapFinished, required this.onTapDelete}) : super(key: key);
 
-  final Function(int selectedColorIndex) onSelectedColorIndex;
-  final Function(List<String> labels) onSelectedLabels;
-  final Function(DateTime remindedTime) onRemindedTimeSelected;
-  final Function() onMarkAsFinished;
-  final Function() onDelete;
+  Function() onTapFinished;
+  Function() onTapDelete;
 
   @override
-  State<ExtrasBottomSheetMenuBody> createState() =>
-      _ExtrasBottomSheetMenuBodyState();
+  State<ExtrasBottomSheetMenuBody> createState() => _ExtrasBottomSheetMenuBodyState();
 }
 
 class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
@@ -57,10 +48,7 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
 
   @override
   Widget build(BuildContext context) {
-    double currentHeight =
-        heightsBottomSheet[context.read<BottomSheetCubit>().state.currentView!]
-            .values
-            .first;
+    double currentHeight = heightsBottomSheet[context.read<BottomSheetCubit>().state.currentView!].values.first;
     Curve curve = Curves.easeOutBack;
     context.read<BottomSheetCubit>().setLastHeight(currentHeight);
     return BlocBuilder<BottomSheetCubit, BottomSheetInitialState>(
@@ -70,15 +58,11 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
           body: AnimatedContainer(
             duration: const Duration(milliseconds: 400),
             curve: curve,
-            height: state.currentView! == 6
-                ? state.changeHeight
-                : heightsBottomSheet[state.currentView!].values.first,
+            height: state.currentView! == 6 ? state.changeHeight : heightsBottomSheet[state.currentView!].values.first,
             child: pages[state.currentView!],
           ),
           onBackTap: () {
-            context
-                .read<BottomSheetCubit>()
-                .changeCurrentView(state.currentView!);
+            context.read<BottomSheetCubit>().changeCurrentView(state.currentView!);
           },
         );
       },
@@ -97,16 +81,13 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
                 padding: const EdgeInsets.only(top: 8, bottom: 16, left: 16),
                 child: Text(
                   "CHANGE BACKGROUND",
-                  style: AppTextStyle.regularXs
-                      .copyWith(color: AppColors.neutralColor.darkGrey),
+                  style: AppTextStyle.regularXs.copyWith(color: AppColors.neutralColor.darkGrey),
                 ),
               ),
               // Color picker for that project
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: CustomColorPicker(
-                  onSelectedColor: widget.onSelectedColorIndex,
-                ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: CustomColorPicker(),
               ),
               // Divider
               Padding(
@@ -122,8 +103,7 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
                 padding: const EdgeInsets.only(bottom: 8, left: 16),
                 child: Text(
                   "EXTRAS",
-                  style: AppTextStyle.regularXs
-                      .copyWith(color: AppColors.neutralColor.darkGrey),
+                  style: AppTextStyle.regularXs.copyWith(color: AppColors.neutralColor.darkGrey),
                 ),
               ),
               // Set Reminder
@@ -150,9 +130,7 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
                 icon: Assets.icons.tag,
                 menuTitle: "Give Label",
                 isArrowVisible: true,
-                label: state.givenLabel.isNotEmpty
-                    ? showGivenLabelsShorter(state.givenLabel)
-                    : "Not set",
+                label: state.givenLabel.isNotEmpty ? showGivenLabelsShorter(state.givenLabel) : "Not set",
                 onTap: () {
                   context.read<BottomSheetCubit>().navigateTo(6);
                 },
@@ -160,12 +138,13 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
               ExtrasMenuButton(
                 icon: Assets.icons.check,
                 menuTitle: "Mark as Finished",
-                onTap: () {},
+                onTap: () {
+                  widget.onTapFinished();
+                },
               ),
               // Divider
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 child: Divider(
                   color: AppColors.neutralColor.lightGrey,
                   thickness: 1,
@@ -177,7 +156,9 @@ class _ExtrasBottomSheetMenuBodyState extends State<ExtrasBottomSheetMenuBody> {
                 iconColor: AppColors.errorColor.base,
                 menuTitle: "Delete Note",
                 menuTitleColor: AppColors.errorColor.base,
-                onTap: widget.onDelete,
+                onTap: () {
+                  widget.onTapDelete();
+                },
               ),
             ],
           ),
