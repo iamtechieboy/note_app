@@ -14,8 +14,8 @@ List weekDaysShort = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 // bottom sheet bodies heights to show animation with changing heights
 List<Map<String, double>> heightsBottomSheet = [
-  {"": 362},
-  {"Extras": 257},
+  {"": 382},
+  {"Extras": 287},
   {"Set Reminder": 177},
   {"Set Reminder": 177},
   {"Set Reminder": 273},

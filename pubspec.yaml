@@ -43,17 +43,16 @@ dependencies:
   permission_handler: ^10.2.0
   #time form
   datetime_picker_formfield_new: ^2.0.0
+  # dependency injection
+  get_it: ^7.6.0
 
   measure_size: ^4.0.0
 
   cupertino_icons: ^1.0.2
 
-  # Package for Pop Up Snackbar
+  # package for Pop Up Snackbar
   top_snackbar_flutter: ^2.1.1
   r_dotted_line_border: ^0.1.1
-
-
-
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +69,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - fonts/
+    - assets/translation/en.json
 
   fonts:
     - family: Inter

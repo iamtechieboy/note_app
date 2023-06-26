@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/config/constants/app_colors.dart';
 import 'package:note_app/config/constants/app_decoration.dart';
-import 'package:note_app/presentation/components/circular_icon_place.dart';
-import 'package:note_app/presentation/components/iconic_oval_button.dart';
 
 import '../../config/constants/app_text_style.dart';
 import '../../config/constants/assets.dart';
+import '../../features/components/circular_icon_place.dart';
+import '../../features/components/iconic_oval_button.dart';
 
 showCustomDialog({
   required BuildContext context,
