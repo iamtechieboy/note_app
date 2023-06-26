@@ -35,9 +35,7 @@ class TextFieldWithLabel extends StatelessWidget {
             validator: (value) {
               if (value!.contains('\n')) {
                 if (value.replaceAll('\n', '').isNotEmpty) {
-                  context
-                      .read<BottomSheetCubit>()
-                      .addLabel("#${value.toString()}");
+                  context.read<BottomSheetCubit>().addLabel("#${value.toString()}");
                 }
                 controller.text = "";
               }
@@ -53,8 +51,7 @@ class TextFieldWithLabel extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               hintText: hintText,
-              hintStyle: AppTextStyle.regularBase
-                  .copyWith(color: AppColors.neutralColor.baseGrey),
+              hintStyle: AppTextStyle.regularBase.copyWith(color: AppColors.neutralColor.baseGrey),
               fillColor: AppColors.neutralColor.baseGrey,
             ),
             keyboardType: keyboardInputType,
@@ -62,6 +59,5 @@ class TextFieldWithLabel extends StatelessWidget {
         ),
       ],
     );
-    ;
   }
 }

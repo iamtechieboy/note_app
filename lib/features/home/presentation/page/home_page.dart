@@ -169,7 +169,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: AppColors.primaryColor.base,
+          backgroundColor: AppColors.primaryColor.base,
           shape: const CircleBorder(),
           fixedSize: const Size.fromHeight(80),
         ),

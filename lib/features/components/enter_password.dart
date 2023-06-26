@@ -15,7 +15,6 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   bool _showEye = false;
   bool _passwordIsEncryped = true;
 
-  String _password = '';
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -84,7 +83,6 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
             ),
             obscureText: _showEye ? _passwordIsEncryped : true,
             onChanged: (value) {
-              _password = value;
               if (value.isEmpty) {
                 setState(() {
                   _showEye = false;

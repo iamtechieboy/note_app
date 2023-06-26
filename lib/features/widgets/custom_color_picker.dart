@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/config/constants/app_colors.dart';
-
-import '../../config/constants/app_colors.dart';
 import 'bloc/bottom_sheet_cubit.dart';
 
 class CustomColorPicker extends StatefulWidget {
