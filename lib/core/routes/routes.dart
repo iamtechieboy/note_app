@@ -12,6 +12,7 @@ import '../../features/routine_task_idea/presentation/page/sub_notes_add_page.da
 import '../../features/settings/presentation/page/setting_page.dart';
 
 class Routes {
+
   static const mainPage = '/';
   static const newIdeaPage = '/createNewIdeaPage';
   static const interestingIdeaPage = '/interestingIdeaPage';

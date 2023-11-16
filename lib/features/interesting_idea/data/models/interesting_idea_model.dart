@@ -5,16 +5,17 @@ part 'interesting_idea_model.g.dart';
 @HiveType(typeId: 1)
 class InterestingIdeaModel extends HiveObject {
   InterestingIdeaModel({
-      this.noteType, 
-      this.title, 
-      this.noteBody, 
-      this.remindedDay, 
-      this.remindedTime, 
-      this.lastEditedTime, 
-      this.itemColor, 
-      this.labels, 
-      this.isFinished, 
-      this.isPinned,});
+    this.noteType,
+    this.title,
+    this.noteBody,
+    this.remindedDay,
+    this.remindedTime,
+    this.lastEditedTime,
+    this.itemColor,
+    this.labels,
+    this.isFinished,
+    this.isPinned,
+  });
 
   InterestingIdeaModel.fromJson(dynamic json) {
     noteType = json['note_type'];
@@ -28,6 +29,7 @@ class InterestingIdeaModel extends HiveObject {
     isFinished = json['isFinished'];
     isPinned = json['isPinned'];
   }
+
   @HiveField(0)
   String? noteType;
   @HiveField(1)
@@ -63,5 +65,4 @@ class InterestingIdeaModel extends HiveObject {
     map['isPinned'] = isPinned;
     return map;
   }
-
 }

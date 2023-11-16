@@ -120,6 +120,7 @@ class _HomePageState extends State<HomePage> {
                               .isNotEmpty,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
                             children: [
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -139,11 +140,13 @@ class _HomePageState extends State<HomePage> {
                               ),
                               SizedBox(
                                 height: 225,
+                                width: MediaQuery.of(context).size.width,
                                 child: ListView.custom(
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
                                   // itemCount: state.interestingIdeaList.length,
                                   physics: const BouncingScrollPhysics(),
+
                                   padding: const EdgeInsets.symmetric(horizontal: 16),
                                   childrenDelegate: SliverChildBuilderDelegate((context, index) {
                                     return InterestingIdeaNoteItem(
@@ -167,22 +170,27 @@ class _HomePageState extends State<HomePage> {
           },
         ),
       ),
+
       floatingActionButton: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primaryColor.base,
           shape: const CircleBorder(),
           fixedSize: const Size.fromHeight(80),
         ),
+
         onPressed: () async {
           Navigator.pushNamed(context, Routes.newIdeaPage);
         },
+
         child: SvgPicture.asset(
           Assets.icons.plus,
           height: 32,
           color: AppColors.neutralColor.white,
         ),
       ),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
       bottomNavigationBar: const HomeBottomNavBar(),
     );
   }

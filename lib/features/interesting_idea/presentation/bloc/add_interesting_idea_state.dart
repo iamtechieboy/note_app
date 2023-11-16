@@ -13,21 +13,19 @@ class AddInterestingIdeaState {
   bool isReminderDateVis = false;
   bool isLabelVis = false;
   bool isDeleted = false;
-  bool isPinned ;
+  bool isPinned;
 
-  AddInterestingIdeaState copyWith({
-    List<InterestingIdeaModel>? interestingIdeaList,
-    bool? isReminderDateVis,
-    bool? isLabelVis,
-    bool? isDeleted,
-    bool? isPinned
-  }) {
+  AddInterestingIdeaState copyWith(
+      {List<InterestingIdeaModel>? interestingIdeaList,
+      bool? isReminderDateVis,
+      bool? isLabelVis,
+      bool? isDeleted,
+      bool? isPinned}) {
     return AddInterestingIdeaState(
-      interestingIdeaList: interestingIdeaList ?? this.interestingIdeaList,
-      isReminderDateVis: isReminderDateVis ?? this.isReminderDateVis,
-      isLabelVis: isLabelVis ?? this.isLabelVis,
-      isDeleted: isDeleted ?? this.isDeleted,
-      isPinned: isPinned ?? this.isPinned
-    );
+        interestingIdeaList: interestingIdeaList ?? this.interestingIdeaList,
+        isReminderDateVis: isReminderDateVis ?? this.isReminderDateVis,
+        isLabelVis: isLabelVis ?? this.isLabelVis,
+        isDeleted: isDeleted ?? this.isDeleted,
+        isPinned: isPinned ?? this.isPinned);
   }
 }
